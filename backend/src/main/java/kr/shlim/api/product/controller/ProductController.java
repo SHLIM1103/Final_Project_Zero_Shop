@@ -3,6 +3,7 @@ package kr.shlim.api.product.controller;
 import java.util.List;
 import java.util.Optional;
 
+import kr.shlim.api.common.controller.AbstractController;
 import kr.shlim.api.product.domain.Product;
 import kr.shlim.api.product.domain.ProductDto;
 import kr.shlim.api.product.service.ProductServiceImpl;
@@ -24,12 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/products")
+@RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
-public class ProductContoller {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+public class ProductController extends AbstractController<Product> {
 	private final ProductServiceImpl service;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@PostMapping("/save")
 	public ResponseEntity<Long> save(@RequestBody Product product) {
@@ -93,5 +94,4 @@ public class ProductContoller {
 		logger.info("수정한 제품: " + prdNo);
 		return ResponseEntity.ok(service.update(p));
 	}
-	
 }

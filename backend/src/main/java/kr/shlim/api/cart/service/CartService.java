@@ -1,5 +1,3 @@
 package kr.shlim.api.cart.service;
 
-public interface CartService {
-
-}
+public interface CartService { }

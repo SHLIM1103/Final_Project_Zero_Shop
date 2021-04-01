@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import kr.shlim.api.board.domain.Board;
 import kr.shlim.api.board.domain.BoardDto;
+
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
@@ -50,5 +51,4 @@ public class BoardRepositoryImpl extends QuerydslRepositorySupport implements IB
 		return qf.update(board).set(board.brdTitle, t.getBrdTitle())
 				.where(board.brdNo.eq(t.getBrdNo())).execute();
 	}
-
 }

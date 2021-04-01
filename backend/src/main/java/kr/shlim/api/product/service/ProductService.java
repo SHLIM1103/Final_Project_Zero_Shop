@@ -1,8 +1,8 @@
 package kr.shlim.api.product.service;
 
-import kr.shlim.api.product.domain.Product;
-
 import java.util.List;
+
+import kr.shlim.api.product.domain.Product;
 
 public interface ProductService {
 	public List<Product> findByPrdNo(long prdNo);

@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequestMapping("/carts")
 @RequiredArgsConstructor
-@RequestMapping("/cart")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CartController extends AbstractController<Cart> {
 	private final CartServiceImpl service;
 

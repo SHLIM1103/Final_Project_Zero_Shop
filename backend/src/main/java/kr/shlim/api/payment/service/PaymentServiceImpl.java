@@ -3,6 +3,7 @@ package kr.shlim.api.payment.service;
 import kr.shlim.api.common.service.AbstractService;
 import kr.shlim.api.payment.domain.Payment;
 import kr.shlim.api.payment.repository.PaymentRepository;
+
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,5 @@ public class PaymentServiceImpl extends AbstractService<Payment> implements Paym
 	@Override public Optional<Payment> findById(long id) {return repo.findById(id);}
 	@Override public boolean existsById(long id) {return repo.existsById(id);}
 	@Override public List<Payment> findAll() {return repo.findAll();}
-	@Override public long delete(Payment t) {
-		repo.delete(t); 
-		return (getOne(t.getPayNo())==null) ? 1 : 0;
-	}
+	@Override public long delete(Payment t) { repo.delete(t); return (getOne(t.getPayNo())==null) ? 1 : 0; }
 }

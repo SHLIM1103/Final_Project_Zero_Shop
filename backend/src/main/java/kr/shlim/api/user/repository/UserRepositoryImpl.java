@@ -1,9 +1,9 @@
 package kr.shlim.api.user.repository;
 
 import static kr.shlim.api.user.domain.QUserVo.userVo;
+
 import java.util.List;
 import java.util.Optional;
-
 import javax.persistence.EntityManager;
 
 import kr.shlim.api.user.domain.UserVo;
@@ -27,8 +27,7 @@ public class UserRepositoryImpl extends QuerydslRepositorySupport implements IUs
 	@Override
 	public List<UserVo> findAllUser() {
 		return queryFactory.selectFrom(userVo)
-				.orderBy(userVo.usrName.desc())
-				.fetch();
+				.orderBy(userVo.usrName.desc()).fetch();
 	}
 
 	@Override
@@ -51,7 +50,6 @@ public class UserRepositoryImpl extends QuerydslRepositorySupport implements IUs
 				.fetchOne() != null ? true : false;
 	}
 	
-	
 	@Override
 	public String findIdByEmail(String email) {
 		return queryFactory.select(userVo.username).from(userVo).fetchOne();
@@ -60,8 +58,7 @@ public class UserRepositoryImpl extends QuerydslRepositorySupport implements IUs
 	@Override
 	public Optional<UserVo> findUserById(String email) {
 		return Optional.ofNullable(queryFactory.selectFrom(userVo)
-				.where(userVo.usrEmail.eq(email))
-				.fetchOne());
+				.where(userVo.usrEmail.eq(email)).fetchOne());
 	}
 	
 	@Override
@@ -69,32 +66,25 @@ public class UserRepositoryImpl extends QuerydslRepositorySupport implements IUs
 		return Optional.ofNullable(queryFactory.selectFrom(userVo)
 				.where(userVo.usrEmail.eq(email)).fetchOne());
 	}
-	
-	
+
 	@Override
 	public Optional<UserVo> updatePassword(String password) {
-		return Optional.ofNullable(queryFactory
-				.selectFrom(userVo)
-				.where(userVo.password.eq(password))
-				.fetchOne());
+		return Optional.ofNullable(queryFactory.selectFrom(userVo)
+				.where(userVo.password.eq(password)).fetchOne());
 	}
 
 	@Override
 	public Optional<UserVo> updateProfile(String email, String password) {
-		return Optional.ofNullable(
-				queryFactory.selectFrom(userVo)
-					.where(userVo.usrEmail.eq(email).and(userVo.password.eq(password)))
-					.fetchOne());
+		return Optional.ofNullable(queryFactory.selectFrom(userVo)
+				.where(userVo.usrEmail.eq(email).and(userVo.password.eq(password))).fetchOne());
 	}
 
 	@Override
 	public Optional<UserVo> findPassword(String password) {
 		return Optional.ofNullable(queryFactory.selectFrom(userVo)
-				.where(userVo.password.eq(password))
-				.fetchOne());
+				.where(userVo.password.eq(password)).fetchOne());
 	}
 
 	@Override
-	public void updateUserPassword(String id, String password) {
-	}
+	public void updateUserPassword(String id, String password) { }
 }

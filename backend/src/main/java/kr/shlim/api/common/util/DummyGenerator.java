@@ -17,7 +17,7 @@ public class DummyGenerator extends Proxy {
 		switch(month) {
 		case 2: date = ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) ? 
 				random.apply(1, 30) : random.apply(1, 29) ; break;
-		case 4: case  6: case  9: case  11: date = random.apply(1, 31);	break;
+		case 4: case  6: case  9: case  11: date = random.apply(1, 31); break;
 		default: date = random.apply(1, 32); break;
 		}
 		return year+"-"+month+"-"+date;
@@ -30,7 +30,7 @@ public class DummyGenerator extends Proxy {
 		switch(month) {
 		case 2: date = ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) ? 
 				random.apply(1, 30) : random.apply(1, 29) ; break;
-		case 4: case  6: case  9: case  11: date = random.apply(1, 31);	break;
+		case 4: case  6: case  9: case  11: date = random.apply(1, 31); break;
 		default: date = random.apply(1, 32); break;
 		}
 		return year+"-"+month+"-"+date;

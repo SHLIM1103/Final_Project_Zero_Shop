@@ -7,18 +7,20 @@ import javax.persistence.*;
 
 import kr.shlim.api.category.domain.Category;
 import kr.shlim.api.payment.domain.Payment;
+
 import lombok.Getter;
 import lombok.ToString;
 
-@Entity @Getter @ToString @Table(name="product")
+@Entity @Getter @ToString
+@Table(name="products")
 public class Product {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="prd_no") private long prdNo;
 	@Column(name="prd_name") private String prdName;
-	@Column(name="ctg_name") private String ctgName;
 	@Column(name="prd_img") private String prdImg;
 	@Column(name="prd_price") private String prdPrice;
 	@Column(name="prd_inv") private String prdInv;
+	@Column(name="ctg_name") private String ctgName;
 
 	@ManyToOne
 	@JoinColumn(name="ctg_no")

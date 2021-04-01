@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequestMapping("/payments")
 @RequiredArgsConstructor
-@RequestMapping("/payment")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PaymentController extends AbstractController<Payment> {
-	final PaymentServiceImpl service;
+	private final PaymentServiceImpl service;
 	
 	@PostMapping("/save")
 	public ResponseEntity<Long> save(@RequestBody Payment t) {
@@ -60,5 +60,4 @@ public class PaymentController extends AbstractController<Payment> {
 	public ResponseEntity<List<Payment>> findAll() {
 		return ResponseEntity.ok(service.findAll());
 	}
-	
 }

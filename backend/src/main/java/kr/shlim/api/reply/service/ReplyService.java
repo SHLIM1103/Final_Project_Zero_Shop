@@ -1,5 +1,3 @@
 package kr.shlim.api.reply.service;
 
-public interface ReplyService {
-
-}
+public interface ReplyService { }

@@ -2,8 +2,7 @@ package kr.shlim.api.board.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Column;   
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,36 +20,37 @@ import kr.shlim.api.user.domain.UserVo;
 
 import lombok.Getter;
 
-@Entity @Getter @Table(name = "board")
+@Entity @Getter
+@Table(name = "boards")
 public class Board {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="brd_no") private long brdNo;
+	@Column(name="brd_kind") private long brdKind;
+	@Column(name="usr_nickname") private String usrNickname;
 	@Column(name="brd_title") private String  brdTitle;
 	@Column(name="brd_content") private String brdContent;
 	@Column(name="brd_wrt_date") private String brdWrtDate;
+	@Column(name="brd_like") private String brdLike;
 	@Column(name="brd_rank") private String brdRank;
 	@Column(name="brd_img") private String brdImg;
-	@Column(name="brd_kind") private long brdKind;
-	@Column(name="brd_count") private long brdCount;
-	@Column(name="brd_like") private String brdLike;
 	@Column(name="brd_pwd") private String brdPwd;
-	@Column(name="usr_nickname") private String usrNikcname;
-	
-	@OneToMany(mappedBy="board")
-	private List<Reply> replies = new ArrayList<>();
-	
+	@Column(name="brd_count") private long brdCount;
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="usr_no")
 	private UserVo user;
 
 	@ManyToOne
+	@JoinColumn(name="prd_no")
+	private Product product;
+
+	@ManyToOne
 	@JoinColumn(name="pay_no")
 	private Payment payment;
 
-	@ManyToOne
-	@JoinColumn(name="prd_no")
-	private Product product;
-	
+	@OneToMany(mappedBy="board")
+	private List<Reply> replies = new ArrayList<>();
+
 	public void setBrdWrtDate(String brdWrtDate) {
 		this.brdWrtDate = brdWrtDate;
 	}
@@ -68,7 +68,7 @@ public class Board {
 	public String toString() {
 		return "Board [brdNo=" + brdNo + ", brdTitle=" + brdTitle + ", brdContent=" + brdContent + ", brdWrtDate="
 				+ brdWrtDate + ", brdRank=" + brdRank + ", brdImg=" + brdImg + ", brdKind=" + brdKind + ", brdCount="
-				+ brdCount + ", brdLike=" + brdLike + ", brdPwd=" + brdPwd + ", usrNikcname=" + usrNikcname
+				+ brdCount + ", brdLike=" + brdLike + ", brdPwd=" + brdPwd + ", usrNickname=" + usrNickname
 				+ ", replyList=" + replies + ", user=" + user + ", payment=" + payment + ", product=" + product + "]";
 	}
 }

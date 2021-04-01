@@ -1,17 +1,12 @@
-  
 package kr.shlim.api.receiver.domain;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-
 import lombok.Data;
 
 @Component @Data @Lazy
 public class ReceiverDto {
-	 private long rcvNo;
-	 private String rcvName;
-     private String rcvPhone;
-     private String rcvAddr;
-     
+    private long rcvNo;
+    private String rcvName, rcvPhone, rcvAddr;
 }

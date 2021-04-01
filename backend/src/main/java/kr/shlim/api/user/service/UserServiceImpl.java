@@ -2,23 +2,21 @@ package kr.shlim.api.user.service;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpServletRequest;
 
-import kr.shlim.api.common.service.AbstractService;
 import kr.shlim.api.security.domain.SecurityProvider;
 import kr.shlim.api.security.exception.SecurityRuntimeException;
 import kr.shlim.api.user.domain.Role;
 import kr.shlim.api.user.domain.UserVo;
 import kr.shlim.api.user.domain.UserDto;
 import kr.shlim.api.user.repository.UserRepository;
-import org.springframework.security.authentication.AuthenticationManager;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
-
-import javax.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.core.AuthenticationException;
 
 @Service
 @AllArgsConstructor
@@ -26,7 +24,6 @@ public class UserServiceImpl implements UserService {
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 	private final SecurityProvider provider;
-	private final AuthenticationManager manager;
 
 	public boolean checkDuplicateId(String userId) {
 		if (userId != null) {
@@ -36,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public boolean checkDuplicateEmail(String userId) {
-		if (userId != null) {
+		if(userId != null) {
 			return userRepository.findByEmail(userId);
 		}
 		return false;
@@ -47,7 +44,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public String findIdByEmail(String userEmail) {
-		if (userEmail != null) {
+		if(userEmail != null) {
 			return userRepository.findIdByEmail(userEmail);
 		}
 		return "";

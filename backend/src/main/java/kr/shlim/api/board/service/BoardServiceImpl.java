@@ -12,67 +12,37 @@ import kr.shlim.api.board.domain.Board;
 import kr.shlim.api.board.domain.BoardDto;
 import kr.shlim.api.board.repository.BoardRepository;
 import kr.shlim.api.common.service.AbstractService;
+
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
-@Service @RequiredArgsConstructor 
-public class BoardServiceImpl extends AbstractService<Board> implements BoardService{
-	private final BoardRepository repository;
+@Service
+@RequiredArgsConstructor
+public class BoardServiceImpl extends AbstractService<Board> implements BoardService {
+	private final BoardRepository repo;
 	
+	@Override public long count() { return (long)repo.count(); }
+	@Override public Board getOne(long id) { return repo.getOne(id); }
+	@Override public Optional<Board> findById(long id) { return repo.findById(id); }
+	@Override public boolean existsById(long id) { return repo.existsById(id); }
+	@Override public Board findByTitle(String brdTitle) { return repo.findByTitle(brdTitle); }
+	@Override public long delete(Board t) { repo.delete(t); return (getOne(t.getBrdNo()) == null) ? 1 : 0; }
+	@Override public List<Board> findAll() {
+		return repo.findAll().stream().sorted(Comparator.comparing(Board::getBrdWrtDate).reversed()).collect(Collectors.toList());
+	}
 	@Override public long save(Board t) {
 		String date = String.format("%s %s", LocalDate.now(), LocalDateTime.now().format(DateTimeFormatter.ofPattern("a HH시 mm분")));
-        t.setBrdWrtDate(date);
-		return (repository.save(t)!=null) ? 1:0;}
-	@Override public long count() {return (long)repository.count();}
-	@Override public Board getOne(long id) {return repository.getOne(id);}
-	@Override public Optional<Board> findById(long id){return repository.findById(id);}
-	@Override public boolean existsById(long id) {return repository.existsById(id);}
-	@Override public List<Board> findAll() {
-		return repository.findAll().stream().sorted(Comparator.comparing(Board::getBrdWrtDate).reversed()).collect(Collectors.toList());
+		t.setBrdWrtDate(date);
+		return (repo.save(t) != null) ? 1 : 0;
 	}
-	@Override 
-	public long delete(Board t) {
-		repository.delete(t); 
-		return (getOne(t.getBrdNo())==null)? 1:0;
-	}
-	@Override
-	public Board findByTitle(String brdTitle) {
-		return repository.findByTitle(brdTitle);
-	}
-	public Board findByBrd(Board board) {
-		return repository.findByBrd(board);
-	}
-	public List<Board> search(String brdTitle) {
-		return repository.search(brdTitle);
-	}
-	public List<Board> blogListAll() {
-		return repository.blogListAll();
-	}
+	public Board findByBrd(Board board) { return repo.findByBrd(board); }
+	public List<Board> search(String brdTitle) { return repo.search(brdTitle); }
+	public List<Board> blogListAll() { return repo.blogListAll(); }
 	public long update(BoardDto dto) {
-//		ModelMapper model = new ModelMapper();
-//		
-//		Board c = findById(brdNo).get();
-//			c =	model.map(t , Board.class);	
 		Board map = findById(dto.getBrdNo()).get();
 		map.setBrdTitle(dto.getBrdTitle());
 		map.setBrdContent(dto.getBrdContent());
-     		return repository.save(map)==null? 1:0;
+		return repo.save(map)==null? 1:0;
 	}
-
-	
-	
-	
-	
-
-
-//	public JPAUpdateClause update(Board t) {
-//		return repository.update(t);
-//	}
-
-	
-
-
-
-	
 }

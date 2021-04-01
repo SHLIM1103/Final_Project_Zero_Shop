@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequestMapping("/boards")
 @RequiredArgsConstructor
-@RequestMapping("/board")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class BoardController extends AbstractController<Board> {
 	 private final BoardServiceImpl service;
 

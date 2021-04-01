@@ -1,9 +1,11 @@
 package kr.shlim.api.user.domain;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.List;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
 @Data
 public class UserResponseDto {
     @ApiModelProperty(position = 0)

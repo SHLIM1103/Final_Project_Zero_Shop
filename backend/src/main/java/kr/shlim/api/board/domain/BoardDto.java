@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
-@Data @Lazy @Component
+@Component @Data @Lazy
 public class BoardDto {
 	 private long brdNo, brdKind, count;
-	 private String brdTitle, brdContent, brdWrtDate, brdRank, brdImg, brdLike, brdPwd, brdNikcname;
+	 private String brdTitle, brdContent, brdWrtDate, brdRank, brdImg, brdLike, brdPwd, usrNickname;
 }

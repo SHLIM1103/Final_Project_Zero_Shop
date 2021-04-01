@@ -1,7 +1,6 @@
 package kr.shlim.api.security.aop;
 
 import java.io.IOException;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.shlim.api.security.domain.SecurityProvider;
 import kr.shlim.api.security.exception.SecurityRuntimeException;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-
 import org.springframework.web.filter.OncePerRequestFilter;
 
 public class SecurityFilter extends OncePerRequestFilter {
@@ -35,7 +34,6 @@ public class SecurityFilter extends OncePerRequestFilter {
             httpServletResponse.sendError(ex.getHttpStatus().value(), ex.getMessage());
             return;
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
          filterChain.doFilter(httpServletRequest, httpServletResponse);

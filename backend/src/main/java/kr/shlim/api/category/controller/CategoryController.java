@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequestMapping("/categories")
 @RequiredArgsConstructor
-@RequestMapping("/category")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoryController extends AbstractController<Category> {
 	private final CategoryServiceImpl service;
 

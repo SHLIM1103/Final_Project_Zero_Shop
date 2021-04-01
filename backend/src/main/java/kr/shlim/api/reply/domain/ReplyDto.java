@@ -5,9 +5,8 @@ import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
-@Data @Lazy @Component
+@Component @Data @Lazy
 public class ReplyDto {
 	private long rplNo;
 	private String rplContent;
-
 }

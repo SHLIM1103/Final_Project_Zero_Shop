@@ -3,12 +3,12 @@ package kr.shlim.api.user.service;
 import kr.shlim.api.user.domain.UserVo;
 import kr.shlim.api.user.repository.UserRepository;
 
-import lombok.RequiredArgsConstructor;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

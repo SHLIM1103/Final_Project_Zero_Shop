@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/reply")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ReplyController extends AbstractController<Reply> {
-	final ReplyServiceImpl service;
+	private final ReplyServiceImpl service;
 	
 	@PostMapping("/save")
 	public ResponseEntity<Long> save(@RequestBody Reply t) {
@@ -60,5 +60,4 @@ public class ReplyController extends AbstractController<Reply> {
 	public ResponseEntity<List<Reply>> findAll() {
 		return ResponseEntity.ok(service.findAll());
 	}
-	
 }

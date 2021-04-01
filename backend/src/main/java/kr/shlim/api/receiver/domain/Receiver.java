@@ -1,20 +1,15 @@
 package kr.shlim.api.receiver.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import kr.shlim.api.payment.domain.Payment;
+
 import lombok.Getter;
 
-@Entity  @Getter
+@Entity @Getter
+@Table(name = "receivers")
 public class Receiver {
-      @Id 
-      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
       @Column(name="rcv_no") private long rcvNo;
       @Column(name="rcv_name") private String rcvName;
       @Column(name="rcv_phone") private String rcvPhone;

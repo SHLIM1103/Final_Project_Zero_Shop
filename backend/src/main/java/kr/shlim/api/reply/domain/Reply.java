@@ -11,9 +11,11 @@ import javax.persistence.Table;
 
 import kr.shlim.api.board.domain.Board;
 import kr.shlim.api.user.domain.UserVo;
+
 import lombok.Getter;
 
-@Entity @Getter @Table(name = "reply")
+@Entity @Getter
+@Table(name = "replies")
 public class Reply {
 	@Id @Column(name="rpl_no") @GeneratedValue(strategy = GenerationType.IDENTITY) private long rplNo;
 	@Column(name="rpl_content") private String rplContent;
