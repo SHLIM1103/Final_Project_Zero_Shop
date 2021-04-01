@@ -1,0 +1,8 @@
+export { default as BlogPostDetail } from '__board__/modules/BlogPostDetail'
+export { default as BlogPostList } from '__board__/modules/BlogPostList'
+export { default as BlogPostWrite } from '__board__/modules/BlogPostWrite'
+export { default as BlogPostUpdate } from '__board__/modules/BlogPostUpdate'
+export { default as BlogDetailPage } from '__board__/pages/BlogDetailPage'
+export { default as BlogListPage } from '__board__/pages/BlogListPage'
+export { default as BlogUpdatePage } from '__board__/pages/BlogUpdatePage'
+export { default as BlogWritePage } from '__board__/pages/BlogWritePage'

@@ -1,0 +1,1 @@
+export { default as CheckoutPage } from '__payment__/pages/CheckoutPage'

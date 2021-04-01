@@ -1,12 +1,14 @@
-import PropTypes from "prop-types";
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { useToasts } from "react-toast-notifications";
-import { getDiscountPrice } from "../../../helpers/product";
+/* CHECK IT */
+
+import PropTypes from "prop-types"
+import React, { Fragment } from "react"
+import { Link } from "react-router-dom"
+import { useToasts } from "react-toast-notifications"
+import { getDiscountPrice } from "helpers/product"
 
 const MenuCart = ({ cartData, currency, deleteFromCart }) => {
-  let cartTotalPrice = 0;
-  const { addToast } = useToasts();
+  let cartTotalPrice = 0
+  const { addToast } = useToasts()
   return (
     <div className="shopping-cart-content">
       {cartData && cartData.length > 0 ? (
@@ -16,25 +18,25 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
               const discountedPrice = getDiscountPrice(
                 single.price,
                 single.discount
-              );
+              )
               const finalProductPrice = (
                 single.price * currency.currencyRate
-              ).toFixed(2);
+              ).toFixed(2)
               const finalDiscountedPrice = (
                 discountedPrice * currency.currencyRate
-              ).toFixed(2);
+              ).toFixed(2)
 
               discountedPrice != null
                 ? (cartTotalPrice += finalDiscountedPrice * single.quantity)
-                : (cartTotalPrice += finalProductPrice * single.quantity);
+                : (cartTotalPrice += finalProductPrice * single.quantity)
 
               return (
                 <li className="single-shopping-cart" key={key}>
                   <div className="shopping-cart-img">
-                    <Link to={process.env.PUBLIC_URL + "/product/" + single.id}>
+                    <Link to={process.env.PUBLIC_URL + "/product-detail/" + single.id}>
                       <img
                         alt=""
-                        src={process.env.PUBLIC_URL + single.image[0]}
+                        src={process.env.PUBLIC_URL + single.image}
                         className="img-fluid"
                       />
                     </Link>
@@ -42,7 +44,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                   <div className="shopping-cart-title">
                     <h4>
                       <Link
-                        to={process.env.PUBLIC_URL + "/product/" + single.id}
+                        to={process.env.PUBLIC_URL + "/product-detail/" + single.id}
                       >
                         {" "}
                         {single.name}{" "}
@@ -70,7 +72,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                     </button>
                   </div>
                 </li>
-              );
+              )
             })}
           </ul>
           <div className="shopping-cart-total">
@@ -97,13 +99,13 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
         <p className="text-center">No items added to cart</p>
       )}
     </div>
-  );
-};
+  )
+}
 
 MenuCart.propTypes = {
   cartData: PropTypes.array,
   currency: PropTypes.object,
   deleteFromCart: PropTypes.func
-};
+}
 
-export default MenuCart;
+export default MenuCart

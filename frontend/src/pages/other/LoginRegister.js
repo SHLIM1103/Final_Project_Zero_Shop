@@ -9,6 +9,7 @@ import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import axios from 'axios'
 import { TextField } from '@material-ui/core';
+import { Label } from "react-bootstrap";
 
 const LoginRegister = ({ location }) => {
   const [usrEmail, setUsrEmail] = useState('')

@@ -6,32 +6,19 @@ import { ToastProvider } from "react-toast-notifications"
 import { multilanguage, loadLanguages } from "redux-multilanguage"
 import { connect } from "react-redux"
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic"
+import { BlogWritePage, BlogListPage, BlogDetailPage, BlogUpdatePage } from "__board__/index"
+import { MainPage, NotFoundPage } from "__common__/index"
+import { CheckoutPage } from "__payment__/index"
+import { CartPage, ProductListPage, ProductDetailPage, ProductAddPage, ProductEditPage } from "__product__/index"
+import { Sidebar, UserAdmin, UserList, UserLoginRegister } from "__user__/index"
 
-// home pages
-const MainPage = lazy(() => import("_common_/pages/MainPage"))
-
-// shop pages
-const ProductListPage = lazy(() => import("_product_/pages/ProductListPage"))
-const ProductDetailPage = lazy(() => import("_product_/pages/ProductDetailPage"))
-const ProductAddPage = lazy(() => import("_product_/pages/ProductAddPage"))
-const ProductEditPage = lazy(() => import("_product_/pages/ProductEditPage"))
-const CartPage = lazy(() => import("_product_/pages/CartPage"))
-
-// blog pages
-const BlogDetailsStandard = lazy(() => import("_blog_/pages/BlogDetailsStandard"))
-const BlogList = lazy(() => import("_blog_/pages/BlogList"))
-const BlogUpdate = lazy(() => import("_blog_/pages/BlogUpdate"))
-const BlogWrite = lazy(() => import("_blog_/pages/BlogWrite"))
-
-// other pages
 const About = lazy(() => import("pages/other/About"))
 const Contact = lazy(() => import("pages/other/Contact"))
-const MyAccount = lazy(() => import("_payment_/pages/MyAccount"))
+const MyAccount = lazy(() => import("pages/other/MyAccount"))
 const LoginRegister = lazy(() => import("pages/other/LoginRegister"))
 
 const Wishlist = lazy(() => import("pages/other/Wishlist"))
 const Compare = lazy(() => import("pages/other/Compare"))
-const Checkout = lazy(() => import("_payment_/pages/Checkout"))
 
 const NotFound = lazy(() => import("pages/other/NotFound"))
 
@@ -65,32 +52,30 @@ const App = (props) => {
               }
             >
               <Switch>
-              <Route
+                <Route
                   exact
                   path={process.env.PUBLIC_URL + "/"}
                   component={MainPage}
                 />
-                {/* Homepages */}
-                <Route
+                  {/* Homepages */}
+                  <Route
                   path={process.env.PUBLIC_URL + "/main"}
                   component={MainPage}
                 />
 
                 {/* Shop pages */}
                 <Route
-                  path={process.env.PUBLIC_URL + "/product-detail/:id"}
-                  render={(routeProps) => (
-                    <ProductDetailPage {...routeProps} key={routeProps.match.params.prdNo} />
-                    )}
-                />
-                <Route
                   path={process.env.PUBLIC_URL + "/product-all"}
                   component={ProductListPage}
                 />
+
+                {/* Shop product pages */}
                 <Route
-                  path={process.env.PUBLIC_URL + "/cart"}
-                  component={CartPage}
-                /> 
+                  path={process.env.PUBLIC_URL + "/product-detail/:id"}
+                  render={(routeProps) => (
+                    <ProductDetailPage {...routeProps} key={routeProps.match.params.prdNo} />
+                  )}
+                />
                 <Route
                   path={process.env.PUBLIC_URL + "/product-detail/:id"}
                   component={ProductDetailPage}
@@ -103,25 +88,29 @@ const App = (props) => {
                   path={process.env.PUBLIC_URL + "/product-edit/:id"}
                   component={ProductEditPage}
                 />
-
-                {/* Blog pages */}
                 <Route
+                  path={process.env.PUBLIC_URL + "/cart"}
+                  component={CartPage}
+                />
+
+                 {/* Blog pages */}
+                 <Route
                   path={process.env.PUBLIC_URL + "/blog-update"}
-                  component={BlogUpdate}
+                  component={BlogUpdatePage}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/blog-details-standard"}
-                  component={BlogDetailsStandard}
+                  path={process.env.PUBLIC_URL + "/blog-detail"}
+                  component={BlogDetailPage}
                 />
                   <Route
                   path={process.env.PUBLIC_URL + "/blog-write"}
-                  component={BlogWrite}
+                  component={BlogWritePage}
                 />
                 <Route
                   path={process.env.PUBLIC_URL + "/blog-list"}
-                  component={BlogList}
+                  component={BlogListPage}
                 />
- 
+
                 {/* Other pages */}
                 <Route
                   path={process.env.PUBLIC_URL + "/about"}
@@ -151,7 +140,7 @@ const App = (props) => {
                 />
                 <Route
                   path={process.env.PUBLIC_URL + "/checkout"}
-                  component={Checkout}
+                  component={CheckoutPage}
                 />
 
                 <Route
@@ -166,11 +155,11 @@ const App = (props) => {
         </Router>
       </BreadcrumbsProvider>
     </ToastProvider>
-  )
-}
+  );
+};
 
 App.propTypes = {
   dispatch: PropTypes.func
-}
+};
 
-export default connect()(multilanguage(App))
+export default connect()(multilanguage(App));

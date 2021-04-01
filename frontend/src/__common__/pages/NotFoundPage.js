@@ -6,17 +6,13 @@ import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import LayoutOne from "layouts/LayoutOne";
 import Breadcrumb from "wrappers/breadcrumb/Breadcrumb";
 
-const NotFound = ({ location }) => {
+const NotFoundPage = ({ location }) => {
   const { pathname } = location;
 
   return (
     <Fragment>
       <MetaTags>
         <title>Flone | Not Found</title>
-        <meta
-          name="description"
-          content="404 page of flone react minimalist eCommerce template."
-        />
       </MetaTags>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
@@ -61,8 +57,8 @@ const NotFound = ({ location }) => {
   );
 };
 
-NotFound.propTypes = {
+NotFoundPage.propTypes = {
   location: PropTypes.object
 };
 
-export default NotFound;
+export default NotFoundPage;

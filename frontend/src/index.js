@@ -1,3 +1,5 @@
+import "react-app-polyfill/ie11";
+import "react-app-polyfill/stable";
 import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
@@ -10,8 +12,6 @@ import products from "./data/products.json";
 import App from "./App";
 import "./assets/scss/style.scss";
 import * as serviceWorker from "./serviceWorker";
-import "react-app-polyfill/ie11";
-import "react-app-polyfill/stable";
 
 import { composeWithDevTools } from "redux-devtools-extension";
 
