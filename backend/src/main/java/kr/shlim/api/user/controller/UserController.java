@@ -3,10 +3,12 @@ package kr.shlim.api.user.controller;
 import java.util.List;
 import java.util.Optional;
 
+import io.swagger.annotations.*;
+import kr.shlim.api.user.domain.UserDto;
 import kr.shlim.api.user.domain.UserVo;
-import kr.shlim.api.user.repository.UserRepository;
 import kr.shlim.api.user.service.UserServiceImpl;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,46 +27,40 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/usr")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@Api(tags = "usr")
 public class UserController {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	private final UserRepository userRepository;
 	private final UserServiceImpl userService;
-	
-//	@PostMapping("/user/sendSignUpEmail")
-//	public String sendSignUpEmail(@ModelAttribute @Valid Account account, BindingResult errors, Model model) throws DuplicateEmailException, SendEmailException{
-//        if (errors.hasErrors()) {
-//            Map<String, String> validatorResult = accountSecurityService.validateHandling(errors);
-//            for (String key : validatorResult.keySet()) {
-//                model.addAttribute(key, validatorResult.get(key));
-//            }
-//            return "/user/register";
-//        }
+	private final ModelMapper modelMapper;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@PostMapping("/save")
-	public ResponseEntity<Long> save(@RequestBody UserVo user) {
-		logger.info("User Register: " + user.toString());
-		return ResponseEntity.ok(userService.save(user));
+	@PostMapping("/signup")
+	@ApiOperation(value = "${UserController.signup}")
+	@ApiResponses(value = { //
+		@ApiResponse(code = 400, message = "Something went wrong"), //
+		@ApiResponse(code = 403, message = "Access denied"), //
+		@ApiResponse(code = 422, message = "Username is already in use") })
+	public ResponseEntity<String> signup(@ApiParam("Signup User") @RequestBody UserDto user) {
+		logger.info("Login Join Info: " + user.toString());
+		return ResponseEntity.ok(userService.signup(modelMapper.map(user, UserVo.class)));
 	}
 
-	@PostMapping("/login")
-	public ResponseEntity<Long> login(@RequestBody UserVo user) {
-		logger.info("Login user" + user.toString());
-		return ResponseEntity.ok(userService.login(user));
+	@PostMapping("/signin")
+	@ApiOperation(value="${UserController.signin}")
+	@ApiResponses(value = { //
+		@ApiResponse(code = 400, message = "Something went wrong"), //
+		@ApiResponse(code = 422, message = "Invalid username/password supplied") })
+	public ResponseEntity<String> signin(@RequestBody UserVo user) {
+		logger.info("User Login Info: " + user.toString());
+		return ResponseEntity.ok(userService.signin(user.getUsername(), user.getPassword()));
 	}
+
 
 	@GetMapping("/find/{name}")
 	public ResponseEntity<List<UserVo>> findByName(@RequestBody UserVo user) {
 		logger.info("Find user by name: " + user.getUsrName());
 		return ResponseEntity.ok(userService.findUsersByName(user.getUsrName()));
 	}
-
-//	// 2.Read(3) - 비밀번호 찾기(로그인 시)
-//	@GetMapping("/find/{password}")
-//	public ResponseEntity<Optional<User>> findPassword(@RequestBody User user) {
-//		logger.info("Find password:" + user.toString());
-//		return ResponseEntity.ok(userService.findPassword(user.getUsrPwd()));
-//	}
 
 	@GetMapping("/all")
 	public ResponseEntity<List<UserVo>> findAll() {
@@ -95,23 +91,11 @@ public class UserController {
 		return ResponseEntity.ok(userService.getOne(id));
 	}
 
-//	@GetMapping("/check/findPw")
-//	public @ResponseBody Map<String, Boolean> passwordFind(@RequestBody User user) {
-//		Map<String, Boolean> map = new HashMap<>();
-//		boolean userCheck = userService.userEmailCheck(user.getUsrEmail(), user.getUsrName());
-//		logger.info("Match(Email, Name) : " + userCheck);
-//		map.put("check", userCheck);
-//		return map;
-//	}
-
 	@GetMapping("/count")
 	public ResponseEntity<Long> count() {
 		logger.info("Query total count.");
 		return ResponseEntity.ok(userService.count());
 	}
-	
 	public ResponseEntity<Optional<UserVo>> findById(long id) { return null; }
-
 	public ResponseEntity<Boolean> existsById(long id) { return null; }
-
 }

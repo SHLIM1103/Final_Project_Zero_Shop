@@ -39,7 +39,7 @@ public class SwaggerCorsConfig {
                 .useDefaultResponseMessages(false)//
                 .securitySchemes(Collections.singletonList(apiKey()))
                 .securityContexts(Collections.singletonList(securityContext()))
-                .tags(new Tag("users", "Operations about users"))//
+                .tags(new Tag("usr", "Operations about users"))//
                 .genericModelSubstitutes(Optional.class);
 
     }

@@ -7,6 +7,8 @@ import kr.shlim.api.user.domain.UserVo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import javax.transaction.Transactional;
+
 interface IUserRepository {
 	public List<UserVo> findByName(String name);
 	public boolean findByEmail(String email);
@@ -22,5 +24,8 @@ interface IUserRepository {
 }
 
 public interface UserRepository extends JpaRepository<UserVo, Long>, IUserRepository {
-	
+	boolean existsByUsername(String username);
+	UserVo findByUsername(String username);
+	@Transactional
+	void deleteByUsername(String username);
 }

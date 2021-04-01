@@ -2,6 +2,7 @@ package kr.shlim.api.user.domain;
 
 import java.util.*;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -10,39 +11,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Size;
+
 @Component
-@Lazy
-@Getter
-@Setter
 @NoArgsConstructor
+@Lazy @Getter @Setter
 public class UserDto {
-
 	private static final long serialVersionUID = 1L;
+
 	private Long usrNo;
-
-//	@Size(min = 2, max = 8, message = "이름을 2~8자 사이로 입력해주세요.")
-	private String usrName;
-
+	@Size(min = 2, max = 8, message = "이름을 2~8자 사이로 입력해주세요.") private String usrName;
 	private String usrEmail;
-
-	private String usrPwd;
+	private String password;
 	private String usrAges;
 	private String usrCity;
 	private String usrGender;
 	private String usrPhone;
 	private String usrAddr;
 	private String usrNickname;
-	private String usrId;
+	private String username;
 
-	@Builder
-	public UserDto(String usrName, String usrEmail, String usrPwd, String usrPhone, String usrNickname) {
-		super();
-		this.usrName = usrName;
-		this.usrEmail = usrEmail;
-		this.usrPwd = usrPwd;
-		this.usrPhone = usrPhone;
-		this.usrNickname = usrNickname;
-	}
+	@ApiModelProperty(position = 3)
+	List<Role> roles;
 
 	public UserDto(String usrEmail, String usrNickname) {
 		this.usrEmail = usrEmail;

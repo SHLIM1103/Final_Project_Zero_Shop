@@ -1,19 +1,12 @@
 package kr.shlim.api.security.domain;
 
-//import com.example.demo.core.security.AuthToken;
 import io.jsonwebtoken.*;
-//import io.jsonwebtoken.security.SecurityException;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import io.jsonwebtoken.Jwts;
-import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
-import javax.crypto.SecretKey;
-import java.util.Calendar;
-import java.util.Date;
 
 @Slf4j 	@Getter
 public class SecurityToken {

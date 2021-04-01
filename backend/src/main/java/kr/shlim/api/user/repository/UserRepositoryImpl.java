@@ -47,14 +47,14 @@ public class UserRepositoryImpl extends QuerydslRepositorySupport implements IUs
 	@Override
 	public boolean checkId(String id) {
 		return queryFactory.selectFrom(userVo)
-				.where(userVo.usrId.eq(id))
+				.where(userVo.username.eq(id))
 				.fetchOne() != null ? true : false;
 	}
 	
 	
 	@Override
 	public String findIdByEmail(String email) {
-		return queryFactory.select(userVo.usrId).from(userVo).fetchOne();
+		return queryFactory.select(userVo.username).from(userVo).fetchOne();
 	}
 	
 	@Override
@@ -75,7 +75,7 @@ public class UserRepositoryImpl extends QuerydslRepositorySupport implements IUs
 	public Optional<UserVo> updatePassword(String password) {
 		return Optional.ofNullable(queryFactory
 				.selectFrom(userVo)
-				.where(userVo.usrPwd.eq(password))
+				.where(userVo.password.eq(password))
 				.fetchOne());
 	}
 
@@ -83,14 +83,14 @@ public class UserRepositoryImpl extends QuerydslRepositorySupport implements IUs
 	public Optional<UserVo> updateProfile(String email, String password) {
 		return Optional.ofNullable(
 				queryFactory.selectFrom(userVo)
-					.where(userVo.usrEmail.eq(email).and(userVo.usrPwd.eq(password)))
+					.where(userVo.usrEmail.eq(email).and(userVo.password.eq(password)))
 					.fetchOne());
 	}
 
 	@Override
 	public Optional<UserVo> findPassword(String password) {
 		return Optional.ofNullable(queryFactory.selectFrom(userVo)
-				.where(userVo.usrPwd.eq(password))
+				.where(userVo.password.eq(password))
 				.fetchOne());
 	}
 

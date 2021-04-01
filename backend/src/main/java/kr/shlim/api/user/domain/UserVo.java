@@ -2,17 +2,17 @@ package kr.shlim.api.user.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.*;
 
-import kr.shlim.api.level.domain.Level;
 import kr.shlim.api.payment.domain.Payment;
-import lombok.Builder;
-import lombok.Getter;
 
-@Entity @Getter @Table(name="users")
+import lombok.Builder;
+import lombok.Data;
+
+@Entity @Data @Table(name="users")
 public class UserVo {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "usr_no")
 	private Long usrNo;
 
@@ -25,8 +25,8 @@ public class UserVo {
 	@Column(name = "usr_email")
 	private String usrEmail;
 
-	@Column(name = "usr_pwd")
-	private String usrPwd;
+	@Column(name = "password")
+	private String password;
 
 	@Column(name = "usr_ages")
 	private String usrAges;
@@ -40,24 +40,24 @@ public class UserVo {
 	@Column(name = "usr_phone")
 	private String usrPhone;
 
-	@Column(name = "usr_id")
-	private String usrId;
+	@Column(name = "username")
+	private String username;
 
 	@Column(name = "usr_addr")
 	private String usrAddr;
 
-	@ManyToOne
-	@JoinColumn(name = "level")
-	private Level level;
+	@ElementCollection(fetch = FetchType.EAGER)
+	List<Role> roles;
 
 	@OneToMany(mappedBy = "user")
 	private List<Payment> payments = new ArrayList<>();
 
 	@Builder
-	public UserVo(Long usrNo, String usrName, String usrNickname, String usrGender, String usrPhone, String usrEmail,
+	public UserVo(Long usrNo, String username, String usrName, String usrNickname, String usrGender, String usrPhone, String usrEmail,
 				  String usrAges, String usrCity, String usrAddr) {
 		this.usrNo = usrNo;
 		this.usrName = usrName;
+		this.username = username;
 		this.usrNickname = usrNickname;
 		this.usrGender = usrGender;
 		this.usrPhone = usrPhone;
@@ -67,6 +67,6 @@ public class UserVo {
 		this.usrAddr = usrAddr;
 	}
 
-	public UserVo() { }
+	public UserVo() {}
 
 }
