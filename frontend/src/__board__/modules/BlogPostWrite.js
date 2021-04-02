@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import  { useHistory } from "react-router"
 import axios from "axios"
@@ -11,25 +11,32 @@ const BlogPostWrite = () => {
   const [brdRank, setBrdRank] = useState('')
   const [brdImg, setBrdImg] = useState('')
   const [brdLike, setBrdLike] = useState('')
-  const [brdNikcname, setBrdNikcname] = useState('')
+  const [usrNickname, setUsrNickname] = useState('')
 
   const { register,handleSubmit} = useForm() 
 
-  const wrt = () => {
-    axios.post("http://localhost:8080/board/save",{
-      brdTitle,brdContent,brdWrtDate,brdRank,brdImg,brdLike,brdNikcname
+  const write = e => {
+    e.preventDefault()
+    axios({
+      url: 'http://localhost:8080/board/save',
+      method: 'post',
+      headers: {
+        'Content-Type'  : 'application/json',
+        'Authorization' : 'JWT fefege..'
+      },
+      data: { brdTitle, brdContent, brdWrtDate, brdRank, brdImg, brdLike, usrNickname }
     })
-    .then(resp => {
-      alert('글쓰기 성공')
+    .then((res) => {
+      alert(`글쓰기 성공`)
       history.push('/blog-list')
     })
-    .catch(err => {
-      alert('글쓰기 실패')
+    .catch((err) => {
+          alert(`글쓰기 실패: ` + err)
+          throw err
     })
   }
   
   return (<>
-    <Fragment>
       <div className="blog-details-top">
         <div className="blog-details-img">
           <form onSubmit={ handleSubmit() }>
@@ -44,9 +51,9 @@ const BlogPostWrite = () => {
         </div>
         <div className="blog-details-content">
     <form>
-         <td ><h3><input type="text" placeholder="글 제목 입력"   onChange = { e => {setBrdTitle(`${e.target.value}`)}}/></h3></td>
+         <td ><h3><input type="text" placeholder="글 제목 입력"   onChange={ e => {setBrdTitle(`${e.target.value}`)}}/></h3></td>
           <div type></div>
-          <td><textarea rows="30" cols="200"  placeholder="글 내용 입력"  onChange = { e => {setBrdContent(`${e.target.value}`)}}
+          <td><textarea rows="30" cols="200"  placeholder="글 내용 입력"  onChange={ e => {setBrdContent(`${e.target.value}`)}}
           >
        </textarea></td></form>
         </div>
@@ -63,12 +70,11 @@ const BlogPostWrite = () => {
         <div className="dec-tag">
           <ul>
             <li>
-              <button type="submit" onClick= {wrt}>글 작성 완료</button>
+              <button type="submit" onClick={ write }>글 작성 완료</button>
             </li>
           </ul>
         </div>
       </div>
-    </Fragment>
     </>
   )
 }

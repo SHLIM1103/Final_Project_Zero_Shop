@@ -1,9 +1,9 @@
 import PropTypes from "prop-types"
-import React, { Fragment } from "react"
+import React from "react"
 import { connect } from "react-redux"
-import { addToCart } from "__product__/actions/cartActions"
-import { addToCompare } from "__product__/actions/compareActions"
-import { addToWishlist } from "__product__/actions/wishlistActions"
+import { addToCart } from "redux/actions/cartActions"
+import { addToCompare } from "redux/actions/compareActions"
+import { addToWishlist } from "redux/actions/wishlistActions"
 import { ProductGridListSingle } from "__product__/index"
 
 const ProductGridList = ({
@@ -18,37 +18,35 @@ const ProductGridList = ({
   sliderClassName,
   spaceBottomClass
 }) => {
-  return (
-    <Fragment>
-      {products.map(product => {
-        return (
-          <ProductGridListSingle
-            sliderClassName={sliderClassName}
-            spaceBottomClass={spaceBottomClass}
-            product={product}
-            currency={currency}
-            addToCart={addToCart}
-            addToWishlist={addToWishlist}
-            addToCompare={addToCompare}
-            cartItem={
-              cartItems.filter(cartItem => cartItem.id === product.prdNo)[0]
-            }
-            wishlistItem={
-              wishlistItems.filter(
-                wishlistItem => wishlistItem.id === product.prdNo
-              )[0]
-            }
-            compareItem={
-              compareItems.filter(
-                compareItem => compareItem.id === product.prdNo
-              )[0]
-            }
-            key={product.prdNo}
-          />
-        )
-      })}
-    </Fragment>
-  )
+  return (<>
+    {products.map(product => {
+      return (
+        <ProductGridListSingle
+          sliderClassName={sliderClassName}
+          spaceBottomClass={spaceBottomClass}
+          product={product}
+          currency={currency}
+          addToCart={addToCart}
+          addToWishlist={addToWishlist}
+          addToCompare={addToCompare}
+          cartItem={
+            cartItems.filter(cartItem => cartItem.id === product.prdNo)[0]
+          }
+          wishlistItem={
+            wishlistItems.filter(
+              wishlistItem => wishlistItem.id === product.prdNo
+            )[0]
+          }
+          compareItem={
+            compareItems.filter(
+              compareItem => compareItem.id === product.prdNo
+            )[0]
+          }
+          key={product.prdNo}
+        />
+      )}
+    )}
+  </>)
 }
 
 ProductGridList.propTypes = {

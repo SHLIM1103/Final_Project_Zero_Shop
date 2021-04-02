@@ -1,21 +1,13 @@
 import PropTypes from "prop-types"
 import React, { useState, useEffect } from "react"
-import ProductImageDescriptionStickyComp from '__product__/modules/ProductImageDescriptionStickyComp'
-import axios from 'axios'
+import { ProductImageDescriptionStickyComp } from "__product__/index"
+import axios from "axios"
 
 const ProductImageDescriptionSticky = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    axios({
-      url: 'http://localhost:8080/products/product-number/' + localStorage.getItem(`prdNo`),
-      methos: 'get',
-      headers: {
-        'Content-Type'  : 'application/json',
-        'Authorization' : 'JWT fefege..'
-      },
-      data: {}
-    })
+    axios.get('http://localhost:8080/products/product-number/' + localStorage.getItem(`prdNo`), )
     .then((res) => {
       setProducts(res.data)
     })

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import React, { useEffect, useState } from "react"
+import React, { useState, useEffect } from "react"
 import { ProductImageGalleryStickyComp } from "__product__/index"
 import axios from "axios"
 
@@ -7,15 +7,7 @@ const ProductImageGallerySticky = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    axios({
-      url: `http://localhost:8080/products/product-number/` + localStorage.getItem('prdNo'),
-      methos: `get`,
-      headers: {
-        'Content-Type'  : 'application/json',
-        'Authorization' : 'JWT fefege..'
-      },
-      data: {}
-    })
+    axios.get('http://localhost:8080/products/product-number/' + localStorage.getItem('prdNo'), )
     .then((res) => {
       setProducts(res.data)
     })

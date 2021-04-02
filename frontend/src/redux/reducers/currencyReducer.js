@@ -1,22 +1,22 @@
-import { SET_CURRENCY } from "../actions/currencyActions";
+import { SET_CURRENCY } from "redux/actions/currencyActions"
 
 const initState = {
-  currencySymbol: "$",
-  currencyName: "USD",
+  currencySymbol: "￦",
+  currencyName: "KRW",
   currencyRate: 1
-};
+}
 
 const currencyReducer = (state = initState, action) => {
   if (action.type === SET_CURRENCY) {
-    const currencyName = action.payload.currencyName;
+    const currencyName = action.payload.currencyName
 
-    if (currencyName === "USD") {
+    if (currencyName === "KRW") {
       return {
         ...state,
-        currencySymbol: "$",
+        currencySymbol: "￦",
         currencyRate: action.payload.currencyRate,
         currencyName
-      };
+      }
     }
     if (currencyName === "EUR") {
       return {
@@ -24,7 +24,7 @@ const currencyReducer = (state = initState, action) => {
         currencySymbol: "€",
         currencyRate: action.payload.currencyRate,
         currencyName
-      };
+      }
     }
     if (currencyName === "GBP") {
       return {
@@ -32,11 +32,11 @@ const currencyReducer = (state = initState, action) => {
         currencySymbol: "£",
         currencyRate: action.payload.currencyRate,
         currencyName
-      };
+      }
     }
   }
 
-  return state;
-};
+  return state
+}
 
-export default currencyReducer;
+export default currencyReducer

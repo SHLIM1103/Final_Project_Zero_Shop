@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types'
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { getProductCartQuantity } from 'helpers/product'
-import { addToCart } from '__product__/actions/cartActions'
-import { addToWishlist } from '__product__/actions/wishlistActions'
-import { addToCompare } from '__product__/actions/compareActions'
-import axios from 'axios'
+import PropTypes from "prop-types"
+import React, { useState } from "react"
+import { Link, useHistory } from "react-router-dom"
+import { connect } from "react-redux"
+import { getProductCartQuantity } from "__common__/modules/helpers/product"
+import { addToCart } from "redux/actions/cartActions"
+import { addToWishlist } from "redux/actions/wishlistActions"
+import { addToCompare } from "redux/actions/compareActions"
+import axios from "axios"
 
 const ProductDescriptionInfo = ({
   product,
@@ -56,10 +56,10 @@ const ProductDescriptionInfo = ({
 
       <div className="pro-details-list">
         <ul>
-          <li><span><strong>원산지</strong></span> 대한민국 </li>
-          <li><span><strong>브랜드</strong></span> ZER0 SHOP </li>
-          <li><span><strong>구매혜택</strong></span> 구매금액의 5% 적립 ({product.prdPrice * 0.05} Point) </li>
-          <li><span><strong>배송비</strong></span> 2,500원 </li>
+          <li><span><strong>원산지</strong></span>대한민국</li>
+          <li><span><strong>브랜드</strong></span>ZER0 SHOP</li>
+          <li><span><strong>구매혜택</strong></span>구매금액의 5% 적립 ({product.prdPrice * 0.05} Point)</li>
+          <li><span><strong>배송비</strong></span>2,500원</li>
         </ul>
       </div>
 
@@ -129,7 +129,7 @@ const ProductDescriptionInfo = ({
               Edit
             </Link>
           </button>
-          <button key={product.prdNo} onClick={ remove }> 삭제 </button>
+          <button key={product.prdNo} onClick={ remove }>삭제</button>
         </div>
       </div>
 

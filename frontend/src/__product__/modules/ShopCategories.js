@@ -1,11 +1,11 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { setActiveSort } from "helpers/product"
+import { setActiveSort } from "__common__/modules/helpers/product"
 
 const ShopCategories = ({ categories, getSortParams }) => {
   return (
     <div className="sidebar-widget">
-      <h4 className="pro-sidebar-title">Categories </h4>
+      <h4 className="pro-sidebar-title">Categories</h4>
       <div className="sidebar-widget-list mt-30">
         {categories ? (
           <ul>
@@ -17,7 +17,7 @@ const ShopCategories = ({ categories, getSortParams }) => {
                     setActiveSort(e)
                   }}
                 >
-                  <span className="checkmark" /> All Categories
+                  <span className="checkmark" />All Categories
                 </button>
               </div>
             </li>

@@ -1,12 +1,11 @@
 import PropTypes from "prop-types"
-import React, { useState, useEffect, Fragment } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import MetaTags from "react-meta-tags"
 import { connect } from "react-redux"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
-import { getDiscountPrice } from "helpers/product"
-import LayoutOne from "layouts/LayoutOne"
-import Breadcrumb from "wrappers/breadcrumb/Breadcrumb"
+import { getDiscountPrice } from "__common__/modules/helpers/product"
+import { Layout, Breadcrumb } from "__common__/index"
 import jQuery from "jquery"
 import moment from "moment"
 import axios from "axios"
@@ -14,19 +13,20 @@ import axios from "axios"
 window.$ = window.jQuery = jQuery
 
 const CheckoutPage = ({ location, cartItems, currency}) => {
-
+  const { pathname } = location
+  
   const [usrEmail, setUsrEmail] = useState('')
   const [user, setUser] = useState([])
-  const URL = '/user/all'
- useEffect(()=>{
-   axios.get(URL, )
-   .then((response) => {
-     setUser(response.data)
-   })
-   .catch((error) => {
-     alert('실패')
-     throw error
-   })
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/user/all', )
+    .then((res) => {
+      setUser(res.data)
+    })
+    .catch((err) => {
+      alert('실패')
+      throw err
+    })
   },[])
 
   const [ addr, setAddr ] = useState('')
@@ -48,11 +48,10 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
         }else{
           setExtraAddr(data.jibunAddress)
         }
-    }
+      }
     }).open()
   }
 
-  const { pathname } = location
   let cartTotalPrice = 0
   const { IMP } = window
 
@@ -115,8 +114,8 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
         alert(msg)
         }
       })
-
-    axios.post("http://localhost:8080/payment/save", {
+      
+    axios.post('http://localhost:8080/payment/save', {
       payPrice: `${cartTotalPrice.toFixed(0)}`,
       payAmount, 
       // rcvName, rcvPhone, 
@@ -126,199 +125,205 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
       payState: '결제완료'
     })
       .then(response => {
-      alert('주문 성공')
+      alert(`주문 성공`)
       })
       .catch(error =>{
-      alert('주문 실패')
-      })
-
-    axios.post("http://localhost:8080/receiver/save",{
-
-    })
-      .then(response => {
-      alert('주문 성공')
-      })
-      .catch(error =>{
-      alert('주문 실패')
+      alert(`주문 실패`)
       })
     }
-  return (
-    <Fragment>
-      <MetaTags>
-        <title>Flone | Checkout</title>
-        <meta
-          name="description"
-          content="Checkout page of flone react minimalist eCommerce template."
-        />
-      </MetaTags>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
-        Checkout
-      </BreadcrumbsItem>
-      <LayoutOne headerTop="visible">
-        {/* breadcrumb */}
-        <Breadcrumb />
-        <div className="checkout-area pt-95 pb-100">
-          <div className="container">
-            {cartItems && cartItems.length >= 1 ? (
-              <div className="row">
-                <div className="col-lg-7">
-                  <div className="billing-info-wrap">
-                    <h3>User Info</h3>
-                    <div className="row">
-                      <ul>
-                        {user.map(i => (
-                          <li key = {i.usrNo}>
-                            <div className="col-lg-6 col-md-6">
-                              <div className="billing-info mb-20">
-                                <label>Name</label>
-                                <input type="text" value={i.usrName} readOnly/>
-                              </div>
+
+    axios({
+      url: 'http://localhost:8080/receiver/save',
+      method: 'post',
+      headers: {
+        'Content-Type'  : 'application/json',
+        'Authorization' : 'JWT fefege..'
+      },
+      data: {  }
+    })
+    .then((res) => {
+        alert(`주문 성공`)
+    })
+    .catch((err) => {
+          alert(`주문 실패: ` + err)
+          throw err
+    })
+    
+  return (<>
+    <MetaTags>
+      <title>Flone | Checkout</title>
+      <meta
+        name="description"
+        content="Checkout page of flone react minimalist eCommerce template."
+      />
+    </MetaTags>
+    <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
+    <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+      Checkout
+    </BreadcrumbsItem>
+    <Layout headerTop="visible">
+      {/* breadcrumb */}
+      <Breadcrumb />
+      <div className="checkout-area pt-95 pb-100">
+        <div className="container">
+          {cartItems && cartItems.length >= 1 ? (
+            <div className="row">
+              <div className="col-lg-7">
+                <div className="billing-info-wrap">
+                  <h3>User Info</h3>
+                  <div className="row">
+                    <ul>
+                      {user.map(i => (
+                        <li key = {i.usrNo}>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info mb-20">
+                              <label>Name</label>
+                              <input type="text" value={i.usrName} readOnly/>
                             </div>
-                            <div className="col-lg-6 col-md-6">
-                              <div className="billing-info mb-20">
-                                <label>Phone</label>
-                                <input type="text" value={i.usrPhone} readOnly/>
-                              </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info mb-20">
+                              <label>Phone</label>
+                              <input type="text" value={i.usrPhone} readOnly/>
                             </div>
-                            <div className="col-lg-12">
-                              <div className="billing-info mb-20">
-                                <label>Address</label>
-                                <input type="text" value={i.usrAddr} readOnly/>
-                              </div>
+                          </div>
+                          <div className="col-lg-12">
+                            <div className="billing-info mb-20">
+                              <label>Address</label>
+                              <input type="text" value={i.usrAddr} readOnly/>
                             </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <h3>Billing Details</h3>
+                  <div className="row">
+                    <div className="col-lg-6 col-md-6">
+                      <div className="billing-info mb-20">
+                        <label>Name</label>
+                        <input name="rcvName" placeholder="받으시는 분의 성함을 입력하세요" required
+                        onChange = { e => { setRcvName(`${e.target.value}`)}}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-6 col-md-6">
+                      <div className="billing-info mb-20">
+                        <label>Phone</label>
+                        <input type="number" name="rcvPhone" placeholder="받으시는 분의 연락처를 입력하세요" required
+                        onChange = { e => { setRcvPhone(`${e.target.value}`)}}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-12">
+                      <div className="billing-info mb-20">
+                        <label>Address</label> <button onClick={ execPostCode }>주소 검색</button>
+                        <input type="text" value={`${postcode} ${addr} ${extraAddr}`} readOnly />
+                        <input type="text" placeholder="받으시는 분의 상세 주소를 입력하세요" name="fullAddr" required
+                        onChange = { e => { setFullAddr(`${e.target.value}`)}} />
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-5">
+                <div className="your-order-area">
+                  <h3>Your order</h3>
+                  <div className="your-order-wrap gray-bg-4">
+                    <div className="your-order-product-info">
+                      <div className="your-order-top">
+                        <ul>
+                          <li>Product</li>
+                          <li>Total</li>
+                        </ul>
+                      </div>
+                      <div className="your-order-middle">
+                        <ul>
+                          {cartItems.map((cartItem, key) => {
+                            const discountedPrice = getDiscountPrice(
+                              cartItem.price,
+                              cartItem.discount
+                            )
+                            const finalProductPrice = (
+                              cartItem.price * currency.currencyRate
+                            )
+                            const finalDiscountedPrice = (
+                              discountedPrice * currency.currencyRate
+                            )
+
+                            discountedPrice != null
+                              ? (cartTotalPrice +=
+                                  finalDiscountedPrice * cartItem.quantity)
+                              : (cartTotalPrice +=
+                                  finalProductPrice * cartItem.quantity)
+                            return (
+                              <li key={key}>
+                                <span className="order-middle-left">
+                                {cartItem.name} X {cartItem.quantity}
+                                </span>{" "}
+                                <span className="order-price">
+                                  {discountedPrice !== null
+                                    ? currency.currencySymbol +
+                                      (
+                                        finalDiscountedPrice *
+                                        cartItem.quantity
+                                      )
+                                    : currency.currencySymbol +
+                                      (
+                                        finalProductPrice * cartItem.quantity
+                                      )}
+                                </span>
+                              </li>
+                            )
+                          })}
+                        </ul>
+                      </div>
+                      <div className="your-order-bottom">
+                        <ul>
+                          <li className="your-order-shipping">Shipping</li>
+                          <li>Free shipping</li>
+                        </ul>
+                      </div>
+                      <div className="your-order-total">
+                        <ul>
+                          <li className="order-total">Total</li>
+                          <li>
+                            <input type="text" value={`${currency.currencySymbol}` +
+                              `${cartTotalPrice.toFixed(0)}`} readOnly />
                           </li>
-                        ))}
-                      </ul>
+                        </ul>
+                      </div>
                     </div>
-                    <h3>Billing Details</h3>
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <div className="billing-info mb-20">
-                          <label>Name</label>
-                          <input name="rcvName" placeholder="받으시는 분의 성함을 입력하세요" required
-                          onChange = { e => { setRcvName(`${e.target.value}`)}}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="billing-info mb-20">
-                          <label>Phone</label>
-                          <input type="number" name="rcvPhone" placeholder="받으시는 분의 연락처를 입력하세요" required
-                          onChange = { e => { setRcvPhone(`${e.target.value}`)}}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-12">
-                        <div className="billing-info mb-20">
-                          <label>Address</label> <button onClick={ execPostCode }>주소 검색</button>
-                          <input type="text" value={`${postcode} ${addr} ${extraAddr}`} readOnly />
-                          <input type="text" placeholder="받으시는 분의 상세 주소를 입력하세요" name="fullAddr" required
-                          onChange = { e => { setFullAddr(`${e.target.value}`)}} />
-                        </div>
-                      </div>
-
-                    </div>
+                    <div className="payment-method"></div>
                   </div>
-                </div>
-                <div className="col-lg-5">
-                  <div className="your-order-area">
-                    <h3>Your order</h3>
-                    <div className="your-order-wrap gray-bg-4">
-                      <div className="your-order-product-info">
-                        <div className="your-order-top">
-                          <ul>
-                            <li>Product</li>
-                            <li>Total</li>
-                          </ul>
-                        </div>
-                        <div className="your-order-middle">
-                          <ul>
-                            {cartItems.map((cartItem, key) => {
-                              const discountedPrice = getDiscountPrice(
-                                cartItem.price,
-                                cartItem.discount
-                              )
-                              const finalProductPrice = (
-                                cartItem.price * currency.currencyRate
-                              ).toFixed(2)
-                              const finalDiscountedPrice = (
-                                discountedPrice * currency.currencyRate
-                              ).toFixed(2)
-
-                              discountedPrice != null
-                                ? (cartTotalPrice +=
-                                    finalDiscountedPrice * cartItem.quantity)
-                                : (cartTotalPrice +=
-                                    finalProductPrice * cartItem.quantity)
-                              return (
-                                <li key={key}>
-                                  <span className="order-middle-left">
-                                  {cartItem.name} X {cartItem.quantity}
-                                  </span>{" "}
-                                  <span className="order-price">
-                                    {discountedPrice !== null
-                                      ? currency.currencySymbol +
-                                        (
-                                          finalDiscountedPrice *
-                                          cartItem.quantity
-                                        ).toFixed(2)
-                                      : currency.currencySymbol +
-                                        (
-                                          finalProductPrice * cartItem.quantity
-                                        ).toFixed(2)}
-                                  </span>
-                                </li>
-                              )
-                            })}
-                          </ul>
-                        </div>
-                        <div className="your-order-bottom">
-                          <ul>
-                            <li className="your-order-shipping">Shipping</li>
-                            <li>Free shipping</li>
-                          </ul>
-                        </div>
-                        <div className="your-order-total">
-                          <ul>
-                            <li className="order-total">Total</li>
-                            <li>
-                              <input type="text" value={`${currency.currencySymbol}` +
-                                `${cartTotalPrice.toFixed(0)}`} readOnly />
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div className="payment-method"></div>
-                    </div>
-                    <div className="place-order mt-25">
-                    <button className="btn-hover" type="submit" onClick= {placeOrder}>Place Order</button>
-                    </div>
+                  <div className="place-order mt-25">
+                  <button className="btn-hover" type="submit" onClick= {placeOrder}>Place Order</button>
                   </div>
                 </div>
               </div>
-            ) : (
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="item-empty-area text-center">
-                    <div className="item-empty-area__icon mb-30">
-                      <i className="pe-7s-cash"></i>
-                    </div>
-                    <div className="item-empty-area__text">
-                      No items found in cart to checkout <br />{" "}
-                      <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
-                        Shop Now
-                      </Link>
-                    </div>
+            </div>
+          ) : (
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="item-empty-area text-center">
+                  <div className="item-empty-area__icon mb-30">
+                    <i className="pe-7s-cash"></i>
+                  </div>
+                  <div className="item-empty-area__text">
+                    No items found in cart to checkout <br />{" "}
+                    <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
+                      Shop Now
+                    </Link>
                   </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
-      </LayoutOne>
-    </Fragment>
-  )
+      </div>
+    </Layout>
+  </>)
 }
 
 CheckoutPage.propTypes = {

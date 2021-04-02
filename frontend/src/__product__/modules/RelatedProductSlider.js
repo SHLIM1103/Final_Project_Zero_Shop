@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 import Swiper from "react-id-swiper"
-import SectionTitleTwo from "components/section-title/SectionTitleTwo"
+import { SectionTitleTwo } from "__common__/index"
 import { ProductGrid } from "__product__/index"
 
 const RelatedProductSlider = ({ spaceBottomClass, category }) => {

@@ -1,9 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { getIndividualCategories, getIndividualTags } from "helpers/product"
-import { ShopCategories } from "__product__/index"
-import { ShopSearch } from "__product__/index"
-import { ShopTag } from "__product__/index"
+import { getIndividualCategories, getIndividualTags } from "__common__/modules/helpers/product"
+import { ShopCategories, ShopSearch, ShopTag } from "__product__/index"
 
 const ShopSidebar = ({ products, getSortParams, sideSpaceClass }) => {
   const uniqueCategories = getIndividualCategories(products)
