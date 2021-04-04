@@ -18,7 +18,7 @@ const BlogPostWrite = () => {
   const write = e => {
     e.preventDefault()
     axios({
-      url: 'http://localhost:8080/board/save',
+      url: 'http://localhost:8080/boards/save',
       method: 'post',
       headers: {
         'Content-Type'  : 'application/json',
@@ -28,7 +28,7 @@ const BlogPostWrite = () => {
     })
     .then((res) => {
       alert(`글쓰기 성공`)
-      history.push('/blog-list')
+      history.push('/blog-all')
     })
     .catch((err) => {
           alert(`글쓰기 실패: ` + err)

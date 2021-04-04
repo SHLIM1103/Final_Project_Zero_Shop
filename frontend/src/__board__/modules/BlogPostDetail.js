@@ -9,7 +9,7 @@ const BlogPostDetail = () => {
   const [brdNo, setBrdNo] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:8080/board/opt/' + localStorage.getItem(`brdNo`), )
+    axios.get('http://localhost:8080/boards/opt/' + localStorage.getItem(`brdNo`), )
     .then((res) => {
       setBoard(res.data)
       setBrdNo(res.data)
@@ -25,7 +25,7 @@ const BlogPostDetail = () => {
     const removeConfirm = window.confirm(`해당 게시글을 삭제하시겠습니까?`)
     if(removeConfirm) {
       axios({
-        url: 'http://localhost:8080/board/delete/' + localStorage.getItem(`brdNo`),
+        url: 'http://localhost:8080/boards/delete/' + localStorage.getItem(`brdNo`),
         method: 'delete',
         headers: {
           'Content-Type'  : 'application/json',
@@ -35,7 +35,7 @@ const BlogPostDetail = () => {
       })
       .then(res => {
       alert(`삭제 성공`)
-      history.push(`/blog-list`)
+      history.push(`/blog-all`)
       })
       .catch(err => {
         alert(`글 삭제 실패: ` + err)

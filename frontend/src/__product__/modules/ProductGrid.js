@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
-import { getProducts } from "__common__/modules/helpers/product"
+import { getProducts } from "helpers/product"
 import { addToCart } from "redux/actions/cartActions"
 import { addToCompare } from "redux/actions/compareActions"
 import { addToWishlist } from "redux/actions/wishlistActions"

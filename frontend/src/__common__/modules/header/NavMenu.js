@@ -118,7 +118,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
             </ul>
           </li>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/blog-standard"}>
+            <Link to={process.env.PUBLIC_URL + "/blog-all"}>
               {strings["blog"]}
               {sidebarMenu ? (
                 <span>
@@ -130,8 +130,8 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
             </Link>
             <ul className="submenu">
               <li>
-                <Link to={process.env.PUBLIC_URL + "/blog-list"}>
-                  {strings["blog_no_sidebar"]}
+                <Link to={process.env.PUBLIC_URL + "/blog-all"}>
+                  {"Blog All"}
                 </Link>
               </li>
             </ul>

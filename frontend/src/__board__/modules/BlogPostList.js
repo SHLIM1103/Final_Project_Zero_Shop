@@ -7,7 +7,7 @@ const BlogPostList= () => {
   const [board, setBoard] = useState([])
 
   const search = () => {
-    axios.get('http://localhost:8080/board/seach', )
+    axios.get('http://localhost:8080/boards/seach', )
     .then(res => {
       alert(`게시글 검색 성공`)
     })
@@ -18,7 +18,7 @@ const BlogPostList= () => {
   }
   
   useEffect(() => {
-    axios.get('http://localhost:8080/board/blogAll', )
+    axios.get('http://localhost:8080/boards/blogAll', )
     .then((res) => {
       setBoard(res.data)
     })

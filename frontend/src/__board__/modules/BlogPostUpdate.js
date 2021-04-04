@@ -15,7 +15,7 @@ const BlogPostUpdate = () => {
   const [usrNickname, setUsrNickname] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:8080//board/opt/' + localStorage.getItem(`brdNo`), )
+    axios.get('http://localhost:8080//boards/opt/' + localStorage.getItem(`brdNo`), )
     .then(({data}) => {
       setBoard(data)
       setBrdNo(data)
@@ -29,7 +29,7 @@ const BlogPostUpdate = () => {
   const blogUpdate = e => {
     e.preventDefault()
     axios({
-      url: 'http://localhost:8080/board/update' + localStorage.getItem(`brdNo`),
+      url: 'http://localhost:8080/boards/update' + localStorage.getItem(`brdNo`),
       method: 'put',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const BlogPostUpdate = () => {
     })
     .then((res) => {
       alert(`수정 완료`)
-      history.push(`/blog-list`)
+      history.push(`/blog-all`)
     })
     .catch(err => {
       alert(`수정 실패: ` + err)
