@@ -986,25 +986,6 @@
         }
       }
     }
-    .pro-details-compare {
-      a,
-      button {
-        font-size: 18px;
-
-        margin-left: 25px;
-
-        color: #000;
-        border: none;
-        background: none;
-        @media #{$xs-layout} {
-          margin-left: 10px;
-        }
-        &:hover,
-        &.active {
-          color: $theme-color;
-        }
-      }
-    }
   }
   .pro-details-meta {
     display: flex;

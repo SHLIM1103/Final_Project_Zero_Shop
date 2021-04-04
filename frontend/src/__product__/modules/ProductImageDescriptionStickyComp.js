@@ -11,13 +11,9 @@ const ProductImageDescriptionStickyComp = ({
   currency,
   cartItems,
   wishlistItems,
-  compareItems
 }) => {
   const wishlistItem = wishlistItems.filter(
     wishlistItem => wishlistItem.id === product.id
-  )[0]
-  const compareItem = compareItems.filter(
-    compareItem => compareItem.id === product.id
   )[0]
   const { addToast } = useToasts()
 
@@ -44,7 +40,6 @@ const ProductImageDescriptionStickyComp = ({
                 currency={currency}
                 cartItems={cartItems}
                 wishlistItem={wishlistItem}
-                compareItem={compareItem}
                 addToast={addToast}
               />
             </Sticky>
@@ -60,7 +55,6 @@ const mapStateToProps = state => {
     currency: state.currencyData,
     cartItems: state.cartData,
     wishlistItems: state.wishlistData,
-    compareItems: state.compareData
   }
 }
 

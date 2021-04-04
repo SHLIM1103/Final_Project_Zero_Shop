@@ -9,10 +9,8 @@ const ProductGridSingle = ({
   currency,
   addToCart,
   addToWishlist,
-  addToCompare,
   cartItem,
   wishlistItem,
-  compareItem,
   sliderClassName,
   spaceBottomClass
 }) => {
@@ -108,10 +106,8 @@ const ProductGridSingle = ({
       finalproductprice={finalProductPrice}
       cartitem={cartItem}
       wishlistitem={wishlistItem}
-      compareitem={compareItem}
       addtocart={addToCart}
       addtowishlist={addToWishlist}
-      addtocompare={addToCompare}
       addtoast={addToast}
     />
   </>)
@@ -119,10 +115,8 @@ const ProductGridSingle = ({
 
 ProductGridSingle.propTypes = {
   addToCart: PropTypes.func,
-  addToCompare: PropTypes.func,
   addToWishlist: PropTypes.func,
   cartItem: PropTypes.object,
-  compareItem: PropTypes.object,
   currency: PropTypes.object,
   product: PropTypes.object,
   sliderClassName: PropTypes.string,

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import { getProducts } from "helpers/product"
 import { addToCart } from "redux/actions/cartActions"
-import { addToCompare } from "redux/actions/compareActions"
 import { addToWishlist } from "redux/actions/wishlistActions"
 import { ProductGridSingle } from "__product__/index"
 import axios from "axios"
@@ -12,10 +11,8 @@ const ProductGrid = ({
   currency,
   addToCart,
   addToWishlist,
-  addToCompare,
   cartItems,
   wishlistItems,
-  compareItems,
   sliderClassName,
   spaceBottomClass
 }) => {
@@ -42,18 +39,12 @@ const ProductGrid = ({
           currency={currency}
           addToCart={addToCart}
           addToWishlist={addToWishlist}
-          addToCompare={addToCompare}
           cartItem={
             cartItems.filter(cartItem => cartItem.prdNo === product.prdNo)[0]
           }
           wishlistItem={
             wishlistItems.filter(
               wishlistItem => wishlistItem.prdNo === product.prdNo
-            )[0]
-          }
-          compareItem={
-            compareItems.filter(
-              compareItem => compareItem.prdNo === product.prdNo
             )[0]
           }
           key={product.prdNo}
@@ -65,10 +56,8 @@ const ProductGrid = ({
 
 ProductGrid.propTypes = {
   addToCart: PropTypes.func,
-  addToCompare: PropTypes.func,
   addToWishlist: PropTypes.func,
   cartItems: PropTypes.array,
-  compareItems: PropTypes.array,
   currency: PropTypes.object,
   products: PropTypes.array,
   sliderClassName: PropTypes.string,
@@ -86,7 +75,6 @@ const mapStateToProps = (state, ownProps) => {
     currency: state.currencyData,
     cartItems: state.cartData,
     wishlistItems: state.wishlistData,
-    compareItems: state.compareData
   }
 }
 
@@ -112,9 +100,6 @@ const mapDispatchToProps = dispatch => {
     addToWishlist: (item, addToast) => {
       dispatch(addToWishlist(item, addToast))
     },
-    addToCompare: (item, addToast) => {
-      dispatch(addToCompare(item, addToast))
-    }
   }
 }
 

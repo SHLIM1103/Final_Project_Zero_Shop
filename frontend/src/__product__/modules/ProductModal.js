@@ -14,11 +14,9 @@ function ProductModal(props) {
   const [quantityCount, setQuantityCount] = useState(1)
 
   const wishlistItem = props.wishlistitem
-  const compareItem = props.compareitem
 
   const addToCart = props.addtocart
   const addToWishlist = props.addtowishlist
-  const addToCompare = props.addtocompare
 
   const addToast = props.addtoast
   const cartItems = props.cartitems
@@ -139,20 +137,6 @@ function ProductModal(props) {
                     <i className="pe-7s-like" />
                   </button>
                 </div>
-                <div className="pro-details-compare">
-                  <button
-                    className={compareItem !== undefined ? "active" : ""}
-                    disabled={compareItem !== undefined}
-                    title={
-                      compareItem !== undefined
-                        ? "Added to compare"
-                        : "Add to compare"
-                    }
-                    onClick={() => addToCompare(product, addToast)}
-                  >
-                    <i className="pe-7s-shuffle" />
-                  </button>
-                </div>
               </div>
             </div>
           </div>
@@ -165,10 +149,8 @@ function ProductModal(props) {
 ProductModal.propTypes = {
   addtoast: PropTypes.func,
   addtocart: PropTypes.func,
-  addtocompare: PropTypes.func,
   addtowishlist: PropTypes.func,
   cartitems: PropTypes.array,
-  compareitem: PropTypes.object,
   currency: PropTypes.object,
   onHide: PropTypes.func,
   product: PropTypes.object,

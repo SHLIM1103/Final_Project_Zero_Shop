@@ -5,7 +5,6 @@ import { connect } from "react-redux"
 import { getProductCartQuantity } from "helpers/product"
 import { addToCart } from "redux/actions/cartActions"
 import { addToWishlist } from "redux/actions/wishlistActions"
-import { addToCompare } from "redux/actions/compareActions"
 import axios from "axios"
 
 const ProductDescriptionInfo = ({
@@ -195,11 +194,9 @@ const ProductDescriptionInfo = ({
 
 ProductDescriptionInfo.propTypes = {
   addToCart: PropTypes.func,
-  addToCompare: PropTypes.func,
   addToWishlist: PropTypes.func,
   addToast: PropTypes.func,
   cartItems: PropTypes.array,
-  compareItem: PropTypes.array,
   currency: PropTypes.object,
   product: PropTypes.object,
   wishlistItem: PropTypes.object
@@ -223,9 +220,6 @@ const mapDispatchToProps = dispatch => {
     addToWishlist: (item, addToast) => {
       dispatch(addToWishlist(item, addToast))
     },
-    addToCompare: (item, addToast) => {
-      dispatch(addToCompare(item, addToast))
-    }
   }
 }
 
