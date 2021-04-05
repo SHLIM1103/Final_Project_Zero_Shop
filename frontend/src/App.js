@@ -1,7 +1,9 @@
-import React, { Suspense, lazy } from "react"
+import React, { Suspense, lazy, useEffect } from "react"
 import ScrollToTop from "helpers/scroll-top"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { ToastProvider } from "react-toast-notifications"
+import { multilanguage, loadLanguages } from "redux-multilanguage"
+import { connect } from "react-redux"
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic"
 import { MainPage, NotFoundPage } from "__common__/index"
 import { CheckoutPage } from "__payment__/index"
@@ -13,7 +15,17 @@ const About = lazy(() => import("pages/other/About"))
 const Contact = lazy(() => import("pages/other/Contact"))
 const MyAccount = lazy(() => import("pages/other/MyAccount"))
 
-const App = () => {
+const App = (props) => {
+  useEffect(() => {
+    props.dispatch(
+      loadLanguages({
+        languages: {
+          en: require("__common__/modules/english.json"),
+        }
+      })
+    )
+  })
+
   return (
     <ToastProvider placement="bottom-left">
       <BreadcrumbsProvider>
@@ -138,4 +150,4 @@ const App = () => {
   )
 }
 
-export default App
+export default connect()(multilanguage(App));
