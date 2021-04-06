@@ -20,7 +20,7 @@ const BlogSidebar = () => {
         <div className="sidebar-project-wrap mt-30">
           <div className="single-sidebar-blog">
             <div className="sidebar-blog-img">
-              <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
+              <Link to={process.env.PUBLIC_URL + "//blog-detail"}>
                 <img
                   src={
                     process.env.PUBLIC_URL + "/assets/img/blog/sidebar-1.jpg"
@@ -32,7 +32,7 @@ const BlogSidebar = () => {
             <div className="sidebar-blog-content">
               <span>Photography</span>
               <h4>
-                <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
+                <Link to={process.env.PUBLIC_URL + "//blog-detail"}>
                   T- Shart And Jeans
                 </Link>
               </h4>
@@ -40,7 +40,7 @@ const BlogSidebar = () => {
           </div>
           <div className="single-sidebar-blog">
             <div className="sidebar-blog-img">
-              <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
+              <Link to={process.env.PUBLIC_URL + "//blog-detail"}>
                 <img
                   src={
                     process.env.PUBLIC_URL + "/assets/img/blog/sidebar-2.jpg"
@@ -52,7 +52,7 @@ const BlogSidebar = () => {
             <div className="sidebar-blog-content">
               <span>Branding</span>
               <h4>
-                <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
+                <Link to={process.env.PUBLIC_URL + "//blog-detail"}>
                   T- Shart And Jeans
                 </Link>
               </h4>
@@ -60,7 +60,7 @@ const BlogSidebar = () => {
           </div>
           <div className="single-sidebar-blog">
             <div className="sidebar-blog-img">
-              <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
+              <Link to={process.env.PUBLIC_URL + "//blog-detail"}>
                 <img
                   src={
                     process.env.PUBLIC_URL + "/assets/img/blog/sidebar-3.jpg"
@@ -72,7 +72,7 @@ const BlogSidebar = () => {
             <div className="sidebar-blog-content">
               <span>Design</span>
               <h4>
-                <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
+                <Link to={process.env.PUBLIC_URL + "//blog-detail"}>
                   T- Shart And Jeans
                 </Link>
               </h4>
@@ -80,7 +80,7 @@ const BlogSidebar = () => {
           </div>
           <div className="single-sidebar-blog">
             <div className="sidebar-blog-img">
-              <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
+              <Link to={process.env.PUBLIC_URL + "//blog-detail"}>
                 <img
                   src={
                     process.env.PUBLIC_URL + "/assets/img/blog/sidebar-2.jpg"
@@ -92,7 +92,7 @@ const BlogSidebar = () => {
             <div className="sidebar-blog-content">
               <span>Photography</span>
               <h4>
-                <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
+                <Link to={process.env.PUBLIC_URL + "//blog-detail"}>
                   T- Shart And Jeans
                 </Link>
               </h4>

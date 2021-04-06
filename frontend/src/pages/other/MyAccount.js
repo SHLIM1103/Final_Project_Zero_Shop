@@ -9,15 +9,17 @@ import axios from "axios"
 
 const MyAccount = ({ location }) => {
   const { pathname } = location
-
   const [payment, setPayment] = useState([])
 
   useEffect(()=>{
-    axios.get("http://localhost:8080/payment/all")
-    .then(({ data }) => setPayment(data))
-    .catch((error) => {
-      alert('실패')
-      throw error
+    axios.get("http://localhost:8080/payments/all")
+    .then((res) => {
+      console.log(`결제 성공`)
+      setPayment(res.data)
+    })
+    .catch((err) => {
+      console.log(`결제 실패: ` + err)
+      throw err
     })
   },[])
 

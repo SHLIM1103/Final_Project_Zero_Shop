@@ -11,6 +11,13 @@ const ProductAddComp = () => {
 
   const { register } = useForm()
 
+  const [productSave, setProductSave] = useState({
+    prdName: "",
+    ctgName: "",
+    prdPrice: "",
+    prdImg: "",
+    prdInv: ""
+  })
   const add = e => {
     e.preventDefault()
     axios({
@@ -23,11 +30,11 @@ const ProductAddComp = () => {
       data: { ctgName, prdName, prdPrice, prdInv, prdImg }
     })
     .then((res) => {
-        alert(`제품 등록 성공`)
+        console.log(`제품 등록 성공`)
         window.location.reload(false)
     })
     .catch((err) => {
-          alert(`제품 등록 실패`)
+          console.log(`제품 등록 실패: ` + err)
           throw err
     })
   }
@@ -63,15 +70,7 @@ const ProductAddComp = () => {
               <h5>제품이미지: <input ref={ register } type="file" name="prdImg" onChange={e => { setPrdImg(`${e.target.value}`) }} /></h5>
           </div>
         </form>
-        <div className="col-md-7 col-sm-12 col-xs-12">
-          <div className="product-details-content quickview-content">
-            <div className="pro-details-quality">
-              <div className="pro-details-cart btn-hover">
-                <button type="submit" onClick={ add }> 등록 </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <button type="submit" onClick={ add }>등록</button>
       </div>
     </div>
   </>)

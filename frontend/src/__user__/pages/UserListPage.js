@@ -27,10 +27,10 @@ const UserLoginRegister = ({ location }) => {
       data: { usrId, usrPwd, usrName, usrEmail }
     })
     .then(res => {
-      alert(`SUCCESS`)
+      console.log(`유저 가입 성공`)
     })
     .catch(err => {
-      alert(`Error` + err)
+      console.log(`유저 가입 실패: ` + err)
       throw err
     })
   }  

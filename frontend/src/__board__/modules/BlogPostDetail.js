@@ -1,77 +1,65 @@
-import React, { useState, useEffect } from "react"
+import PropTypes from "prop-types"
+import React from "react"
 import { Link } from "react-router-dom"
 import  { useHistory } from "react-router"
 import axios from "axios"
 
-const BlogPostDetail = () => {
+const BlogPostDetail = ({ boards }) => {
   const history = useHistory()
-  const [board, setBoard] = useState([])
-  const [brdNo, setBrdNo] = useState('')
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/boards/opt/' + localStorage.getItem(`brdNo`), )
-    .then((res) => {
-      setBoard(res.data)
-      setBrdNo(res.data)
-    })
-    .catch((err) => {
-      alert(`board detail axios 실패: ` + err)
-      throw err
-    })
-  }, [])
 
   const remove = e => {
     e.preventDefault()
     const removeConfirm = window.confirm(`해당 게시글을 삭제하시겠습니까?`)
-    if(removeConfirm) {
-      axios({
-        url: 'http://localhost:8080/boards/delete/' + localStorage.getItem(`brdNo`),
-        method: 'delete',
-        headers: {
-          'Content-Type'  : 'application/json',
-          'Authorization' : 'JWT fefege..'
-        },
-        data: {}
-      })
-      .then(res => {
-      alert(`삭제 성공`)
-      history.push(`/blog-all`)
-      })
-      .catch(err => {
-        alert(`글 삭제 실패: ` + err)
-        throw err
-      })
-    }
+      if(removeConfirm) {
+        axios({
+          url: 'http://localhost:8080/boards/delete/' + boards.brdNo,
+          method: 'delete',
+          headers: {
+            'Content-Type'  : 'application/json',
+            'Authorization' : 'JWT fefege..'
+          },
+          data: {}
+        })
+        .then(res => {
+          console.log(boards.brdNo + `번 게시글 삭제 성공`)
+          history.push(`/blog-all`)
+        })
+        .catch(err => {
+          console.log(`게시글 삭제 실패: ` + err)
+          throw err
+        })
+      }
   }
+
   return (<>
-    {board ? (<>
       <div className="blog-details-top">
         <div className="blog-details-img">
-          <img src={board.brdImg} alt={board.brdImg} /> 
+          <img src={boards.brdImg} alt={boards.brdImg} /> 
         </div>
 
         <div className="blog-details-content">
           <div className="blog-meta-2">
             <ul>
-              <li> {board.brdWrtDate} </li>
+              <li> {boards.brdWrtDate} </li>
               <li>
-                <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
+                <Link to={process.env.PUBLIC_URL + "/blog-detail"}>
                   <i className="fa fa-comments-o" />
                 </Link>
               </li>
             </ul>
           </div>
-          <h3 type="text"> {board.brdTitle} </h3>
+          <h3 type="text"> {boards.brdTitle} </h3>
+          <h4>{boards.usrNickname}</h4>
           <p>
-            {board.brdContent}
+            {boards.brdContent}
           </p>
         </div>
       </div>
 
       <div className="tag-share">
         <div>
-          <a href="#" ><Link to={"/blog-update/"+board.brdNo}>글 수정하기</Link></a><br/>
-          <a href="#"  onClick={remove}>글 삭제하기</a>
+          <a href="#" ><Link to={"/blog-update/"+boards.brdNo}>글 수정하기</Link></a><br/>
+          <a href="#" onClick={ remove }>글 삭제하기</a>
         </div>
         
         <div className="blog-share">
@@ -97,10 +85,13 @@ const BlogPostDetail = () => {
           </div>
         </div>
       </div>
-      
-      <div className="next-previous-post"/>
-    </>) : '해당 게시글을 찾을 수 없습니다.'}
+    <div className="next-previous-post"/>
   </>)
+}
+
+BlogPostDetail.propTypes = {
+  location: PropTypes.object,
+  board: PropTypes.object
 }
 
 export default BlogPostDetail

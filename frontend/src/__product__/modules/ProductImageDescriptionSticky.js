@@ -10,9 +10,10 @@ const ProductImageDescriptionSticky = () => {
     axios.get('http://localhost:8080/products/product-number/' + localStorage.getItem(`prdNo`), )
     .then((res) => {
       setProducts(res.data)
+      console.log(`제품 이미지 조회 성공: ` +  + localStorage.getItem(`prdNo`))
     })
     .catch((err) => {
-      console.log(`error!`)
+      console.log(`제품 이미지 조회 실패` + err)
       throw err
     })
   }, [])

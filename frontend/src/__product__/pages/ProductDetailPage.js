@@ -6,18 +6,18 @@ import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
 import { ProductDetailComp } from "__product__/index"
 import axios from "axios"
 
-const ProductDetailPage = ({ location }) => {
+const ProductDetailPage = ({ location, match }) => {
   const { pathname } = location
-  
   const [products, setProducts] = useState([])
   
   useEffect(() => {
-    axios.get('http://localhost:8080/products/product-number/' + localStorage.getItem(`prdNo`), )
+    axios.get('http://localhost:8080/products/product-number/' + localStorage.getItem('prdNo'), )
     .then((res) => {
+      console.log(`제품 상세보기 성공: `+ localStorage.getItem('prdNo'))
       setProducts(res.data)
     })
     .catch((err) => {
-      console.log(`제품 상세보기 error: ` + err)
+      console.log(`제품 상세보기 실패: ` + err)
       throw err
     })
   }, [])

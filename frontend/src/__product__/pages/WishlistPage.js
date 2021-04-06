@@ -6,7 +6,6 @@ import MetaTags from "react-meta-tags"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
 import { connect } from "react-redux"
 import { Layout, Breadcrumb } from "__common__/index"
-import { getDiscountPrice } from "helpers/product"
 import { addToCart } from "redux/actions/cartActions"
 import { addToWishlist, deleteFromWishlist, deleteAllFromWishlist } from "redux/actions/wishlistActions"
 
@@ -53,15 +52,8 @@ const WishlistPage = ({
                       </thead>
                       <tbody>
                         {wishlistItems.map((wishlistItem, key) => {
-                          const discountedPrice = getDiscountPrice(
-                            wishlistItem.prdPrice,
-                            wishlistItem.discount
-                          )
                           const finalProductPrice = (
                             wishlistItem.prdPrice * currency.currencyRate
-                          )
-                          const finalDiscountedPrice = (
-                            discountedPrice * currency.currencyRate
                           )
                           const cartItem = cartItems.filter(
                             item => item.id === wishlistItem.id
@@ -100,23 +92,10 @@ const WishlistPage = ({
                               </td>
 
                               <td className="product-price-cart">
-                                {discountedPrice !== null ? (
-                                  <>
-                                    <span className="amount old">
-                                      {currency.currencySymbol +
-                                        finalProductPrice}
-                                    </span>
-                                    <span className="amount">
-                                      {currency.currencySymbol +
-                                        finalDiscountedPrice}
-                                    </span>
-                                  </>
-                                ) : (
-                                  <span className="amount">
-                                    {currency.currencySymbol +
-                                      finalProductPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                <span className="amount">
+                                  {currency.currencySymbol +
+                                    finalProductPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                                   </span>
-                                )}
                               </td>
 
                               <td className="product-wishlist-cart">

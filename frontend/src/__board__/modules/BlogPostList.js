@@ -7,23 +7,24 @@ const BlogPostList= () => {
   const [board, setBoard] = useState([])
 
   const search = () => {
-    axios.get('http://localhost:8080/boards/seach', )
+    axios.get('http://localhost:8080/boards/search', )
     .then(res => {
-      alert(`게시글 검색 성공`)
+      console.log(`게시글 검색 성공`)
     })
     .catch(err => {
-      alert(`게시글 검색 실패` + err)
+      console.log(`게시글 검색 실패` + err)
       throw err 
     })
   }
   
   useEffect(() => {
-    axios.get('http://localhost:8080/boards/blogAll', )
+    axios.get('http://localhost:8080/boards/all', )
     .then((res) => {
+      console.log(`게시글 전체 조회 성공`)
       setBoard(res.data)
     })
     .catch((err) => {
-      alert(`게시판 전체 조회 실패` + err)
+      console.log(`게시글 전체 조회 실패` + err)
       throw err
     })
   }, [])
@@ -33,7 +34,7 @@ const BlogPostList= () => {
       <div className="col-lg-4 col-md-6 col-sm-12"  >
         <div className="blog-wrap-2 mb-30">
           <div className="blog-img-2">
-            <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
+            <Link to={process.env.PUBLIC_URL + "/blog-detail"}>
               <img src={b.brdImg} alt={b.brdImg} /> 
             </Link>
           </div>
@@ -42,14 +43,14 @@ const BlogPostList= () => {
               <ul>
                 <li>{b.brdWrtDate}</li>
                 <li>
-                  <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
+                  <Link to={process.env.PUBLIC_URL + "/blog-detail"}>
                       <i className="fa fa-comments-o"/>
                   </Link>
                 </li>
               </ul>
             </div>
             <h4>
-              <Link to={`/blog-details-standard/`+b.brdNo} key={b.brdNo} onClick={() => localStorage.setItem('brdNo', JSON.stringify(b.brdNo))} >
+              <Link to={`/blog-detail/`+b.brdNo} key={b.brdNo} onClick={() => localStorage.setItem('brdNo', JSON.stringify(b.brdNo))} >
                 {b.brdTitle}
               </Link>
             </h4>

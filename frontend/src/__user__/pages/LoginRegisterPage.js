@@ -1,51 +1,17 @@
 import PropTypes from "prop-types"
 import React, { useState } from "react"
 import MetaTags from "react-meta-tags"
-import { Link } from "react-router-dom"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
 import Tab from "react-bootstrap/Tab"
 import Nav from "react-bootstrap/Nav"
 import { Layout, Breadcrumb } from "__common__/index"
-import axios from "axios"
+import { LoginComp, RegisterComp } from "__user__/index"
 
 const LoginRegister = ({ location }) => {
   const { pathname } = location
-
-  const [usrId, setUsrId] = useState('')
-  const [usrPwd, setUsrPwd] = useState('')
-  const [usrName, setUsrName] = useState('')
-  const [usrEmail, setUsrEmail] = useState('')
   const [user, setUser] = useState([])
 
-  const sendData = e => {
-    e.prventDefault()
-    axios({
-      url: 'http://localhost:8080/usr/save', 
-      method: 'post',
-      headers: {
-        'Content-Type'  : 'application/json',
-        'Authorization' : 'JWT fefege..'
-      },
-      data: { usrId, usrPwd, usrName, usrEmail }
-    })
-    .then(res => {
-      alert(`SUCCESS`)
-    })
-    .catch(err => {
-      alert(`Error` + err)
-      throw err
-    })
-  }
-
   return (<>
-    {user.map(i => (
-      <li key={i.usrNo}>{i.usrEmail}</li>
-    ))}
-
-    {user.map(i => {
-        <li key={i.usrNo}>{i.usrEmail}</li>
-
-    })}
     <MetaTags>
         <title>Flone | Login Page</title>
     </MetaTags>
@@ -78,85 +44,14 @@ const LoginRegister = ({ location }) => {
                                     <Tab.Pane eventKey="login">
                                         <div className="login-form-container">
                                             <div className="login-register-form">
-                                                <form>
-                                                    <input
-                                                        type="text"
-                                                        name="user-name"
-                                                        placeholder="Username"
-                                                        onChange={e => {
-                                                            setUsrId(`${e.target.value}`)
-
-                                                        }}
-                                                    />
-                                                    <input
-                                                        type="password"
-                                                        name="user-password"
-                                                        placeholder="Password"
-                                                        onChange={e => { setUsrPwd(`${e.target.value}`) }
-                                                        }
-                                                    />
-                                                    <div className="button-box">
-                                                        <div className="login-toggle-btn">
-                                                            <input type="checkbox" />
-                                                            <label className="ml-10">Remember me</label>
-                                                            <Link to={process.env.PUBLIC_URL + "/"}>
-                                                                Forgot Password?
-                            </Link>
-                                                        </div>
-                                                        <button type="submit">
-                                                            <span>Login</span>
-                                                        </button>
-                                                    </div>
-                                                </form>
+                                                <LoginComp />
                                             </div>
                                         </div>
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="register">
                                         <div className="login-form-container">
                                             <div className="login-register-form">
-                                                <form>
-                                                    <input
-                                                        type="text"
-                                                        name="user-name"
-                                                        placeholder="Name"
-                                                        onChange={e => { setUsrName(`${e.target.value}`) }}
-                                                    />
-                                                    <input
-                                                        type="password"
-                                                        name="user-password"
-                                                        placeholder="Password"
-                                                        onChange={e => { setUsrPwd(`${e.target.value}`) }}
-                                                    />
-                                                    <input
-                                                        name="user-email"
-                                                        placeholder="Email"
-                                                        type="email"
-                                                        onChange={e => { setUsrEmail(`${e.target.value}`) }}
-                                                    />
-                                                    <input
-                                                        name="user-phone"
-                                                        placeholder="Phone"
-                                                        type="email"
-                                                        onChange={e => { setUsrEmail(`${e.target.value}`) }}
-                                                    />
-                                                    <input
-                                                        name="user-email"
-                                                        placeholder="Column"
-                                                        type="Column"
-                                                        onChange={e => { setUsrEmail(`${e.target.value}`) }}
-                                                    />
-                                                    <input
-                                                        name="user-email"
-                                                        placeholder="Column"
-                                                        type="column"
-                                                        onChange={e => { setUsrEmail(`${e.target.value}`) }}
-                                                    />
-                                                    <div className="button-box">
-                                                        <button type="submit" onClick={sendData}>
-                                                            <span>Register</span>
-                                                        </button>
-                                                    </div>
-                                                </form>
+                                              <RegisterComp />
                                             </div>
                                         </div>
                                     </Tab.Pane>

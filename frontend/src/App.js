@@ -8,7 +8,7 @@ import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic"
 import { MainPage, NotFoundPage } from "__common__/index"
 import { CheckoutPage } from "__payment__/index"
 import { LoginRegisterPage, AdminPage, UserListPage } from "__user__/index"
-import { ProductAddPage, ProductListPage, ProductDetailPage, ProductEditPage, CartPage, WishlistPage } from "__product__/index"
+import { ProductAddPage, ProductListPage, CategoryListPage, ProductDetailPage, ProductEditPage, CartPage, WishlistPage } from "__product__/index"
 import { BlogWritePage, BlogListPage, BlogDetailPage, BlogUpdatePage } from "__board__/index"
 
 const About = lazy(() => import("pages/other/About"))
@@ -59,6 +59,16 @@ const App = (props) => {
                   path={process.env.PUBLIC_URL + "/product-all"}
                   component={ProductListPage}
                 />
+                <Route
+                  path={process.env.PUBLIC_URL + "/category/:id"}
+                  render={(routeProps) => (
+                    <CategoryListPage {...routeProps} key={routeProps.match.params.id} />
+                  )}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/category/:id"}
+                  component={CategoryListPage}
+                />
 
                 {/* Shop product pages */}
                 <Route
@@ -77,10 +87,22 @@ const App = (props) => {
                 />
                 <Route
                   path={process.env.PUBLIC_URL + "/product-edit/:id"}
+                  render={(routeProps) => (
+                    <ProductEditPage {...routeProps} key={routeProps.match.params.id} />
+                  )}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/product-edit/:id"}
                   component={ProductEditPage}
                 />
 
                 {/* Blog pages */}
+                <Route
+                  path={process.env.PUBLIC_URL + "/blog-detail/:id"}
+                  render={(routeProps) => (
+                    <BlogDetailPage {...routeProps} key={routeProps.match.params.id} />
+                  )}
+                />
                 <Route
                   path={process.env.PUBLIC_URL + "/blog-detail/:id"}
                   component={BlogDetailPage}
@@ -88,6 +110,12 @@ const App = (props) => {
                 <Route
                   path={process.env.PUBLIC_URL + "/blog-all"}
                   component={BlogListPage}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/blog-update/:id"}
+                  render={(routeProps) => (
+                    <BlogUpdatePage {...routeProps} key={routeProps.match.params.id} />
+                  )}
                 />
                 <Route
                   path={process.env.PUBLIC_URL + "/blog-update/:id"}

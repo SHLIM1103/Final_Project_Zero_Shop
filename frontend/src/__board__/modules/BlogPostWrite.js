@@ -27,11 +27,11 @@ const BlogPostWrite = () => {
       data: { brdTitle, brdContent, brdWrtDate, brdRank, brdImg, brdLike, usrNickname }
     })
     .then((res) => {
-      alert(`글쓰기 성공`)
+      console.log(`게시글 작성 성공`)
       history.push('/blog-all')
     })
     .catch((err) => {
-          alert(`글쓰기 실패: ` + err)
+          console.log(`게시글 작성 실패: ` + err)
           throw err
     })
   }

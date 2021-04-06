@@ -10,11 +10,11 @@ const UserAdmin = () => {
   useEffect(() => {
     axios.get('http://localhost:8080/usr/all', )
     .then((res) => {
-      alert(`유저 조회 성공`)
+      console.log(`유저 조회 성공`)
       setUser(res.data)
     })
     .catch((err) => {
-      alert(`유저 조회 실패: ` + err)
+      console.log(`유저 조회 실패: ` + err)
       throw err
     })
   }, [])

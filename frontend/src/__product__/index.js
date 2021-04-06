@@ -22,6 +22,7 @@ export { default as ShopTopAction } from "__product__/modules/ShopTopAction"
 export { default as ShopTopbar } from "__product__/modules/ShopTopbar"
 
 export { default as CartPage } from "__product__/pages/CartPage"
+export { default as CategoryListPage } from "__product__/pages/CategoryListPage"
 export { default as ProductAddPage } from "__product__/pages/ProductAddPage"
 export { default as ProductDetailPage } from "__product__/pages/ProductDetailPage"
 export { default as ProductEditPage } from "__product__/pages/ProductEditPage"

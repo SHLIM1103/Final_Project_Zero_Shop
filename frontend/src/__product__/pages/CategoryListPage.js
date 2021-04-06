@@ -21,13 +21,13 @@ const ProductListPage = ({ location }) => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:8080/products/all', )
+    axios.get('http://localhost:8080/category/' + products.ctgName, )
     .then((res) => {
-      console.log(`제품 전체보기 성공`)
+      console.log(products.ctgName + `카테고리 전체보기 성공`)
       setProducts(res.data)
     })
     .catch((err) => {
-      console.log(`제품 전체보기 실패: ` + err)
+      console.log(products.ctgName + `카테고리  전체보기 실패: ` + err)
       throw err
     })
   }, [])

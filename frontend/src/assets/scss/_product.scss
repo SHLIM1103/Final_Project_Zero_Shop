@@ -1,4 +1,49 @@
 /*------- 6. Product style  --------*/
+.add-prd {
+  .input-new-prd {
+    button {
+      margin-top: 20px;
+      border-radius: 50px;
+      margin-right: 50px;
+      background-color: #f2f2f2;
+      border: medium none;
+      color: #333;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 15px 30px;
+      text-transform: uppercase;
+      transition: all 0.3s ease 0s;
+      &:hover {
+        background-color: $theme-color;
+        color: #fff;
+      }
+    }
+    div {
+      margin-top: 25px;
+
+      .fileupload{
+        border-radius: 50px;
+        background-color: #f2f2f2;
+        border: medium none;
+        color: #333;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        padding: 15px 30px;
+        text-transform: uppercase;
+        transition: all 0.3s ease 0s;
+        &:hover {
+          background-color: $theme-color;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
 .product-area {
   position: relative;
   .row {

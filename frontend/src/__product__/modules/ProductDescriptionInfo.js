@@ -28,7 +28,7 @@ const ProductDescriptionInfo = ({
     const removeConfirm = window.confirm(`해당 제품을 삭제하시겠습니까?`)
     if(removeConfirm) {
       axios({
-        url: 'http://localhost:8080/products/delete/' + localStorage.getItem(`prdNo`),
+        url: 'http://localhost:8080/products/delete/' + product.prdNo,
         method: 'delete',
         headers: {
           'Content-Type'  : 'application/json',
@@ -37,10 +37,11 @@ const ProductDescriptionInfo = ({
         data: {}
       })
       .then(res => {
+        console.log(product.prdNo + `번 제품 삭제 성공`)
         history.push(`/product-all`)
       })
       .catch(err => {
-        console.log(`삭제 실패: ` + err)
+        console.log(product.prdNo + `번 제품 삭제 실패: ` + err)
         throw err
       })
     }
@@ -128,27 +129,24 @@ const ProductDescriptionInfo = ({
               Edit
             </Link>
           </button>
-          <button key={product.prdNo} onClick={ remove }>삭제</button>
+          <button onClick={ remove }>삭제</button>
         </div>
       </div>
 
-      {product.category ? (
+      {product.ctgName ? (
         <div className="pro-details-meta">
           <span>Categories :</span>
           <ul>
-            {product.category.map((single, key) => {
-              return (
-                <li key={key}>
-                  <Link to={process.env.PUBLIC_URL + "/product-detail"}>
-                    {single}
-                  </Link>
-                </li>
-              )
-            })}
+            <li>
+              {/* <Link to={process.env.PUBLIC_URL + "/category/" + product.ctgName}
+                    onClick={localStorage.setItem('ctgName', JSON.stringify(`ctgName`))}> */}
+                      {product.ctgName}
+              {/* </Link> */}
+            </li>
           </ul>
         </div>
       ) : (
-        ""
+        "category of product is null"
       )}
       {product.tag ? (
         <div className="pro-details-meta">

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import MetaTags from "react-meta-tags"
 import { connect } from "react-redux"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
-import { getDiscountPrice } from "helpers/product"
 import { Layout, Breadcrumb } from "__common__/index"
 import jQuery from "jquery"
 import moment from "moment"
@@ -19,12 +18,13 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
   const [user, setUser] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:8080/user/all', )
+    axios.get('http://localhost:8080/usr/all', )
     .then((res) => {
+      console.log(`유저 불러오기 성공`)
       setUser(res.data)
     })
     .catch((err) => {
-      alert('실패')
+      console.log(`유저 불러오기 실패` + err)
       throw err
     })
   },[])
@@ -100,7 +100,7 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
           msg += '\n상점 거래ID : ' + rsp.merchant_uid
           msg += '\결제 금액 : ' + rsp.paid_amount
           msg += '카드 승인번호 : ' + rsp.apply_num
-          alert(msg)
+          console.log(msg)
         } else {
           //[3] 아직 제대로 결제가 되지 않았습니다.
           //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
@@ -111,11 +111,11 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
         var msg = '결제에 실패하였습니다.'
         msg += '에러내용 : ' + rsp.error_msg
         location.href='/checkout'
-        alert(msg)
+        console.log(msg)
         }
       })
       
-    axios.post('http://localhost:8080/payment/save', {
+    axios.post('http://localhost:8080/payments/save', {
       payPrice: `${cartTotalPrice.toFixed(0)}`,
       payAmount, 
       // rcvName, rcvPhone, 
@@ -125,15 +125,15 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
       payState: '결제완료'
     })
       .then(response => {
-      alert(`주문 성공`)
+      console.log(`주문 성공`)
       })
       .catch(error =>{
-      alert(`주문 실패`)
+      console.log(`주문 실패`)
       })
     }
 
     axios({
-      url: 'http://localhost:8080/receiver/save',
+      url: 'http://localhost:8080/receivers/save',
       method: 'post',
       headers: {
         'Content-Type'  : 'application/json',
@@ -142,10 +142,10 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
       data: {  }
     })
     .then((res) => {
-        alert(`주문 성공`)
+        console.log(`수령인 설정 성공`)
     })
     .catch((err) => {
-          alert(`주문 실패: ` + err)
+          console.log(`수령인 설정 실패: ` + err)
           throw err
     })
     
@@ -241,39 +241,16 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
                       <div className="your-order-middle">
                         <ul>
                           {cartItems.map((cartItem, key) => {
-                            const discountedPrice = getDiscountPrice(
-                              cartItem.price,
-                              cartItem.discount
-                            )
                             const finalProductPrice = (
                               cartItem.price * currency.currencyRate
                             )
-                            const finalDiscountedPrice = (
-                              discountedPrice * currency.currencyRate
-                            )
-
-                            discountedPrice != null
-                              ? (cartTotalPrice +=
-                                  finalDiscountedPrice * cartItem.quantity)
-                              : (cartTotalPrice +=
+                              (cartTotalPrice +=
                                   finalProductPrice * cartItem.quantity)
                             return (
                               <li key={key}>
                                 <span className="order-middle-left">
                                 {cartItem.name} X {cartItem.quantity}
                                 </span>{" "}
-                                <span className="order-price">
-                                  {discountedPrice !== null
-                                    ? currency.currencySymbol +
-                                      (
-                                        finalDiscountedPrice *
-                                        cartItem.quantity
-                                      )
-                                    : currency.currencySymbol +
-                                      (
-                                        finalProductPrice * cartItem.quantity
-                                      )}
-                                </span>
                               </li>
                             )
                           })}
@@ -312,7 +289,7 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
                   </div>
                   <div className="item-empty-area__text">
                     No items found in cart to checkout <br />{" "}
-                    <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
+                    <Link to={process.env.PUBLIC_URL + "/product-all"}>
                       Shop Now
                     </Link>
                   </div>
