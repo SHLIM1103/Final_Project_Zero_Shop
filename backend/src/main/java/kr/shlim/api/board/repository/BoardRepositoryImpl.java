@@ -18,10 +18,16 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 public class BoardRepositoryImpl extends QuerydslRepositorySupport implements IBoardRepository{
 	private final JPAQueryFactory qf;
 	private final EntityManager em;
+
 	public BoardRepositoryImpl(EntityManager em,JPAQueryFactory qf) {
 		super(Board.class);
 		this.qf = qf;
 		this.em = em;
+	}
+
+	@Override
+	public List<Board> boardAll() {
+		return qf.selectFrom(board).where(board.brdKind.eq(1L)).orderBy(board.brdWrtDate.desc()).fetch();
 	}
 
 	@Override
@@ -42,13 +48,8 @@ public class BoardRepositoryImpl extends QuerydslRepositorySupport implements IB
 	}
 
 	@Override
-	public List<Board> blogListAll(){
-		return qf.selectFrom(board).where(board.brdKind.eq(1L)).orderBy(board.brdWrtDate.desc()).fetch();
-	}
-
-	@Override
 	public long update(Board brd, BoardDto t) {
 		return qf.update(board).set(board.brdTitle, t.getBrdTitle())
-				.where(board.brdNo.eq(t.getBrdNo())).execute();
+				 .where(board.brdNo.eq(t.getBrdNo())).execute();
 	}
 }

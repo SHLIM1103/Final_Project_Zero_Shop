@@ -31,7 +31,6 @@ public class ProductServiceImpl extends AbstractService<Product> implements Prod
 	@Override public List<Product> findAll() {
 		return repo.findAll().stream().sorted(Comparator.comparing(Product::getPrdNo).reversed()).collect(Collectors.toList());
 	}
-
 	public long update(ProductDto p) {
 		Product prd = findById(p.getPrdNo()).get();
 		prd.setPrdName(p.getPrdName());

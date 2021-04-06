@@ -41,6 +41,11 @@ public class PaymentController extends AbstractController<Payment> {
 		return ResponseEntity.ok(service.count());
 	}
 
+	@GetMapping("/all")
+	public ResponseEntity<List<Payment>> findAll() {
+		return ResponseEntity.ok(service.findAll());
+	}
+
 	@GetMapping("/one/{id}")
 	public ResponseEntity<Payment> getOne(@PathVariable long id) {
 		return ResponseEntity.ok(service.getOne(id));
@@ -54,10 +59,5 @@ public class PaymentController extends AbstractController<Payment> {
 	@GetMapping("/exists/{id}")
 	public ResponseEntity<Boolean> existsById(@PathVariable long id) {
 		return ResponseEntity.ok(service.existsById(id));
-	}
-
-	@GetMapping("/all")
-	public ResponseEntity<List<Payment>> findAll() {
-		return ResponseEntity.ok(service.findAll());
 	}
 }

@@ -101,17 +101,24 @@ public class UserServiceImpl implements UserService {
 
 	/* Security Default Methods */
 	@Override
-	public String signin(String username, String password) {
+	public Map<String, Object> signin(String username, String password) {
 		try {
 			//	manager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-			System.out.println("ID:  " + username);
-			String tok = provider.createToken(username, userRepository.findByUsername(username).getRoles());
+			Map<String, Object> map = new HashMap<>();
+			System.out.println("ID: " + username);
+			UserVo user = userRepository.findByUsername(username);
+			System.out.println(user.toString());
+			List<Role> roles = user.getRoles();
+			String tok = provider.createToken(username, roles);
+			map.put("token", provider.createToken(username, roles));
+			map.put("user", user);
 			System.out.println("token :: " + tok);
-			return tok;
+			return map;
 		} catch (AuthenticationException e) {
 			throw new SecurityRuntimeException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
+
 	@Override
 	public String signup(UserVo user) {
 		if(!userRepository.existsByUsername(user.getUsername())) {

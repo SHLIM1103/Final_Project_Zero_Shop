@@ -34,13 +34,13 @@ public class ProductController extends AbstractController<Product> {
 
 	@PostMapping("/save")
 	public ResponseEntity<Long> save(@RequestBody Product product) {
-		logger.info("저장한 제품: " + product.toString());
+		logger.info("저장한 제품명: " + product.getPrdName());
 		return ResponseEntity.ok(service.save(product));
 	}
 	
 	@DeleteMapping("/delete")
 	public ResponseEntity<Long> delete(@RequestBody Product product) {
-		logger.info("삭제" + product.toString());
+		logger.info("삭제한 제품명: " + product.getPrdName());
 		return ResponseEntity.ok(service.delete(product));
 	}
 	
@@ -55,43 +55,45 @@ public class ProductController extends AbstractController<Product> {
 		return ResponseEntity.ok(service.count());
 	}
 	
-	@GetMapping("/one/{id}")
-	public ResponseEntity<Product> getOne(@PathVariable long id) {
-		logger.info("조회한 제품 번호: " + id);
-		return ResponseEntity.ok(service.getOne(id));
-	}
-	
-	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<Product>> findById(@PathVariable long id) {
-		logger.info("조회한 제품 번호: " + id);
-		return ResponseEntity.ok(service.findById(id));
-	}
-	
-	@GetMapping("/exists/{id}")
-	public ResponseEntity<Boolean> existsById(@PathVariable long id) {
-		logger.info("조회한 제품 번호: " + id);
-		return ResponseEntity.ok(service.existsById(id));
-	}
-	
 	@GetMapping("/all")
 	public ResponseEntity<List<Product>> findAll() {
+		logger.info("제품 전체 조회");
 		return ResponseEntity.ok(service.findAll());
 	}
-	
+
+	@GetMapping("/one/{prdNo}")
+	public ResponseEntity<Product> getOne(@PathVariable long prdNo) {
+		logger.info("조회한 제품 번호: " + prdNo);
+		return ResponseEntity.ok(service.getOne(prdNo));
+	}
+
+	@GetMapping("/find/{prdNo}")
+	public ResponseEntity<Optional<Product>> findById(@PathVariable long prdNo) {
+		logger.info("조회한 제품 번호: " + prdNo);
+		return ResponseEntity.ok(service.findById(prdNo));
+	}
+
+	@GetMapping("/exists/{prdNo}")
+	public ResponseEntity<Boolean> existsById(@PathVariable long prdNo) {
+		logger.info("조회한 제품 번호: " + prdNo);
+		return ResponseEntity.ok(service.existsById(prdNo));
+	}
+
 	@GetMapping("/product-number/{prdNo}")
 	public ResponseEntity<List<Product>> findByPrdNo(@PathVariable long prdNo) {
+		logger.info("조회한 제품 번호: " + prdNo);
 		return ResponseEntity.ok(service.findByPrdNo(prdNo));
 	}
 	
 	@GetMapping("/category/{ctgName}")
 	public ResponseEntity<List<Product>> findByCtgName(@PathVariable String ctgName) {
+		logger.info("조회한 카테고리: " + ctgName);
 		return ResponseEntity.ok(service.findByCtgName(ctgName));
 	}
 	
 	@PutMapping("/edit/{prdNo}")
-	public ResponseEntity<Long> update(@PathVariable long prdNo,
-									   @RequestBody ProductDto p) {
-		logger.info("수정한 제품: " + prdNo);
+	public ResponseEntity<Long> update(@PathVariable long prdNo, @RequestBody ProductDto p) {
+		logger.info("수정한 제품명: " + p.getPrdName());
 		return ResponseEntity.ok(service.update(p));
 	}
 }

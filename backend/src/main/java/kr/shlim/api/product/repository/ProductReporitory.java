@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.shlim.api.product.domain.Product;
 
+import kr.shlim.api.product.domain.ProductDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

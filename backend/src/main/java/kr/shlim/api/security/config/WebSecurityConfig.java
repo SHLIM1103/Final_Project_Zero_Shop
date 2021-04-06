@@ -47,20 +47,58 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Entry points
         http.authorizeRequests()//
-                .antMatchers("/usr/signin").permitAll()//
                 .antMatchers("/usr/signup").permitAll()//
+                .antMatchers("/usr/signin").permitAll()//
+                .antMatchers("/usr/find/{name}").permitAll()//
+                .antMatchers("/usr/all").permitAll()//
+                .antMatchers("/usr/update/profile").permitAll()//
+                .antMatchers("/usr/update/password").permitAll()//
+                .antMatchers("/usr/delete").permitAll()//
+                .antMatchers("/usr/one/{id}").permitAll()//
+                .antMatchers("/usr/count").permitAll()//
+                .antMatchers("/boards/save").permitAll()//
+                .antMatchers("/boards/delete").permitAll()//
+                .antMatchers("/boards/delete/{brdNo}").permitAll()//
+                .antMatchers("/boards/count").permitAll()//
+                .antMatchers("/boards/all").permitAll()//
+                .antMatchers("/boards/board-all").permitAll()//
+                .antMatchers("/boards/one/{brdNo}").permitAll()//
+                .antMatchers("/boards/find/{brdNo}").permitAll()//
+                .antMatchers("/boards/exists/{brdNo}").permitAll()//
+                .antMatchers("/boards/option/{brdTitle}").permitAll()//
+                .antMatchers("/boards/board-number/{brd}").permitAll()//
+                .antMatchers("/boards/search").permitAll()//
+                .antMatchers("/boards/update/{brdNo}").permitAll()//
+                .antMatchers("/products/save").permitAll()//
+                .antMatchers("/products/delete").permitAll()//
+                .antMatchers("/products/delete/{prdNo}").permitAll()//
+                .antMatchers("/products/count").permitAll()//
+                .antMatchers("/products/all").permitAll()//
+                .antMatchers("/products/one/{prdNo}").permitAll()//
+                .antMatchers("/products/find/{prdNo}").permitAll()//
+                .antMatchers("/products/exists/{prdNo}").permitAll()//
+                .antMatchers("/products/product-number/{prdNo}").permitAll()//
+                .antMatchers("/products/category/{ctgName}").permitAll()//
+                .antMatchers("/products/edit/{prdNo}").permitAll()//
+                .antMatchers("/payments/save").permitAll()//
+                .antMatchers("/payments/delete").permitAll()//
+                .antMatchers("/payments/count").permitAll()//
+                .antMatchers("/payments/all").permitAll()//
+                .antMatchers("/payments/one/{id}").permitAll()//
+                .antMatchers("/payments/find/{id}").permitAll()//
+                .antMatchers("/payments/exists/{id}").permitAll()//
                 .antMatchers("/h2-console/**/**").permitAll()
                 // Disallow everything else..
                 .anyRequest().authenticated();
 
         // If a user try to access a resource without having enough permissions
-        http.exceptionHandling().accessDeniedPage("/login");
+        http.exceptionHandling().accessDeniedPage("/signin");
 
         // Apply JWT
          http.apply(new SecurityConfig(provider));
 
         // Optional, if you want to test the API from a browser
-        // http.httpBasic();
+         http.httpBasic();
     }
     @Override
     public void configure(WebSecurity web) throws Exception {

@@ -1,6 +1,7 @@
 package kr.shlim.api.user.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +23,7 @@ public interface UserService {
 
 	/* Security Default Methods */
 	public String signup(UserVo user);
-	public String signin(String username, String password);
+	public Map<String, Object> signin(String username, String password);
 	public void delete(String username);
 	public UserVo search(String username);
 	public UserVo whoami(HttpServletRequest req);

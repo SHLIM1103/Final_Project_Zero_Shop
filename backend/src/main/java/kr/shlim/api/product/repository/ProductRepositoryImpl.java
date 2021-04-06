@@ -1,11 +1,14 @@
 package kr.shlim.api.product.repository;
 
+import static kr.shlim.api.product.domain.QProduct.product;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import kr.shlim.api.product.domain.Product;
+import kr.shlim.api.product.domain.ProductDto;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
@@ -32,7 +35,11 @@ public class ProductRepositoryImpl extends QuerydslRepositorySupport implements 
 		return em.createQuery("select prd from product prd where prd.ctg_name like :ctgName")
 				.setParameter("ctgName", ctgName).getResultList();
 	}
-	
+
+	public long update(Product prd, ProductDto dto) {
+		return qf.update(product).set(product.prdName, dto.getPrdName())
+				.where(product.prdNo.eq(dto.getPrdNo())).execute();
+	}
 //	1개. null
 //	Optional<>
 //	fetchOne.2개 

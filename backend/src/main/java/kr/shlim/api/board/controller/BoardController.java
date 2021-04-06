@@ -8,6 +8,8 @@ import kr.shlim.api.board.domain.BoardDto;
 import kr.shlim.api.board.service.BoardServiceImpl;
 import kr.shlim.api.common.controller.AbstractController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,19 +26,27 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/boards")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class BoardController extends AbstractController<Board> {
-	 private final BoardServiceImpl service;
+	private final BoardServiceImpl service;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@PostMapping("/save")
-	public ResponseEntity<Long> save(@RequestBody Board t) {
-		return ResponseEntity.ok(service.save(t));
+	public ResponseEntity<Long> save(@RequestBody Board brd) {
+		logger.info("추가한 게시글: " + brd.toString());
+		return ResponseEntity.ok(service.save(brd));
 	}
-	
+
+	@DeleteMapping("/delete")
+	public ResponseEntity<Long> delete(@RequestBody Board brd) {
+		System.out.println("삭제한 게시글 번호: " + brd.getBrdNo());
+		return ResponseEntity.ok(service.delete(brd));
+	}
+
 	@DeleteMapping("/delete/{brdNo}")
-	public ResponseEntity<Long> delete(@RequestBody Board brdNo) {
-		System.out.println("삭제");
-		return ResponseEntity.ok(service.delete(brdNo));
+	public ResponseEntity<String> deleteById(@PathVariable long brdNo){
+		logger.info("삭제한 게시글 번호: " + brdNo);
+		return ResponseEntity.ok(service.deleteById(brdNo));
 	}
 
 	@GetMapping("/count")
@@ -44,52 +54,54 @@ public class BoardController extends AbstractController<Board> {
 		return ResponseEntity.ok(service.count());
 	}
 
-	@GetMapping("/one/{id}")
-	public ResponseEntity<Board> getOne(@PathVariable long id) {
-		return ResponseEntity.ok(service.getOne(id));
-	}
-
-	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<Board>> findById(@PathVariable long id) {
-		return ResponseEntity.ok(service.findById(id));
-	}
-
-	@GetMapping("/exists/{id}")
-	public ResponseEntity<Boolean> existsById(@PathVariable long id) {
-		return ResponseEntity.ok(service.existsById(id));
-	}
-
 	@GetMapping("/all")
 	public ResponseEntity<List<Board>> findAll() {
+		logger.info("게시글 전체 조회");
 		return ResponseEntity.ok(service.findAll());
 	}
+
+	@GetMapping("/board-all")
+	public ResponseEntity<List<Board>> boardAll() {
+		System.out.println("게시글 종류별 전체 조회");
+		return ResponseEntity.ok(service.boardAll());
+	}
+
+	@GetMapping("/one/{brdNo}")
+	public ResponseEntity<Board> getOne(@PathVariable long brdNo) {
+		return ResponseEntity.ok(service.getOne(brdNo));
+	}
+
+	@GetMapping("/find/{brdNo}")
+	public ResponseEntity<Optional<Board>> findById(@PathVariable long brdNo) {
+		return ResponseEntity.ok(service.findById(brdNo));
+	}
+
+	@GetMapping("/exists/{brdNo}")
+	public ResponseEntity<Boolean> existsById(@PathVariable long brdNo) {
+		return ResponseEntity.ok(service.existsById(brdNo));
+	}
+
 	@GetMapping("/option/{brdTitle}")
-	public ResponseEntity<Board> findByTitle(@PathVariable String brdTitle){
-		System.out.println("상세페이지");
+	public ResponseEntity<Board> findByTitle(@PathVariable String brdTitle) {
+		logger.info("조회한 게시글 제목: " + brdTitle);
 		return ResponseEntity.ok(service.findByTitle(brdTitle));
 	}
 
-	@GetMapping("/opt/{brdNo}")
-	public ResponseEntity<Board> findByBrd(@PathVariable Board brdNo){
-		System.out.println("페이지");
-		
-		return ResponseEntity.ok(service.findByBrd(brdNo));
+	@GetMapping("/board-number/{brd}")
+	public ResponseEntity<Board> findByBrd(@PathVariable Board brd) {
+		logger.info("조회한 게시글 번호: " + brd.getBrdNo());
+		return ResponseEntity.ok(service.findByBrd(brd));
 	}
+
 	@GetMapping("/search")
-	public ResponseEntity<List<Board>> search(@PathVariable String brdTitle){
-		System.out.println("검색");
+	public ResponseEntity<List<Board>> search(@PathVariable String brdTitle) {
+		logger.info("검색한 키워드: " + brdTitle);
 		return ResponseEntity.ok(service.search(brdTitle));
 	}
 
 	@PutMapping("/update/{brdNo}")
-	public ResponseEntity<Long> update(@PathVariable long brdNo,@RequestBody BoardDto t) {
-		System.out.println("업데이트"+t.toString());
-		return ResponseEntity.ok(service.update(t));
-	}
-
-	@GetMapping("/blogAll")
-	public ResponseEntity<List<Board>> blogListAll() {
-		System.out.println("블로그 목록");
-		return ResponseEntity.ok(service.blogListAll());
+	public ResponseEntity<Long> update(@PathVariable long brdNo, @RequestBody BoardDto brd) {
+		logger.info("수정한 게시글 번호: "+ brdNo);
+		return ResponseEntity.ok(service.update(brd));
 	}
 }
