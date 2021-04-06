@@ -12,6 +12,11 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
       {cartData && cartData.length > 0 ? (<>
         <ul>
           {cartData.map((single, key) => {
+            const finalProductPrice = (
+              single.prdPrice * currency.currencyRate
+            )
+            cartTotalPrice += finalProductPrice * single.quantity
+
             return (
               <li className="single-shopping-cart" key={key}>
                 <div className="shopping-cart-img">
@@ -49,7 +54,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
           <h4>
             Total :{" "}
             <span className="shop-total">
-              {currency.currencySymbol + cartTotalPrice}
+              {currency.currencySymbol + cartTotalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </span>
           </h4>
         </div>

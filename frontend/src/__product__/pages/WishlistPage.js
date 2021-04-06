@@ -56,7 +56,7 @@ const WishlistPage = ({
                             wishlistItem.prdPrice * currency.currencyRate
                           )
                           const cartItem = cartItems.filter(
-                            item => item.id === wishlistItem.id
+                            item => item.prdNo === wishlistItem.prdNo
                           )[0]
                           return (
                             <tr key={key}>
@@ -65,7 +65,7 @@ const WishlistPage = ({
                                   to={
                                     process.env.PUBLIC_URL +
                                     "/product-detail/" +
-                                    wishlistItem.id
+                                    wishlistItem.prdNo
                                   }
                                 >
                                   <img
@@ -83,8 +83,8 @@ const WishlistPage = ({
                                 <Link
                                   to={
                                     process.env.PUBLIC_URL +
-                                    "/product/" +
-                                    wishlistItem.id
+                                    "/product-detail/" +
+                                    wishlistItem.prdNo
                                   }
                                 >
                                   {wishlistItem.prdName}

@@ -221,11 +221,11 @@ const CartPage = ({
                   <div className="grand-totall">
                     <div className="title-wrap">
                       <h4 className="cart-bottom-title section-bg-gary-cart">
-                        tmp
+                        결제 예정금액
                         </h4>
                       </div>
                       <h5>
-                        배송료{" "}
+                        배송료
                       <span>
                         {cartTotalPrice < 50000 ? "￦ 2,500" : "무료배송"}
                         {/* (usrCity !== 제주 ? "￦ 2,500" : "￦ 5,000") */}

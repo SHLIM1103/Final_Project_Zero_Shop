@@ -26,11 +26,11 @@ const ProductGridList = ({
           addToCart={addToCart}
           addToWishlist={addToWishlist}
           cartItem={
-            cartItems.filter(cartItem => cartItem.id === product.prdNo)[0]
+            cartItems.filter(cartItem => cartItem.prdNo === product.prdNo)[0]
           }
           wishlistItem={
             wishlistItems.filter(
-              wishlistItem => wishlistItem.id === product.prdNo
+              wishlistItem => wishlistItem.prdNo === product.prdNo
             )[0]
           }
           key={product.prdNo}

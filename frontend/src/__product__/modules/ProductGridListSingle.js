@@ -52,28 +52,24 @@ const ProductGridListSingle = ({
               </button>
             </div>
             <div className="pro-same-action pro-cart">
-            {product.variation && product.variation.length >= 1 ? (
-                <Link to={`${process.env.PUBLIC_URL}/product-detail/${product.prdNo}`}>
-                  Select Option
-                </Link>
-              ) : product.prdInv && product.prdInv > 0 ? (
-                <button
-                  onClick={() => addToCart(product, addToast)}
-                  className={
-                    cartItem !== "active"
-                  }
-                  
-                  title={"Added to cart"}
-                >
-                  {" "}
-                  <i className="pe-7s-cart"></i>{" "}
-                  {"Add to cart"}
-                </button>
-              ) : (
-                <button disabled className="active">
-                  Out of Stock
-                </button>
-              )}
+            {product.prdInv && product.prdInv > 0 ? (
+              <button
+                onClick={() => addToCart(product, addToast)}
+                className={
+                  cartItem !== "active"
+                }
+                
+                title={"Added to cart"}
+              >
+                {" "}
+                <i className="pe-7s-cart"></i>{" "}
+                {"Add to cart"}
+              </button>
+            ) : (
+              <button disabled className="active">
+                Out of Stock
+              </button>
+            )}
             </div>
             <div className="pro-same-action pro-quickview">
               <button onClick={() => setModalShow(true)} title="Quick View">
