@@ -15,7 +15,7 @@ const Login = () => {
     setUserLogin({...userLogin, [e.target.name]: e.target.value})
   })
 
-  const login = e => {
+  const loginUser = e => {
     e.preventDefault()
     axios({
       url:"http://localhost:8080/usr/signin",
@@ -30,7 +30,7 @@ const Login = () => {
       if(res.data.token) {
         localStorage.setItem("user", JSON.stringify(res.data.user))
         localStorage.setItem("token", res.data.token.accessToken)
-        console.log(`유저 로그인 성공: `)
+        console.log(`유저 로그인 성공_id: ` + username)
         history.push(`/`)
       }else {
         alert(`토큰값 없음`)
@@ -49,14 +49,14 @@ const Login = () => {
         type="text"
         name="username"
         placeholder="ID를 입력하세요"
-        onChange={ onChange }
+        onChange={onChange}
       />
       <h5>PASSWORD</h5>
       <input
         type="password"
         name="password"
         placeholder="비밀번호를 입력하세요"
-        onChange={ onChange }
+        onChange={onChange}
       />
       <div className="button-box">
         <div className="login-toggle-btn">
@@ -66,7 +66,7 @@ const Login = () => {
               Forgot Password ?
             </Link>
         </div>
-        <button type="submit" onClick={ login }>
+        <button type="submit" onClick={loginUser}>
           <span>Login</span>
         </button>
       </div>

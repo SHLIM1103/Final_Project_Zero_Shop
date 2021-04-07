@@ -8,7 +8,7 @@ import { Layout, Breadcrumb } from "__common__/index"
 import { ShopSidebar, ShopTopbar, ShopProducts } from "__product__/index"
 import axios from "axios"
 
-const ProductListPage = ({ location }) => {
+const ProductListPage = ({ location, match }) => {
   const [layout, setLayout] = useState('grid three-column')
   const [sortType, setSortType] = useState('')
   const [sortValue, setSortValue] = useState('')
@@ -21,7 +21,7 @@ const ProductListPage = ({ location }) => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:8080/category/' + products.ctgName, )
+    axios.get('http://localhost:8080/category/' + match.params.id, )
     .then((res) => {
       console.log(products.ctgName + `카테고리 전체보기 성공`)
       setProducts(res.data)

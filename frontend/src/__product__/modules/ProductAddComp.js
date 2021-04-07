@@ -11,13 +11,6 @@ const ProductAddComp = () => {
 
   const { register } = useForm()
 
-  const [productSave, setProductSave] = useState({
-    prdName: "",
-    ctgName: "",
-    prdPrice: "",
-    prdImg: "",
-    prdInv: ""
-  })
   const add = e => {
     e.preventDefault()
     axios({
@@ -43,34 +36,62 @@ const ProductAddComp = () => {
     <div className="add-prd">
       <div className="input-new-prd">
         <form>
-          <div className="shop-top-bar mb-35">
-            <div className="select-shoing-wrap">
-              <div className="shop-select">
-                <h5>제품군: 
-                  <select ref={ register } name="ctgName" onChange={e => { setCtgName(`${e.target.value}`) }}>
-                    <option value="living">living</option>
-                    <option value="bathroom">bathroom</option>
-                    <option value="kitchen">kitchen</option>
-                    <option value="stationary">stationary</option>
-                  </select>
-                </h5>
-              </div>
-            </div>        
+          <div className="shop-select">
+            <h5>제품군: 
+              <select
+                ref={register}
+                name="ctgName"
+                onChange={e => {setCtgName(`${e.target.value}`)}}
+              >
+                <option value="living">living</option>
+                <option value="bathroom">bathroom</option>
+                <option value="kitchen">kitchen</option>
+                <option value="stationary">stationary</option>
+              </select>
+            </h5>
           </div>
           <div>
-            <h5>제품명: <input type="text" id="prdName" placeholder="상품명을 입력하세요" onChange={e => { setPrdName(`${e.target.value}`) }}/></h5>
+            <h5>제품명: 
+              <input
+               type="text"
+               id="prdName"
+               placeholder="상품명을 입력하세요"
+               onChange={e => {setPrdName(`${e.target.value}`)}}
+              />
+            </h5>
           </div>
           <div>
-            <h5>판매가격: <input type="text" id="prdPrice" placeholder="판매가격을 입력하세요" onChange={e => { setPrdPrice(`${e.target.value}`) }}/></h5>
+            <h5>판매가격: 
+              <input
+                type="text"
+                id="prdPrice"
+                placeholder="판매가격을 입력하세요"
+                onChange={e => {setPrdPrice(`${e.target.value}`)}}
+              />
+            </h5>
           </div>
           <div>
-              <h5>재고수량: <input type="text" id="prdInv" placeholder="재고수량을 입력하세요" onChange={e => { setPrdInv(`${e.target.value}`) }}/></h5>
+              <h5>재고수량: 
+                <input
+                  type="text"
+                  id="prdInv"
+                  placeholder="재고수량을 입력하세요"
+                  onChange={e => {setPrdInv(`${e.target.value}`)}}
+                />
+              </h5>
           </div>
           <div>
-              <h5>제품이미지: <input ref={ register } type="file" name="prdImg" onChange={e => { setPrdImg(`${e.target.value}`) }} /></h5>
+              <h5>제품이미지:
+                <input
+                  ref={register}
+                  type="file"
+                  name="prdImg"
+                  onChange={e => {setPrdImg(`${e.target.value}`)}}
+                />
+              </h5>
           </div>
         </form>
-        <button type="submit" onClick={ add }>등록</button>
+        <button type="submit" onClick={add}>등록</button>
       </div>
     </div>
   </>)

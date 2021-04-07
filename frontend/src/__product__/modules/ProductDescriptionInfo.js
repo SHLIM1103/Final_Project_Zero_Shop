@@ -22,7 +22,12 @@ const ProductDescriptionInfo = ({
     cartItems,
     product
   )
-  
+  const editor = e => {
+    e.preventDefault()
+    localStorage.setItem('prdNo', JSON.stringify(product))
+    history.push(`/product-edit/${product.prdNo}`)
+  }
+
   const remove = e =>  {
     e.preventDefault()
     const removeConfirm = window.confirm(`해당 제품을 삭제하시겠습니까?`)
@@ -59,7 +64,7 @@ const ProductDescriptionInfo = ({
           <li><span><strong>원산지</strong></span>대한민국</li>
           <li><span><strong>브랜드</strong></span>ZER0 SHOP</li>
           <li><span><strong>구매혜택</strong></span>구매금액의 5% 적립 ({product.prdPrice * 0.05} Point)</li>
-          <li><span><strong>배송비</strong></span>2,500원</li>
+          <li><span><strong>배송비</strong></span>2,500원 (50,000원 이상 구매시 무료배송)</li>
         </ul>
       </div>
 
@@ -124,12 +129,8 @@ const ProductDescriptionInfo = ({
           >
             <i className="pe-7s-like" />
           </button>
-          <button onClick={() => localStorage.setItem('prdNo', JSON.stringify(product.prdNo))}>
-            <Link to={"/product-edit/" + product.prdNo}>
-              Edit
-            </Link>
-          </button>
-          <button onClick={ remove }>삭제</button>
+          <button onClick={editor}>수정</button>
+          <button onClick={remove}>삭제</button>
         </div>
       </div>
 

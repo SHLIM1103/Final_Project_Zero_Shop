@@ -217,7 +217,7 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
                     </div>
                     <div className="col-lg-12">
                       <div className="billing-info mb-20">
-                        <label>Address</label> <button onClick={ execPostCode }>주소 검색</button>
+                        <label>Address</label> <button onClick={execPostCode}>주소 검색</button>
                         <input type="text" value={`${postcode} ${addr} ${extraAddr}`} readOnly />
                         <input type="text" placeholder="받으시는 분의 상세 주소를 입력하세요" name="fullAddr" required
                         onChange = { e => { setFullAddr(`${e.target.value}`)}} />

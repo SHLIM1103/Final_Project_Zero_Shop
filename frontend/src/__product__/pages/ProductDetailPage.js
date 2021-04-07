@@ -11,9 +11,9 @@ const ProductDetailPage = ({ location, match }) => {
   const [products, setProducts] = useState([])
   
   useEffect(() => {
-    axios.get('http://localhost:8080/products/product-number/' + localStorage.getItem('prdNo'), )
+    axios.get('http://localhost:8080/products/product-number/' + match.params.id, )
     .then((res) => {
-      console.log(`제품 상세보기 성공: `+ localStorage.getItem('prdNo'))
+      console.log(match.params.id + `번 제품 상세보기 성공`)
       setProducts(res.data)
     })
     .catch((err) => {
@@ -29,7 +29,8 @@ const ProductDetailPage = ({ location, match }) => {
 
     <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
     <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>Shop Product</BreadcrumbsItem>
-    
+
+    <div className="margin-top" />
     {products.map((product => {
       return (
         <ProductDetailComp product={product} key={product.prdNo} />

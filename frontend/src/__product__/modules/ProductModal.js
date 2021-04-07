@@ -70,7 +70,15 @@ function ProductModal(props) {
             <div className="product-details-content quickview-content">
               <h2>{product.prdName}</h2>
               <div className="product-details-price">
-                  <span>{currency.currencySymbol + product.prdPrice} </span>
+                  <span>{currency.currencySymbol + product.prdPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </span>
+              </div>
+              <div className="pro-details-list">
+                <ul>
+                  <li><span><strong>원산지</strong></span>대한민국</li>
+                  <li><span><strong>브랜드</strong></span>ZER0 SHOP</li>
+                  <li><span><strong>구매혜택</strong></span>구매금액의 5% 적립 ({product.prdPrice * 0.05} Point)</li>
+                  <li><span><strong>배송비</strong></span>2,500원 (50,000원 이상 구매시 무료배송)</li>
+                </ul>
               </div>
 
               <div className="pro-details-quality">

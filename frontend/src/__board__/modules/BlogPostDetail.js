@@ -59,7 +59,7 @@ const BlogPostDetail = ({ boards }) => {
       <div className="tag-share">
         <div>
           <a href="#" ><Link to={"/blog-update/"+boards.brdNo}>글 수정하기</Link></a><br/>
-          <a href="#" onClick={ remove }>글 삭제하기</a>
+          <a href="#" onClick={remove}>글 삭제하기</a>
         </div>
         
         <div className="blog-share">

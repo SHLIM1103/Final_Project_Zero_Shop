@@ -39,20 +39,27 @@ const BlogPostUpdate = ({ boards }) => {
 
   return (<>
     <div>
+      <label>제목: </label>
+      <label>
+        <input
+          type="text"
+          placeholder={boards.brdTitle}
+          onChange = {e => {setBrdTitle(`${e.target.value}`)}}
+        />
+      </label>
+    </div> 
+    <div >
+      <label>내용: </label>
       <div>
-        <div>
-          <label>제목: </label>
-          <label><input type="text" placeholder={boards.brdTitle} onChange = {e => { setBrdTitle(`${e.target.value}`) }}/></label>
-        </div> 
-        
-        <div >
-          <label>내용: </label>
-          <div>
-            <textarea rows="55" cols="250" placeholder={boards.brdContent} onChange = {e => { setBrdContent(`${e.target.value}`) }}/>
-          </div>
-        </div>
-        <button onClick={ blogUpdate }> 수정완료 </button>
-       </div>
+        <textarea 
+          rows="55" cols="250"
+          placeholder={boards.brdContent}
+          onChange = {e => {setBrdContent(`${e.target.value}`)}}
+        />
+      </div>
+    </div>
+    <div>
+      <button onClick={blogUpdate}>수정완료</button>
     </div>
   </>)
 }

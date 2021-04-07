@@ -90,8 +90,8 @@ const BlogPostList= () => {
         <h4 className="pro-sidebar-title"> </h4>
         <div className="pro-sidebar-search mb-50 mt-25">
           <form className="pro-sidebar-search-form" action="#">
-            <input type="text" placeholder="Search here..."onChange={ e => {setBrdTitle(`${ e.target.value }`)}}  />
-            <button onClick={ search } >
+            <input type="text" placeholder="Search here..."onChange={e =>{setBrdTitle(`${e.target.value}`)}} />
+            <button onClick={search} >
               <i className="pe-7s-search" />
             </button>
           </form>
@@ -99,7 +99,7 @@ const BlogPostList= () => {
       </div>
     </div>
     <div className="">
-      <a class="float-right" href="#"><Link to= '/blog-detail'>글 작성하기</Link></a>
+      <a class="float-right" href="#"><Link to='/blog-detail'>글 작성하기</Link></a>
     </div>
   </>)
 }

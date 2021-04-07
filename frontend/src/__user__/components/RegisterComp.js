@@ -15,7 +15,7 @@ const RegisterComp = () => {
     setUserRegister({...userRegister, [e.target.name]: e.target.value})
   }) //setter의 역할
 
-  const sendData = e => {
+  const registerUser = e => {
     e.preventDefault()
     axios({
       url: 'http://localhost:8080/usr/signup', 
@@ -27,7 +27,7 @@ const RegisterComp = () => {
       data: userRegister
     })
     .then(res => {
-      alert({usrName}`님 가입 성공! 로그인해주세요.`)
+      alert(usrName + ` 님 가입을 환영합니다! 로그인 해주세요.`)
       console.log(`유저 가입 성공: ` + username)
     })
     .catch(err => {
@@ -43,14 +43,14 @@ const RegisterComp = () => {
         type="text"
         name="username"
         placeholder="ID를 입력하세요"
-        onChange={ onChange }
+        onChange={onChange}
       />
       <h5>PASSWORD</h5>
       <input
         type="password"
         name="password"
         placeholder="비밀번호를 입력하세요"
-        onChange={ onChange }
+        onChange={onChange}
       />
       <h5>E-MAIL</h5>
       <input
@@ -67,7 +67,7 @@ const RegisterComp = () => {
         onChange={onChange}
       />
       <div className="button-box">
-        <button type="submit" onClick={ sendData }>
+        <button type="submit" onClick={registerUser}>
           <span>Register</span>
         </button>
       </div>

@@ -1,6 +1,21 @@
 /*------- 6. Product style  --------*/
 .add-prd {
   .input-new-prd {
+    .shop-select {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-right: 10px;
+      select {
+        font-size: 14px;
+
+        min-width: 143px;
+        padding: 5px;
+
+        color: #606060;
+        border: 1px solid #e6e6e6;
+      }
+    }
     button {
       margin-top: 20px;
       border-radius: 50px;
