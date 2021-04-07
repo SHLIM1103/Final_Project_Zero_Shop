@@ -1,15 +1,21 @@
-import React, { useState } from "react"
-import { useForm } from "react-hook-form"
+import React, { useCallback, useState } from "react"
 import axios from "axios"
+import { useHistory } from "react-router"
 
 const ProductAddComp = () => {
-  const [ctgName, setCtgName] = useState('')
-  const [prdName, setPrdName] = useState('')
-  const [prdImg, setPrdImg] = useState('')
-  const [prdPrice, setPrdPrice] = useState('')
-  const [prdInv, setPrdInv] = useState('')
-
-  const { register } = useForm()
+  const history = useHistory()
+  const [productAdd, setProductAdd] = useState({
+    ctgName: "",
+    prdName: "",
+    prdImg: "",
+    prdPrice: "",
+    prdInv: ""
+  })
+  
+  const { ctgName, prdName, prdImg, prdPrice, prdInv } = productAdd
+  const onChange = useCallback(e => {
+    setProductAdd({...productAdd, [e.target.name]: e.target.value})
+  })
 
   const add = e => {
     e.preventDefault()
@@ -20,15 +26,15 @@ const ProductAddComp = () => {
         'Content-Type'  : 'application/json',
         'Authorization' : 'JWT fefege..'
       },
-      data: { ctgName, prdName, prdPrice, prdInv, prdImg }
+      data: productAdd
     })
     .then((res) => {
-        console.log(`제품 등록 성공`)
-        window.location.reload(false)
+      console.log(`제품 등록 성공`)
+      history.push(`/product-all`)
     })
     .catch((err) => {
-          console.log(`제품 등록 실패: ` + err)
-          throw err
+      console.log(`제품 등록 실패: ` + err)
+      throw err
     })
   }
 
@@ -39,9 +45,10 @@ const ProductAddComp = () => {
           <div className="shop-select">
             <h5>제품군: 
               <select
-                ref={register}
+                defaultValue="living"
                 name="ctgName"
-                onChange={e => {setCtgName(`${e.target.value}`)}}
+                value={ctgName}
+                onChange={onChange}
               >
                 <option value="living">living</option>
                 <option value="bathroom">bathroom</option>
@@ -54,9 +61,10 @@ const ProductAddComp = () => {
             <h5>제품명: 
               <input
                type="text"
-               id="prdName"
-               placeholder="상품명을 입력하세요"
-               onChange={e => {setPrdName(`${e.target.value}`)}}
+               name="prdName"
+               value={prdName}
+               placeholder="제품명을 입력하세요"
+               onChange={onChange}
               />
             </h5>
           </div>
@@ -64,9 +72,10 @@ const ProductAddComp = () => {
             <h5>판매가격: 
               <input
                 type="text"
-                id="prdPrice"
+                name="prdPrice"
+                value={prdPrice}
                 placeholder="판매가격을 입력하세요"
-                onChange={e => {setPrdPrice(`${e.target.value}`)}}
+                onChange={onChange}
               />
             </h5>
           </div>
@@ -74,24 +83,25 @@ const ProductAddComp = () => {
               <h5>재고수량: 
                 <input
                   type="text"
-                  id="prdInv"
+                  name="prdInv"
+                  value={prdInv}
                   placeholder="재고수량을 입력하세요"
-                  onChange={e => {setPrdInv(`${e.target.value}`)}}
+                  onChange={onChange}
                 />
               </h5>
           </div>
           <div>
               <h5>제품이미지:
                 <input
-                  ref={register}
                   type="file"
                   name="prdImg"
-                  onChange={e => {setPrdImg(`${e.target.value}`)}}
+                  value={prdImg}
+                  onChange={onChange}
                 />
               </h5>
           </div>
         </form>
-        <button type="submit" onClick={add}>등록</button>
+        <button type="submit" onClick={add}>제품등록</button>
       </div>
     </div>
   </>)

@@ -7,14 +7,7 @@ import { ProductEditComp } from "__product__/index"
 
 const ProductEditPage = ({ location }) => {
   const { pathname } = location
-  const [product, setProduct] = useState([])
-
-  const editProduct = () => {
-    setProduct(JSON.parse(localStorage.getItem('prdNo')))
-  }
   
-  useEffect(() => editProduct(), [])
-
   return (<>
     <MetaTags>
         <title>ZER0 SHOP | Product Edit Page</title>
@@ -28,7 +21,7 @@ const ProductEditPage = ({ location }) => {
       <Breadcrumb />
       
       {/* Edit Product Component */}
-      <ProductEditComp product={product} />
+      <ProductEditComp />
       
     </Layout>
   </>)

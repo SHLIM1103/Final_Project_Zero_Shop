@@ -1,29 +1,36 @@
-import React, { useState } from "react"
+import React, { useState, useCallback } from "react"
 import  { useHistory } from "react-router"
 import axios from "axios"
 
 const BlogPostUpdate = ({ boards }) => {
   const history = useHistory()
-  
-  const [brdTitle, setBrdTitle] = useState('')
-  const [brdContent, setBrdContent] = useState('')
-  const [brdWrtDate, setBrdWrtDate] = useState('')
-  const [brdRank, setBrdRank] = useState('')
-  const [brdImg, setBrdImg] = useState('')
-  const [brdLike, setBrdLike] = useState('')
-  const [usrNickname, setUsrNickname] = useState('')
+  const [board, setBoard] = useState([])
+
+  const [boardUpdate, setBoardUpdate] = useState({
+    brdTitle: board.brdTitle,
+    brdContent: board.brdContent,
+    brdWrtDate: board.brdWrtDate,
+    brdRank: board.brdRank,
+    brdImg: board.brdImg,
+    brdLike: board.brdLike,
+    usrNickname: board.usrNickname
+  })
+  const { brdTitle, brdContent, brdWrtDate, brdRank, brdImg, brdLike, usrNickname } = boardUpdate
+  const onChange = useCallback(e => {
+    setBoardUpdate({...boardUpdate, [e.target.name]: e.target.value})
+  })
 
   const blogUpdate = e => {
     e.preventDefault()
     axios({
-      url: 'http://localhost:8080/boards/update/' + boards.brdNo,
+      url: 'http://localhost:8080/boards/update/' + localStorage.getItem(`brdNo`),
       method: 'put',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'JWT fefege..'
       },
       data: { 
-        brdNo: boards.brdNo, 
+        brdNo: localStorage.getItem(`brdNo`), 
         brdTitle, brdContent, brdWrtDate, brdRank, brdImg, brdLike, usrNickname
       }
     })
@@ -43,8 +50,10 @@ const BlogPostUpdate = ({ boards }) => {
       <label>
         <input
           type="text"
+          name="brdTitle"
+          value={brdTitle}
           placeholder={boards.brdTitle}
-          onChange = {e => {setBrdTitle(`${e.target.value}`)}}
+          onChange={onChange}
         />
       </label>
     </div> 
@@ -53,8 +62,10 @@ const BlogPostUpdate = ({ boards }) => {
       <div>
         <textarea 
           rows="55" cols="250"
+          name="brdContent"
+          value={brdContent}
           placeholder={boards.brdContent}
-          onChange = {e => {setBrdContent(`${e.target.value}`)}}
+          onChange={onChange}
         />
       </div>
     </div>

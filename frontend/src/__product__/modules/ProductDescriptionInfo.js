@@ -22,9 +22,10 @@ const ProductDescriptionInfo = ({
     cartItems,
     product
   )
+
   const editor = e => {
     e.preventDefault()
-    localStorage.setItem('prdNo', JSON.stringify(product))
+    localStorage.setItem('prdNo', JSON.stringify(product.prdNo))
     history.push(`/product-edit/${product.prdNo}`)
   }
 

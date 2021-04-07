@@ -3,13 +3,19 @@ import MetaTags from "react-meta-tags"
 import { Layout, FeatureIcon, HeroSlider, CategorySlider } from "__common__/index"
 
 const MainPage = () => {
+  const logout = () => {
+    alert(`로그아웃`)
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
+  }
+
   return (<>
-  {localStorage.getItem("token") === "" ? 
+  {localStorage.getItem("token") === null ?
     <>
       <MetaTags>
         <title>ZER0 SHOP | Home</title>
       </MetaTags>
-
+      
       <Layout
         headerContainerClass="container-fluid"
         headerPaddingClass="header-padding-2"
@@ -25,6 +31,8 @@ const MainPage = () => {
     </>
   :
   <>
+      <button onClick={logout}>로그인 후</button>
+      
       <MetaTags>
         <title>ZER0 SHOP | Home</title>
       </MetaTags>

@@ -99,7 +99,7 @@ const BlogPostList= () => {
       </div>
     </div>
     <div className="">
-      <a class="float-right" href="#"><Link to='/blog-detail'>글 작성하기</Link></a>
+      <a class="float-right" href="#"><Link to='/blog-write'>글 작성하기</Link></a>
     </div>
   </>)
 }

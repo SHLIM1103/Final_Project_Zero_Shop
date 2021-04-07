@@ -1,36 +1,41 @@
-import React, { useState } from "react"
-import { useForm } from "react-hook-form"
+import React, { useState, useEffect, useCallback } from "react"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
 
-const ProductEditComp = ({ product }) => {
+const ProductEditComp = () => {
   const history = useHistory()
-  const { register } = useForm()
+  const [product, setProduct] = useState([])
 
-  const [ctgName, setCtgName] = useState('')
-  const [prdName, setPrdName] = useState('')
-  const [prdImg, setPrdImg] = useState('')
-  const [prdPrice, setPrdPrice] = useState('')
-  const [prdInv, setPrdInv] = useState('')
+  const [productEdit, setProductEdit] = useState({
+    ctgName: product.ctgName,
+    prdName: product.prdName,
+    prdImg: product.prdImg,
+    prdPrice: product.prdPrice,
+    prdInv: product.prdInv
+  })
+
+  const { ctgName, prdName, prdImg, prdPrice, prdInv } = productEdit
+  const onChange = useCallback(e => {
+    setProductEdit({...productEdit, [e.target.name]: e.target.value})
+  })
 
   const edit = e => {
     e.preventDefault()
-    alert(product.prdNo)
     axios({
-        url: `http://localhost:8080/products/edit/` + product.prdNo,
+        url: `http://localhost:8080/products/edit/` + localStorage.getItem('prdNo'),
         method: 'put',
         headers: {
           'Content-Type'  : 'application/json',
           'Authorization' : 'JWT fefege..'
         },
         data: { 
-          prdNo: product.prdNo,
+          prdNo: localStorage.getItem('prdNo'),
           ctgName, prdName, prdPrice, prdInv, prdImg
         }
       })
     .then(res => {
-      console.log(product.prdNo + `번 제품 정보 수정 성공`)
-      history.push(`/product-detail/` + product.prdNo)
+      console.log(localStorage.getItem('prdNo') + `번 제품 정보 수정 성공`)
+      history.push(`/product-detail/` + localStorage.getItem('prdNo'))
       })
     .catch(err => {
       console.log(`제품 정보 수정 실패: ` + err)
@@ -44,7 +49,11 @@ const ProductEditComp = ({ product }) => {
         <form>
               <div className="shop-select">
                 <h5>제품군: 
-                  <select ref={register} name="ctgName" defaultValue={product.ctgName} onChange={e => {setCtgName(`${e.target.value}`)}}>
+                  <select
+                    name="ctgName"
+                    value={ctgName}
+                    onChange={onChange}
+                  >
                     <option value="living">living</option>
                     <option value="bathroom">bathroom</option>
                     <option value="kitchen">kitchen</option>
@@ -57,8 +66,8 @@ const ProductEditComp = ({ product }) => {
               <input
                 type="text"
                 name="prdName"
-                defaultValue={product.prdName}
-                onChange={e => setPrdName(e.target.value)}
+                value={prdName}
+                onChange={onChange}
               />
             </h5>
           </div>
@@ -67,8 +76,8 @@ const ProductEditComp = ({ product }) => {
               <input
                 type="text"
                 name="prdPrice"
-                defaultValue={product.prdPrice}
-                onChange={e => {setPrdPrice(`${e.target.value}`)}}
+                value={prdPrice}
+                onChange={onChange}
               />
             </h5>
           </div>
@@ -77,20 +86,19 @@ const ProductEditComp = ({ product }) => {
               <input
                 type="text"
                 name="prdInv"
-                defaultValue={product.prdInv}
-                onChange={e => {setPrdInv(`${e.target.value}`)}}
+                value={prdInv}
+                onChange={onChange}
               />
             </h5>
           </div>
           <div>
             <h5>제품이미지: 
               <input
-                ref={register}
-                defaultValue={product.prdImg}
                 type="file"
                 multiple="multiple"
                 name="prdImg"
-                onChange={e => {setPrdImg(`${e.target.value}`)}}
+                value={prdImg}
+                onChange={onChange}
               />
             </h5>
           </div>
