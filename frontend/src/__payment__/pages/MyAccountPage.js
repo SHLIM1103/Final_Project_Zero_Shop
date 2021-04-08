@@ -7,7 +7,7 @@ import Accordion from "react-bootstrap/Accordion"
 import { Layout, Breadcrumb } from "__common__/index"
 import axios from "axios"
 
-const MyAccount = ({ location }) => {
+const MyAccountPage = ({ location }) => {
   const { pathname } = location
   const [payment, setPayment] = useState([])
 
@@ -237,8 +237,8 @@ const MyAccount = ({ location }) => {
   </>)
 }
 
-MyAccount.propTypes = {
+MyAccountPage.propTypes = {
   location: PropTypes.object
 }
 
-export default MyAccount
+export default MyAccountPage

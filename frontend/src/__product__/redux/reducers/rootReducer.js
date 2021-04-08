@@ -1,7 +1,7 @@
-import currencyReducer from "redux/reducers/currencyReducer"
-import productReducer from "redux/reducers/productReducer"
-import cartReducer from "redux/reducers/cartReducer"
-import wishlistReducer from "redux/reducers/wishlistReducer"
+import currencyReducer from "__product__/redux/reducers/currencyReducer"
+import productReducer from "__product__/redux/reducers/productReducer"
+import cartReducer from "__product__/redux/reducers/cartReducer"
+import wishlistReducer from "__product__/redux/reducers/wishlistReducer"
 import { combineReducers } from "redux"
 import { createMultilanguageReducer } from "redux-multilanguage"
 

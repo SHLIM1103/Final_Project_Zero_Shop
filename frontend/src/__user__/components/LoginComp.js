@@ -28,12 +28,12 @@ const Login = () => {
     })
     .then(res => {
       if(res.data.token) {
-        localStorage.setItem("user", JSON.stringify(res.data.user))
-        localStorage.setItem("token", res.data.token.accessToken)
-        console.log(`유저 로그인 성공_id: ` + username)
+        localStorage.setItem('user', JSON.stringify(res.data.user))
+        localStorage.setItem('token', res.data.token.accessToken)
+        alert(`로그인 성공! 환영합니다!`)
         history.push(`/`)
       }else {
-        alert(`토큰값 없음`)
+        alert(`토큰값 없음! 관리자에게 문의하세요.`)
       }
     })
     .catch(err => {
@@ -48,6 +48,7 @@ const Login = () => {
       <input
         type="text"
         name="username"
+        value={username}
         placeholder="ID를 입력하세요"
         onChange={onChange}
       />
@@ -55,6 +56,7 @@ const Login = () => {
       <input
         type="password"
         name="password"
+        value={password}
         placeholder="비밀번호를 입력하세요"
         onChange={onChange}
       />

@@ -1,7 +1,9 @@
 import React, { useCallback, useState } from "react"
+import { useHistory } from "react-router"
 import axios from "axios"
 
 const RegisterComp = () => {
+  const history = useHistory()
   /* JSON으로 property에 대한 속성 정의 (기존 코드는 String으로 하나하나 줬음) */
   const [userRegister, setUserRegister] = useState({
     username: "",
@@ -27,8 +29,9 @@ const RegisterComp = () => {
       data: userRegister
     })
     .then(res => {
-      alert(usrName + ` 님 가입을 환영합니다! 로그인 해주세요.`)
-      console.log(`유저 가입 성공: `)
+      alert(usrName + `님 가입을 환영합니다! 로그인해주세요.`)
+      console.log(`유저 가입 성공: ` + username)
+      history.go()
     })
     .catch(err => {
       console.log(`유저 가입 실패: ` + err)

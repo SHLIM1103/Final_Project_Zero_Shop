@@ -31,8 +31,8 @@
       }
     }
     button {
-      border-radius: 50px;
-      margin-right: 10px;
+      border-radius: 40px;
+      margin-left: 10px;
       background-color: #f2f2f2;
       border: medium none;
       color: #333;
@@ -45,12 +45,12 @@
       transition: all 0.3s ease 0s;
       &:hover {
         background-color: $theme-color;
-        color: #fff;
+        color: #f2f2f2;
       }
     }
     p {
       margin: 0;
-
+      margin-left: 10px;
       color: #606060;
       @media #{$xs-layout} {
         margin: 5px 0 10px;
@@ -75,7 +75,7 @@
         margin-left: 0;
       }
       &.active {
-        color: #fa6bff;
+        color: $theme-color;
       }
     }
   }

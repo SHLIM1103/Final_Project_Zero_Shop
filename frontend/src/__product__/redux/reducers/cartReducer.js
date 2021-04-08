@@ -1,5 +1,5 @@
 import uuid from "uuid/v4"
-import { ADD_TO_CART, DECREASE_QUANTITY, DELETE_FROM_CART, DELETE_ALL_FROM_CART } from "redux/actions/cartActions"
+import { ADD_TO_CART, DECREASE_QUANTITY, DELETE_FROM_CART, DELETE_ALL_FROM_CART } from "__product__/redux/actions/cartActions"
 
 const initState = []
 

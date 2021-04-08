@@ -1,4 +1,4 @@
-import { SET_CURRENCY } from "redux/actions/currencyActions"
+import { SET_CURRENCY } from "__product__/redux/actions/currencyActions"
 
 const initState = {
   currencySymbol: "￦",

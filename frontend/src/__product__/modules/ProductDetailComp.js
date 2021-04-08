@@ -23,7 +23,7 @@ const ProductDetailComp = ({ product }) => {
       {/* related product slider */}
       <RelatedProductSlider
           spaceBottomClass="pb-95"
-          ctgName={product.ctgName}
+          category={product.category}
       />
     </Layout>
   </>)

@@ -4,16 +4,15 @@ import axios from "axios"
 
 const BlogPostUpdate = ({ boards }) => {
   const history = useHistory()
-  const [board, setBoard] = useState([])
 
   const [boardUpdate, setBoardUpdate] = useState({
-    brdTitle: board.brdTitle,
-    brdContent: board.brdContent,
-    brdWrtDate: board.brdWrtDate,
-    brdRank: board.brdRank,
-    brdImg: board.brdImg,
-    brdLike: board.brdLike,
-    usrNickname: board.usrNickname
+    brdTitle: boards.brdTitle,
+    brdContent: boards.brdContent,
+    brdWrtDate: boards.brdWrtDate,
+    brdRank: boards.brdRank,
+    brdImg: boards.brdImg,
+    brdLike: boards.brdLike,
+    usrNickname: boards.usrNickname
   })
   const { brdTitle, brdContent, brdWrtDate, brdRank, brdImg, brdLike, usrNickname } = boardUpdate
   const onChange = useCallback(e => {
@@ -35,11 +34,11 @@ const BlogPostUpdate = ({ boards }) => {
       }
     })
     .then((res) => {
-      console.log(boards.brdNo + `번 게시글 수정 성공`)
-      history.push(`/blog-all`)
+      console.log(localStorage.getItem(`brdNo`) + `번 게시글 수정 성공`)
+      history.push(`/blog-detail/` + localStorage.getItem(`brdNo`))
     })
     .catch(err => {
-      console.log(boards.brdNo + `번 게시글 수정 실패: ` + err)
+      console.log(localStorage.getItem(`brdNo`) + `번 게시글 수정 실패: ` + err)
       throw err
     })
   }

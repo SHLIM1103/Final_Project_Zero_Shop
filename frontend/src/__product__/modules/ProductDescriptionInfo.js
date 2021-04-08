@@ -3,8 +3,8 @@ import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { connect } from "react-redux"
 import { getProductCartQuantity } from "helpers/product"
-import { addToCart } from "redux/actions/cartActions"
-import { addToWishlist } from "redux/actions/wishlistActions"
+import { addToCart } from "__product__/redux/actions/cartActions"
+import { addToWishlist } from "__product__/redux/actions/wishlistActions"
 import axios from "axios"
 
 const ProductDescriptionInfo = ({
@@ -117,32 +117,36 @@ const ProductDescriptionInfo = ({
             <button disabled>Out of Stock</button>
           )}
         </div>
-        <div className="pro-details-wishlist">
-          <button
-            className={wishlistItem !== undefined ? "active" : ""}
-            disabled={wishlistItem !== undefined}
-            title={
-              wishlistItem !== undefined
-                ? "Added to wishlist"
-                : "Add to wishlist"
-            }
-            onClick={() => addToWishlist(product, addToast)}
-          >
-            <i className="pe-7s-like" />
-          </button>
-          <button onClick={editor}>수정</button>
-          <button onClick={remove}>삭제</button>
-        </div>
+        {localStorage.getItem('token') !== null ? 
+          <div className="pro-details-wishlist">
+            <button onClick={editor}>수정</button>
+            <button onClick={remove}>삭제</button>
+          </div>
+          :
+          <div className="pro-details-wishlist">
+            <button
+              className={wishlistItem !== undefined ? "active" : ""}
+              title={
+                wishlistItem !== undefined
+                  ? "Added to wishlist"
+                  : "Add to wishlist"
+              }
+              onClick={() => addToWishlist(product, addToast)}
+            >
+              <i className="pe-7s-like" />
+            </button>
+          </div>
+        }
       </div>
 
-      {product.ctgName ? (
+      {product.category ? (
         <div className="pro-details-meta">
-          <span>Categories :</span>
+          <span>Category :</span>
           <ul>
             <li>
-              {/* <Link to={process.env.PUBLIC_URL + "/category/" + product.ctgName}
-                    onClick={localStorage.setItem('ctgName', JSON.stringify(`ctgName`))}> */}
-                      {product.ctgName}
+              {/* <Link to={process.  env.PUBLIC_URL + "/category/" + product.category}
+                    onClick={localStorage.setItem('category', JSON.stringify(`category`))}> */}
+                      {product.category}
               {/* </Link> */}
             </li>
           </ul>

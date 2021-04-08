@@ -6,7 +6,7 @@ import MetaTags from "react-meta-tags"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
 import { connect } from "react-redux"
 import { Layout, Breadcrumb } from "__common__/index"
-import { addToCart, decreaseQuantity, deleteFromCart, cartItemStock, deleteAllFromCart } from "redux/actions/cartActions"
+import { addToCart, decreaseQuantity, deleteFromCart, cartItemStock, deleteAllFromCart } from "__product__/redux/actions/cartActions"
 
 const CartPage = ({
   location,

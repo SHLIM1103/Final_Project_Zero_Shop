@@ -115,12 +115,12 @@ const ProductGridListSingle = ({
                 </Link>
               </h3>
               <div className="product-list-price">
-                  <span>{currency.currencySymbol + product.prdPrice} </span>
+                  <span>{currency.currencySymbol + product.prdPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </span>
               </div>
 
               <div className="shop-list-actions d-flex align-items-center">
                 <div className="shop-list-btn btn-hover">
-                  {product.prdIvn > 0 ? (
+                  {product.prdInv > 0 ? (
                     <button
                       onClick={() => addToCart(product, addToast)}
                       className={

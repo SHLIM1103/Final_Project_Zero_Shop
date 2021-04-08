@@ -1,8 +1,8 @@
 import PropTypes from "prop-types"
 import React from "react"
 import { connect } from "react-redux"
-import { addToCart } from "redux/actions/cartActions"
-import { addToWishlist } from "redux/actions/wishlistActions"
+import { addToCart } from "__product__/redux/actions/cartActions"
+import { addToWishlist } from "__product__/redux/actions/wishlistActions"
 import { ProductGridListSingle } from "__product__/index"
 
 const ProductGridList = ({

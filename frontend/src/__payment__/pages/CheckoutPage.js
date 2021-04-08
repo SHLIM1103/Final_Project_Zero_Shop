@@ -241,11 +241,9 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
                       <div className="your-order-middle">
                         <ul>
                           {cartItems.map((cartItem, key) => {
-                            const finalProductPrice = (
-                              cartItem.price * currency.currencyRate
-                            )
+                            const finalProductPrice = 
                               (cartTotalPrice +=
-                                  finalProductPrice * cartItem.quantity)
+                                cartItem.price * cartItem.quantity)
                             return (
                               <li key={key}>
                                 <span className="order-middle-left">

@@ -150,7 +150,7 @@
 
         display: inline-block;
 
-        padding: 0 15px;
+        padding: 0 30px;
         ul.submenu {
           position: absolute;
           z-index: 999;
@@ -488,7 +488,7 @@
 
       visibility: hidden;
 
-      width: 125px;
+      width: 180px;
       padding: 8px 12px 10px;
 
       transition: all 0.5s ease 0s;
@@ -540,6 +540,16 @@
 
               color: $theme-color;
             }
+          }
+          p {
+            font-size: 13px;
+            line-height: 30px;
+
+            display: block;
+
+            padding: 0;
+
+            color: $theme-color;
           }
         }
       }

@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS_SUCCESS } from "redux/actions/productActions"
+import { FETCH_PRODUCTS_SUCCESS } from "__product__/redux/actions/productActions"
 
 const initState = {
   products: []

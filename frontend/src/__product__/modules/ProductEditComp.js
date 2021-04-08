@@ -7,14 +7,14 @@ const ProductEditComp = () => {
   const [product, setProduct] = useState([])
 
   const [productEdit, setProductEdit] = useState({
-    ctgName: product.ctgName,
+    category: product.category,
     prdName: product.prdName,
     prdImg: product.prdImg,
     prdPrice: product.prdPrice,
     prdInv: product.prdInv
   })
 
-  const { ctgName, prdName, prdImg, prdPrice, prdInv } = productEdit
+  const { category, prdName, prdImg, prdPrice, prdInv } = productEdit
   const onChange = useCallback(e => {
     setProductEdit({...productEdit, [e.target.name]: e.target.value})
   })
@@ -30,7 +30,7 @@ const ProductEditComp = () => {
         },
         data: { 
           prdNo: localStorage.getItem('prdNo'),
-          ctgName, prdName, prdPrice, prdInv, prdImg
+          category, prdName, prdPrice, prdInv, prdImg
         }
       })
     .then(res => {
@@ -50,8 +50,8 @@ const ProductEditComp = () => {
               <div className="shop-select">
                 <h5>제품군: 
                   <select
-                    name="ctgName"
-                    value={ctgName}
+                    name="category"
+                    value={category}
                     onChange={onChange}
                   >
                     <option value="living">living</option>

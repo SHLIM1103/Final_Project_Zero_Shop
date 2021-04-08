@@ -6,8 +6,8 @@ import MetaTags from "react-meta-tags"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
 import { connect } from "react-redux"
 import { Layout, Breadcrumb } from "__common__/index"
-import { addToCart } from "redux/actions/cartActions"
-import { addToWishlist, deleteFromWishlist, deleteAllFromWishlist } from "redux/actions/wishlistActions"
+import { addToCart } from "__product__/redux/actions/cartActions"
+import { addToWishlist, deleteFromWishlist, deleteAllFromWishlist } from "__product__/redux/actions/wishlistActions"
 
 const WishlistPage = ({
   location,
