@@ -1,12 +1,11 @@
-import PropTypes from "prop-types"
 import React from "react"
 import Swiper from "react-id-swiper"
 import { SectionTitleTwo } from "__common__/index"
 import { ProductGrid } from "__product__/index"
 
-const RelatedProductSlider = ({ spaceBottomClass, category }) => {
+const RelatedProductSlider = ({ spaceBottomClass, category, product }) => {
   const settings = {
-    loop: false,
+    loop: true,
     slidesPerView: 4,
     grabCursor: true,
     breakpoints: {
@@ -43,17 +42,13 @@ const RelatedProductSlider = ({ spaceBottomClass, category }) => {
               category={category}
               limit={6}
               sliderClassName="swiper-slide"
+              product={product}
             />
           </Swiper>
         </div>
       </div>
     </div>
   )
-}
-
-RelatedProductSlider.propTypes = {
-  category: PropTypes.string,
-  spaceBottomClass: PropTypes.string
 }
 
 export default RelatedProductSlider

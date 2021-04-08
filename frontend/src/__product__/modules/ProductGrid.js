@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import { getProducts } from "helpers/product"
@@ -8,6 +7,7 @@ import { ProductGridSingle } from "__product__/index"
 import axios from "axios"
 
 const ProductGrid = ({
+  product,
   currency,
   addToCart,
   addToWishlist,
@@ -19,9 +19,9 @@ const ProductGrid = ({
   const [products, setProducts] = useState([])
   
   useEffect(() => {
-    axios.get('http://localhost:8080/products/category/' + localStorage.getItem(`category`), )
+    axios.get('http://localhost:8080/products/category/' + product.ctgName, )
     .then((res) => {
-      console.log(`제품 카테고리 조회 성공`)
+      console.log(product.ctgName + ` 카테고리 조회 성공`)
       setProducts(res.data)
     })
     .catch((err) => {
@@ -50,20 +50,9 @@ const ProductGrid = ({
           }
           key={product.prdNo}
         />
-      )}
-    )}
+      )
+    })}
   </>)
-}
-
-ProductGrid.propTypes = {
-  addToCart: PropTypes.func,
-  addToWishlist: PropTypes.func,
-  cartItems: PropTypes.array,
-  currency: PropTypes.object,
-  products: PropTypes.array,
-  sliderClassName: PropTypes.string,
-  spaceBottomClass: PropTypes.string,
-  wishlistItems: PropTypes.array
 }
 
 const mapStateToProps = (state, ownProps) => {

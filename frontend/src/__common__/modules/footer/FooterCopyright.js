@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import { Link } from "react-router-dom"
 
@@ -15,20 +14,10 @@ const FooterCopyright = ({ footerLogo, spaceBottomClass, colorClass }) => {
         </Link>
       </div>
       <p>
-        © 2021{" "}
-        <a href="//hasthemes.com" rel="noopener noreferrer" target="_blank">
-          ZER0 SHOP
-        </a>
-        .<br /> All Rights Reserved
+        TEAM ZEROSHOP
       </p>
     </div>
   )
-}
-
-FooterCopyright.propTypes = {
-  footerLogo: PropTypes.string,
-  spaceBottomClass: PropTypes.string,
-  colorClass: PropTypes.string
 }
 
 export default FooterCopyright

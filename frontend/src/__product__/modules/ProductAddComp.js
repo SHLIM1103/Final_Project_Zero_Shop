@@ -30,7 +30,7 @@ const ProductAddComp = () => {
     })
     .then((res) => {
       console.log(`제품 등록 성공`)
-      history.push(`/product-all`)
+      history.push(`/product/all`)
     })
     .catch((err) => {
       console.log(`제품 등록 실패: ` + err)

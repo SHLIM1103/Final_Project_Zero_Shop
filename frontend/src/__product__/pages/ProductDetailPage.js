@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React, { useState, useEffect } from "react"
 import MetaTags from "react-meta-tags"
 import { connect } from "react-redux"
@@ -37,11 +36,6 @@ const ProductDetailPage = ({ location, match }) => {
       )}
     ))}
   </>)
-}
-
-ProductDetailPage.propTypes = {
-  location: PropTypes.object,
-  product: PropTypes.object
 }
 
 const mapStateToProps = (state, ownProps) => {

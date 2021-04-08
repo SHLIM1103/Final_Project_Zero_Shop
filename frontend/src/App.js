@@ -8,7 +8,8 @@ import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic"
 import { MainPage, NotFoundPage } from "__common__/index"
 import { CheckoutPage, MyAccountPage } from "__payment__/index"
 import { LoginRegisterPage, AdminPage, UserListPage } from "__user__/index"
-import { ProductAddPage, ProductListPage, CategoryListPage, ProductDetailPage, ProductEditPage, CartPage, WishlistPage } from "__product__/index"
+import { ProductAddPage, ProductListPage, CategoryLivingPage, CategoryKitchenPage, 
+         CategoryBathroomPage, CategoryStationaryPage, ProductDetailPage, ProductEditPage, CartPage, WishlistPage } from "__product__/index"
 import { BlogWritePage, BlogListPage, BlogDetailPage, BlogUpdatePage } from "__board__/index"
 
 const About = lazy(() => import("pages/other/About"))
@@ -55,18 +56,24 @@ const App = (props) => {
 
                 {/* Shop pages */}
                 <Route
-                  path={process.env.PUBLIC_URL + "/product-all"}
+                  path={process.env.PUBLIC_URL + "/product/all"}
                   component={ProductListPage}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/category/:id"}
-                  render={(routeProps) => (
-                    <CategoryListPage {...routeProps} key={routeProps.match.params.id} />
-                  )}
+                  path={process.env.PUBLIC_URL + "/product/category-living"}
+                  component={CategoryLivingPage}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/category/:id"}
-                  component={CategoryListPage}
+                  path={process.env.PUBLIC_URL + "/product/category-kitchen"}
+                  component={CategoryKitchenPage}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/product/category-bathroom"}
+                  component={CategoryBathroomPage}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/product/category-stationary"}
+                  component={CategoryStationaryPage}
                 />
 
                 {/* Shop product pages */}

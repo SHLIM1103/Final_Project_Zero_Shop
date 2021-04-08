@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { connect } from "react-redux"
@@ -44,7 +43,7 @@ const ProductDescriptionInfo = ({
       })
       .then(res => {
         console.log(product.prdNo + `번 제품 삭제 성공`)
-        history.push(`/product-all`)
+        history.push(`/product/all`)
       })
       .catch(err => {
         console.log(product.prdNo + `번 제품 삭제 실패: ` + err)
@@ -139,15 +138,14 @@ const ProductDescriptionInfo = ({
         }
       </div>
 
-      {product.category ? (
+      {product.ctgName ? (
         <div className="pro-details-meta">
           <span>Category :</span>
           <ul>
             <li>
-              {/* <Link to={process.  env.PUBLIC_URL + "/category/" + product.category}
-                    onClick={localStorage.setItem('category', JSON.stringify(`category`))}> */}
-                      {product.category}
-              {/* </Link> */}
+              <Link to={process.env.PUBLIC_URL + "/product/category-" + product.ctgName}>
+                {product.ctgName}
+              </Link>
             </li>
           </ul>
         </div>
@@ -194,16 +192,6 @@ const ProductDescriptionInfo = ({
       </div>
     </div>
   )
-}
-
-ProductDescriptionInfo.propTypes = {
-  addToCart: PropTypes.func,
-  addToWishlist: PropTypes.func,
-  addToast: PropTypes.func,
-  cartItems: PropTypes.array,
-  currency: PropTypes.object,
-  product: PropTypes.object,
-  wishlistItem: PropTypes.object
 }
 
 const mapDispatchToProps = dispatch => {

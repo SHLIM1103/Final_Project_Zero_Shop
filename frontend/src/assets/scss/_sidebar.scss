@@ -1,6 +1,9 @@
 /*---- 17. Sidebar style  ------*/
 
 .sidebar-style {
+  .sticky {
+    top: 100px !important;
+  }
   @media #{$lg-layout} {
     &.mr-30 {
       margin-right: 0;
@@ -48,9 +51,30 @@
   }
   .sidebar-widget-list {
     ul {
+      a {
+        position: relative;
+        margin-top: 15px;
+        display: block;
+        font-size: 16px;
+        width: 100%;
+        padding: 0;
+        padding-left: 5px;
+        text-align: left;
+        text-transform: capitalize;
+
+        border: none;
+        background: none;
+        &:hover {
+          color: $theme-color;
+          font-weight: bold;
+        }
+      }
+    }
+      
+    ul {
       li {
         position: relative;
-
+        margin-bottom: 20px;
         align-items: center;
 
         padding: 0 0 15px;
@@ -119,7 +143,6 @@
           width: 100%;
           padding: 0;
           padding-left: 30px;
-
           text-align: left;
           text-transform: capitalize;
 

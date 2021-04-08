@@ -444,7 +444,6 @@
     margin: 20px 0 0;
     h3 {
       font-size: 16px;
-
       margin: 0;
     }
     .product-rating {
@@ -1066,7 +1065,7 @@
     ul {
       li {
         display: inline-block;
-
+        text-transform: capitalize;
         margin: 0 10px 0 0;
         a {
           font-size: 15px;

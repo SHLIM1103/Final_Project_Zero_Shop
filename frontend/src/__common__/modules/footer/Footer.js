@@ -62,28 +62,19 @@ const FooterOne = ({
             }`}
           >
             <div className="footer-widget mb-30 ml-30">
-              <div className="footer-title">
-                <h3>ABOUT US</h3>
-              </div>
               <div className="footer-list">
                 <ul>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "/about"}>About us</Link>
+                    Jung Junwoo
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>
-                      Store location
-                    </Link>
+                    Chae Hanna
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "/contact"}>
-                      Contact
-                    </Link>
+                    Lim Sohyun
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>
-                      Orders tracking
-                    </Link>
+                    Lee Doyun
                   </li>
                 </ul>
               </div>
@@ -101,24 +92,19 @@ const FooterOne = ({
                   : "footer-widget mb-30 ml-50"
               }`}
             >
-              <div className="footer-title">
-                <h3>USEFUL LINKS</h3>
-              </div>
-              <div className="footer-list">
+              <div className="footer-list-01">
                 <ul>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>Returns</Link>
+                    aaa@gmail.com
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>
-                      Support Policy
-                    </Link>
+                    aaa@gmail.com
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>Size guide</Link>
+                    aaa@gmail.com
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>FAQs</Link>
+                    aaa@gamil.com
                   </li>
                 </ul>
               </div>
@@ -136,62 +122,23 @@ const FooterOne = ({
                   : "footer-widget mb-30 ml-75"
               }`}
             >
-              <div className="footer-title">
-                <h3>FOLLOW US</h3>
-              </div>
-              <div className="footer-list">
+              <div className="footer-list-02">
                 <ul>
                   <li>
-                    <a
-                      href="//www.facebook.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Facebook
-                    </a>
+                    http://github.com/Junwoo ...
                   </li>
                   <li>
-                    <a
-                      href="//www.twitter.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Twitter
-                    </a>
+                    http://github.com/Hanna ...
                   </li>
                   <li>
-                    <a
-                      href="//www.instagram.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Instagram
-                    </a>
+                    <a href="//github.com/SHLIM1103">https://github.com/sohyun ...</a>
                   </li>
                   <li>
-                    <a
-                      href="//www.youtube.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Youtube
-                    </a>
+                    http://github.com/Doyun ...
                   </li>
                 </ul>
               </div>
             </div>
-          </div>
-          <div
-            className={`${
-              sideMenu ? "col-xl-3 col-sm-8" : "col-lg-4 col-sm-6"
-            }`}
-          >
-            {/* footer newsletter */}
-            <FooterNewsletter
-              spaceBottomClass="mb-30"
-              spaceLeftClass="ml-70"
-              sideMenu={sideMenu}
-            />
           </div>
         </div>
       </div>

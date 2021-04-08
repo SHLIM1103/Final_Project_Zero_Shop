@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { useToasts } from "react-toast-notifications"
@@ -32,7 +31,7 @@ const ProductGridListSingle = ({
               className="default-img"
               src={process.env.PUBLIC_URL + product.prdImg}
               alt=""
-              onClick={() => localStorage.setItem('prdNo', JSON.stringify(product.prdNo))}
+              onClick={localStorage.setItem('prdNo', product.prdNo)}
             />
           </Link>
 
@@ -81,7 +80,7 @@ const ProductGridListSingle = ({
         <div className="product-content text-center">
           <h3>
             <Link to={process.env.PUBLIC_URL + "/product-detail/" + product.prdNo} 
-              onClick={() => localStorage.setItem('prdNo', JSON.stringify(product.prdNo))}>
+                  onClick={localStorage.setItem('prdNo', product.prdNo)}>
               {product.prdName}
             </Link>
           </h3>
@@ -100,7 +99,7 @@ const ProductGridListSingle = ({
                     className="default-img img-fluid"
                     src={process.env.PUBLIC_URL + product.prdImg}
                     alt=""
-                    onClick={() => localStorage.setItem('prdNo', JSON.stringify(product.prdNo))}
+                    onClick={localStorage.setItem('prdNo', product.prdNo)}
                   />
                 </Link>
               </div>
@@ -110,7 +109,7 @@ const ProductGridListSingle = ({
             <div className="shop-list-content">
               <h3>
                 <Link to={process.env.PUBLIC_URL + "/product-detail/" + product.prdNo}
-                onClick={() => localStorage.setItem('prdNo', JSON.stringify(product.prdNo))}>
+                      onClick={localStorage.setItem('prdNo', product.prdNo)}>
                   {product.prdName}
                 </Link>
               </h3>
@@ -170,6 +169,7 @@ const ProductGridListSingle = ({
         </div>
       </div>
     </div>
+    
     {/* product modal */}
     <ProductModal
       show={modalShow}
@@ -183,17 +183,6 @@ const ProductGridListSingle = ({
       addtoast={addToast}
     />
   </>)
-}
-
-ProductGridListSingle.propTypes = {
-  addToCart: PropTypes.func,
-  addToWishlist: PropTypes.func,
-  cartItem: PropTypes.object,
-  currency: PropTypes.object,
-  product: PropTypes.object,
-  sliderClassName: PropTypes.string,
-  spaceBottomClass: PropTypes.string,
-  wishlistItem: PropTypes.object
 }
 
 export default ProductGridListSingle

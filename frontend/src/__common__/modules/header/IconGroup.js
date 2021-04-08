@@ -62,7 +62,7 @@ const IconGroup = ({
         <div className="account-dropdown">
           <ul>
             <li>
-              <p>{JSON.parse(localStorage.getItem('user')).username}님, 환영합니다!</p>
+            <p>{JSON.parse(localStorage.getItem('user')).username}님, 환영합니다!</p>
             </li>
             <li>
               <Link to={process.env.PUBLIC_URL + "/my-account"}>마이페이지</Link>

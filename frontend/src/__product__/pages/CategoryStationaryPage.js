@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React, { useState, useEffect } from "react"
 import MetaTags from "react-meta-tags"
 import Paginator from "react-hooks-paginator"
@@ -8,7 +7,7 @@ import { Layout, Breadcrumb } from "__common__/index"
 import { ShopSidebar, ShopTopbar, ShopProducts } from "__product__/index"
 import axios from "axios"
 
-const ProductListPage = ({ location, match }) => {
+const CategoryStationaryPage = ({ location }) => {
   const [layout, setLayout] = useState('grid three-column')
   const [sortType, setSortType] = useState('')
   const [sortValue, setSortValue] = useState('')
@@ -21,7 +20,7 @@ const ProductListPage = ({ location, match }) => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:8080/category/' + match.params.id, )
+    axios.get('http://localhost:8080/products/category/stationary', )
     .then((res) => {
       console.log(products.category + `카테고리 전체보기 성공`)
       setProducts(res.data)
@@ -86,15 +85,15 @@ const ProductListPage = ({ location, match }) => {
                   {/* shop product pagination */}
                   <div className="pro-pagination-style text-center mt-30">
                   <Paginator
-                      totalRecords={sortedProducts.length}
-                      pageLimit={pageLimit}
-                      pageNeighbours={2}
-                      setOffset={setOffset}
-                      currentPage={currentPage}
-                      setCurrentPage={setCurrentPage}
-                      pageContainerClass="mb-0 mt-0"
-                      pagePrevText="«"
-                      pageNextText="»"
+                    totalRecords={sortedProducts.length}
+                    pageLimit={pageLimit}
+                    pageNeighbours={2}
+                    setOffset={setOffset}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    pageContainerClass="mb-0 mt-0"
+                    pagePrevText="«"
+                    pageNextText="»"
                   />
               </div>
             </div>
@@ -105,9 +104,4 @@ const ProductListPage = ({ location, match }) => {
   </>)
 }
 
-ProductListPage.propTypes = {
-  location: PropTypes.object,
-  products: PropTypes.array
-}
-
-export default ProductListPage
+export default CategoryStationaryPage

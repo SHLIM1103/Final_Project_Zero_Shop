@@ -11,9 +11,10 @@ const BlogPostWrite = () => {
     brdRank: "",
     brdImg: "",
     brdLike: "",
-    usrNickname: ""
+    usrNickname: "",
+    brdKind: 1
   })
-  const { brdTitle, brdContent, brdWrtDate, brdRank, brdImg, brdLike, usrNickname } = boardAdd
+  const { brdTitle, brdContent, brdWrtDate, brdRank, brdImg, brdLike, usrNickname, brdKind } = boardAdd
   const onChange = useCallback(e => {
     setBoardAdd({...boardAdd, [e.target.name]: e.target.value})
   })

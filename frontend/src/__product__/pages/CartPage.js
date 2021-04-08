@@ -158,7 +158,7 @@ const CartPage = ({
                   <div className="cart-shiping-update-wrapper">
                     <div className="cart-shiping-update">
                       <Link
-                        to={process.env.PUBLIC_URL + "/product-all"}
+                        to={process.env.PUBLIC_URL + "/product/all"}
                       >
                         Continue Shopping
                       </Link>
@@ -255,7 +255,7 @@ const CartPage = ({
                   </div>
                   <div className="item-empty-area__text">
                     장바구니에 담은 제품이 없습니다!<br />{" "}
-                    <Link to={process.env.PUBLIC_URL + "/product-all"}>
+                    <Link to={process.env.PUBLIC_URL + "/product/all"}>
                       Shop Now
                     </Link>
                   </div>

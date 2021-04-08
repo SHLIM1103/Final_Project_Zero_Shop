@@ -1,10 +1,10 @@
-package kr.shlim.api.category.service;
+package kr.shlim.api.categoy.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import kr.shlim.api.category.domain.Category;
-import kr.shlim.api.category.repository.CategoryRepository;
+import kr.shlim.api.categoy.domain.Category;
+import kr.shlim.api.categoy.repository.CategoryRepository;
 import kr.shlim.api.common.service.AbstractService;
 
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class CategoryServiceImpl extends AbstractService<Category> implements CategoryService {
+public class CategoriesServiceImpl extends AbstractService<Category> implements CategoriesService {
 	private final CategoryRepository repo;
 	
 	@Override public long save(Category t) { return (repo.save(t) != null) ? 1 : 0; }

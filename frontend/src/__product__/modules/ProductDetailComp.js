@@ -10,20 +10,21 @@ const ProductDetailComp = ({ product }) => {
 
       {/* product description with image */}
       <ProductImageDescriptionSticky
-          spaceTopClass="mt-100"
-          spaceBottomClass="mb-100"
-          product={product}
+        spaceTopClass="mt-100"
+        spaceBottomClass="mb-100"
+        product={product}
       />
 
       {/* product description tab */}
       <ProductDescriptionTab
-          spaceBottomClass="pb-90"
+        spaceBottomClass="pb-90"
       />
 
       {/* related product slider */}
       <RelatedProductSlider
-          spaceBottomClass="pb-95"
-          category={product.category}
+        spaceBottomClass="pb-95"
+        category={product.category}
+        product={product}
       />
     </Layout>
   </>)

@@ -20,7 +20,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
             </Link>
           </li>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/product-all"}>
+            <Link to={process.env.PUBLIC_URL + "/product/all"}>
               {strings["shop"]}
               {sidebarMenu ? (
                 <span>
@@ -32,27 +32,27 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
             </Link>
             <ul className="submenu">
               <li>
-                  <Link to={process.env.PUBLIC_URL + "/product-all"}>
+                  <Link to={process.env.PUBLIC_URL + "/product/all"}>
                     {"ALL PRODUCTS"}
                   </Link>
                 </li>
                 <li>
-                  <Link to={process.env.PUBLIC_URL + "/product/living"}>
+                  <Link to={process.env.PUBLIC_URL + "/product/category-living"}>
                     {"LIVING"}
                   </Link>
                 </li>
                 <li>
-                  <Link to={process.env.PUBLIC_URL + "/product/kitchen"}>
+                  <Link to={process.env.PUBLIC_URL + "/product/category-kitchen"}>
                     {"KITCHEN"}
                   </Link>
                 </li>
                 <li>
-                  <Link to={process.env.PUBLIC_URL + "/product/bathroom"}>
+                  <Link to={process.env.PUBLIC_URL + "/product/category-bathroom"}>
                     {"BATHROOM"}
                   </Link>
                 </li>
                 <li>
-                  <Link to={process.env.PUBLIC_URL + "/product/stationary"}>
+                  <Link to={process.env.PUBLIC_URL + "/product/category-stationary"}>
                     {"STATIONARY"}
                   </Link>
                 </li>

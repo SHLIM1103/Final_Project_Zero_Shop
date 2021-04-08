@@ -20,11 +20,12 @@ const ShopTopAction = ({
           </select>
         </div>
         {localStorage.getItem('token') !== null && JSON.stringify(localStorage.getItem('user').username) === "Admin" ?
-        <button>
-          <Link to={"/product-add"}>제품추가</Link>
-        </button>
-        :
-        ""}
+          <button>
+            <Link to={"/product-add"}>제품추가</Link>
+          </button>
+          :
+          ""
+        }
         <p>
           Showing {sortedProductCount} of {productCount} result
         </p>
