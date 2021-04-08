@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import { Link } from "react-router-dom"
 import  { useHistory } from "react-router"
@@ -55,13 +54,15 @@ const BlogPostDetail = ({ boards }) => {
           </p>
         </div>
       </div>
-
       <div className="tag-share">
         <div>
-          <a href="#" ><Link to={"/blog-update/" + boards.brdNo}>글 수정하기</Link></a><br/>
-          <a href="#" onClick={remove}>글 삭제하기</a>
+          {localStorage.getItem("token") != null && (JSON.stringify(JSON.parse(localStorage.getItem("user")).usrNo) === boards.usrNo) ?
+            <>
+              <a href="#"><Link to={process.env.PUBLIC_URL + "/blog-update/" + boards.brdNo}>글 수정하기</Link></a><br/>
+              <a href="#" onClick={remove}>글 삭제하기</a>
+            </>
+          : ""}
         </div>
-        
         <div className="blog-share">
           <span>share :</span>
           <div className="share-social">
@@ -87,11 +88,6 @@ const BlogPostDetail = ({ boards }) => {
       </div>
     <div className="next-previous-post"/>
   </>)
-}
-
-BlogPostDetail.propTypes = {
-  location: PropTypes.object,
-  board: PropTypes.object
 }
 
 export default BlogPostDetail

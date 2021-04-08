@@ -1,4 +1,4 @@
-package kr.shlim.api.categories.domain;
+package kr.shlim.api.categoy.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +11,11 @@ import lombok.Getter;
 
 @Entity @Getter
 @Table(name="categories")
-public class Categories {
+public class Category {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ctg_no") private long ctgNo;
 	@Column(name="ctg_name") private String ctgName;
 
-	@OneToMany(mappedBy = "categories")
+	@OneToMany(mappedBy = "category")
 	private List<Product> products = new ArrayList<>();
 }

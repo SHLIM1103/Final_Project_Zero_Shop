@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
 
 const BlogPostList= () => {
-  const [brdTitle, setBrdTitle] = useState('')
   const [board, setBoard] = useState([])
-
-  const search = () => {
-    axios.get('http://localhost:8080/boards/search', )
-    .then(res => {
-      console.log(`게시글 검색 성공`)
-    })
-    .catch(err => {
-      console.log(`게시글 검색 실패` + err)
-      throw err 
-    })
-  }
+  const [search, setSearch] = useState({
+    brdTitle: "",
+  })
+  const { brdTitle } = search
+  const onChange = useCallback(e => {
+    setSearch({...search, [e.target.name]: e.target.value})
+  })
   
   useEffect(() => {
     axios.get('http://localhost:8080/boards/all', )
@@ -30,12 +25,12 @@ const BlogPostList= () => {
   }, [])
 
   return (<>
-    {board.map(b => (
-      <div className="col-lg-4 col-md-6 col-sm-12"  >
+    {board ? board.map(b =>
+      <div className="col-lg-4 col-md-6 col-sm-12">
         <div className="blog-wrap-2 mb-30">
           <div className="blog-img-2">
-            <Link to={process.env.PUBLIC_URL + "/blog-detail"}>
-              <img src={b.brdImg} alt={b.brdImg} /> 
+            <Link to={process.env.PUBLIC_URL + "/blog-detail/" + b.brdNo}>
+              <img src={b.brdImg} alt={b.brdTitle} /> 
             </Link>
           </div>
           <div className="blog-content-2">
@@ -44,19 +39,20 @@ const BlogPostList= () => {
                 <li>{b.brdWrtDate}</li>
                 <li>
                   <Link to={process.env.PUBLIC_URL + "/blog-detail"}>
-                      <i className="fa fa-comments-o"/>
+                    <i className="fa fa-comments-o"/>
                   </Link>
                 </li>
               </ul>
             </div>
             <h4>
-              <Link to={`/blog-detail/`+b.brdNo} key={b.brdNo} onClick={() => localStorage.setItem('brdNo', JSON.stringify(b.brdNo))} >
+              <Link to={process.env.PUBLIC_URL + `/blog-detail/${b.brdNo}`} key={b.brdNo} >
                 {b.brdTitle}
               </Link>
             </h4>
+            작성자: {b.usrName} 
             <div className="blog-share-comment">
               <div className="blog-btn-2">
-                조회수: {b.brdCount}
+                조회수: {b.brdCount} 
               </div>
               <div className="blog-share">
                 <span>share :</span>
@@ -83,23 +79,23 @@ const BlogPostList= () => {
             </div>
           </div>
         </div>
-      </div>
-    ))}
-    <div className="same-style header-search d-none d-lg-block">
-      <div className="sidebar-widget">
-        <h4 className="pro-sidebar-title"> </h4>
-        <div className="pro-sidebar-search mb-50 mt-25">
-          <form className="pro-sidebar-search-form" action="#">
-            <input type="text" placeholder="Search here..."onChange={e =>{setBrdTitle(`${e.target.value}`)}} />
-            <button onClick={search} >
-              <i className="pe-7s-search" />
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div className="">
-      <a class="float-right" href="#"><Link to='/blog-write'>글 작성하기</Link></a>
+      </div>)
+    : `조회할 게시글이 없습니다`}
+    
+    <div className="blog-top mb-50 mt-25">
+      {localStorage.getItem("user") != null ?
+        <button>
+          <Link to='/blog-write'>게시글 작성</Link>
+        </button>
+      :
+      ""}
+      
+      <form className="blog-search-form" action="#">
+        <input type="text" placeholder="Search here..." onChange={onChange} />
+        <button onClick={`/blog-search/${search}`} >
+          <i className="pe-7s-search" />
+        </button>
+      </form>
     </div>
   </>)
 }

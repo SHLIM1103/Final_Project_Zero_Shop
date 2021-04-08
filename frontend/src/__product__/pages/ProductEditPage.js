@@ -1,11 +1,10 @@
-import PropTypes from "prop-types"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import MetaTags from "react-meta-tags"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
 import { Layout, Breadcrumb } from "__common__/index"
 import { ProductEditComp } from "__product__/index"
 
-const ProductEditPage = ({ location }) => {
+const ProductEditPage = ({ location, match }) => {
   const { pathname } = location
   
   return (<>
@@ -25,10 +24,6 @@ const ProductEditPage = ({ location }) => {
       
     </Layout>
   </>)
-}
-
-ProductEditPage.propTypes = {
-  location: PropTypes.object,
 }
 
 export default ProductEditPage

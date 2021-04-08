@@ -1,10 +1,10 @@
-package kr.shlim.api.categories.controller;
+package kr.shlim.api.categoy.controller;
 
 import java.util.List;
 import java.util.Optional;
 
-import kr.shlim.api.categories.domain.Categories;
-import kr.shlim.api.categories.service.CategoriesServiceImpl;
+import kr.shlim.api.categoy.domain.Category;
+import kr.shlim.api.categoy.service.CategoryServiceImpl;
 import kr.shlim.api.common.controller.AbstractController;
 
 import org.springframework.http.ResponseEntity;
@@ -22,16 +22,16 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/categories")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class CategoriesController extends AbstractController<Categories> {
-	private final CategoriesServiceImpl service;
+public class CategoryController extends AbstractController<Category> {
+	private final CategoryServiceImpl service;
 
 	@PostMapping("/save")
-	public ResponseEntity<Long> save(Categories t) {
+	public ResponseEntity<Long> save(Category t) {
 		return ResponseEntity.ok(service.save(t));
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<Long> delete(Categories t) {
+	public ResponseEntity<Long> delete(Category t) {
 		return ResponseEntity.ok(service.delete(t));
 	}
 
@@ -41,12 +41,12 @@ public class CategoriesController extends AbstractController<Categories> {
 	}
 
 	@GetMapping("/one/{id}")
-	public ResponseEntity<Categories> getOne(@PathVariable long id) {
+	public ResponseEntity<Category> getOne(@PathVariable long id) {
 		return ResponseEntity.ok(service.getOne(id));
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<Categories>> findById(@PathVariable long id) {
+	public ResponseEntity<Optional<Category>> findById(@PathVariable long id) {
 		return ResponseEntity.ok(service.findById(id));
 	}
 
@@ -56,7 +56,7 @@ public class CategoriesController extends AbstractController<Categories> {
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Categories>> findAll() {
+	public ResponseEntity<List<Category>> findAll() {
 		return ResponseEntity.ok(service.findAll());
 	}
 }

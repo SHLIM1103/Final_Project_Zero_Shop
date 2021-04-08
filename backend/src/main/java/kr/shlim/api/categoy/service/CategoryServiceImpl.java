@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class CategoriesServiceImpl extends AbstractService<Category> implements CategoriesService {
+public class CategoryServiceImpl extends AbstractService<Category> implements CategoryService {
 	private final CategoryRepository repo;
 	
 	@Override public long save(Category t) { return (repo.save(t) != null) ? 1 : 0; }

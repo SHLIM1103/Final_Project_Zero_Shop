@@ -23,9 +23,7 @@ const ShopTopAction = ({
           <button>
             <Link to={"/product-add"}>제품추가</Link>
           </button>
-          :
-          ""
-        }
+        : ""}
         <p>
           Showing {sortedProductCount} of {productCount} result
         </p>

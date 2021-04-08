@@ -1,9 +1,9 @@
-package kr.shlim.api.categories.repository;
+package kr.shlim.api.categoy.repository;
 
-import kr.shlim.api.categories.domain.Categories;
+import kr.shlim.api.categoy.domain.Category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-interface ICategoriesRepository { }
+interface ICategoryRepository { }
 
-public interface CategoriesRepository extends JpaRepository<Categories, Long>, ICategoriesRepository { }
+public interface CategoryRepository extends JpaRepository<Category, Long>, ICategoryRepository { }

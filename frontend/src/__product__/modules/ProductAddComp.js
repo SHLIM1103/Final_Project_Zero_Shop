@@ -5,14 +5,14 @@ import { useHistory } from "react-router"
 const ProductAddComp = () => {
   const history = useHistory()
   const [productAdd, setProductAdd] = useState({
-    category: "",
+    ctgName: "",
     prdName: "",
     prdImg: "",
     prdPrice: "",
-    prdInv: ""
+    prdInv: "",
   })
   
-  const { category, prdName, prdImg, prdPrice, prdInv } = productAdd
+  const { ctgName, prdName, prdImg, prdPrice, prdInv } = productAdd
   const onChange = useCallback(e => {
     setProductAdd({...productAdd, [e.target.name]: e.target.value})
   })
@@ -46,8 +46,8 @@ const ProductAddComp = () => {
             <h5>제품군: 
               <select
                 defaultValue="living"
-                name="category"
-                value={category}
+                name="ctgName"
+                value={ctgName}
                 onChange={onChange}
               >
                 <option value="living">living</option>
@@ -101,7 +101,7 @@ const ProductAddComp = () => {
               </h5>
           </div>
         </form>
-        <button type="submit" onClick={add}>제품등록</button>
+        <button type="submit" onClick={add}>등록하기</button>
       </div>
     </div>
   </>)

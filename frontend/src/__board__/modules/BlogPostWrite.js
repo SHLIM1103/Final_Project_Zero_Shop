@@ -41,52 +41,55 @@ const BlogPostWrite = () => {
   }
   
   return (<>
-    <div className="blog-details-top">
-        <form>
-          <div>
-            <h5>사진 업로드: 
-              <input
-                type="file"
-                accept="image/*"
-                name="brdImg"
-                value={brdImg}
+    {localStorage.getItem("user") != null ?
+      <>
+        <div className="blog-details-top">
+          <form>
+            <div className="blog-details-content">
+              <tr>
+                <p>작성자: {JSON.parse(localStorage.getItem("user")).usrName}</p>
+              </tr>
+              <tr>
+                <h3>
+                  <input 
+                  rows="30"
+                    type="text"
+                    name="brdTitle"
+                    placeholder="글 제목 입력"
+                    value={brdTitle}
+                    onChange={onChange}
+                  />
+                </h3>
+              </tr>
+              <tr>
+              <textarea
+                rows="30" cols="200"
+                name="brdContent"
+                placeholder="글 내용 입력"
+                value={brdContent}
                 onChange={onChange}
               />
-            </h5>
-          </div>
-          <div className="blog-details-content">
-            <tr>
-              <h3>
-                <input 
-                  type="text"
-                  name="brdTitle"
-                  placeholder="글 제목 입력"
-                  value={brdTitle}
-                  onChange={onChange}
-                />
-              </h3>
-            </tr>
-            <tr>
-            <textarea
-              rows="30" cols="200"
-              name="brdContent"
-              placeholder="글 내용 입력"
-              value={brdContent}
-              onChange={onChange}
-            />
-            </tr>
-          </div>
-        </form>
-    </div>
-    <div className="dec-img-wrapper">
-      <div className="row">
-        <div className="col-md-6">
+              </tr>
+              <div className="blog-details-img">
+                <tr>
+                  <h5>사진 업로드: 
+                    <input
+                      type="file"
+                      accept="image/*"
+                      name="brdImg"
+                      value={brdImg}
+                      onChange={onChange}
+                    />
+                  </h5>
+                </tr>
+              </div>
+            </div>
+          </form>
         </div>
-      </div>
-    </div>
-    <button type="submit" onClick={write}>글 작성 완료</button>
-  </>
-  )
+      <button type="submit" onClick={write}>등록하기</button>
+    </>
+    : `잘못된 접근입니다.`}
+  </>)
 }
 
 export default BlogPostWrite

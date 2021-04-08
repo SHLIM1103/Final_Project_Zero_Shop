@@ -1,148 +1,138 @@
-import PropTypes from "prop-types"
-import React, { useState } from "react"
-import MetaTags from "react-meta-tags"
-import { Link } from "react-router-dom"
-import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
-import Tab from "react-bootstrap/Tab"
-import Nav from "react-bootstrap/Nav"
-import { Layout, Breadcrumb } from "__common__/index"
-import axios from "axios"
+import React, { useState, useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import axios from 'axios'
 
-const UserLoginRegister = ({ location }) => {
-  const { pathname } = location
-  
-  const [usrId, setUsrId] = useState('')
-  const [usrPwd, setUsrPwd] = useState('')
-  const [usrName, setUsrName] = useState('')
-  const [usrEmail, setUsrEmail] = useState('')
+const usesStyles = makeStyles({
+  table: { minWidth: 650}
+})
 
-  const wrt = () =>{
-    axios({
-      url: 'http://localhost:8080/usr/save', 
-      method: 'post',
-      headers: {
-        'Content-Type'  : 'application/json',
-        'Authorization' : 'JWT fefege..'
-      },
-      data: { usrId, usrPwd, usrName, usrEmail }
+const UserListView = () =>{
+  const [users, setUsers] = useState([])
+  const classes = usesStyles()
+
+  useEffect(() =>{
+    axios.get('http://localhost:8080/usr/all',)
+    .then((res) =>{
+      setUsers(res.data)
     })
-    .then(res => {
-      console.log(`유저 가입 성공`)
-    })
-    .catch(err => {
-      console.log(`유저 가입 실패: ` + err)
+    .catch(err =>{
+      alert(`Error`)
       throw err
     })
-  }  
-  
-  return (<>
-    <MetaTags>
-      <title>Flone | Login Page</title>
-    </MetaTags>
-    <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-    <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>Login | Register</BreadcrumbsItem>
-    <Layout headerTop="visible">
-      {/* breadcrumb */}
-      <Breadcrumb />
-      <div className="login-register-area pt-100 pb-100">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 ml-auto mr-auto">
-              <div className="login-register-wrapper">
-                <Tab.Container defaultActiveKey="login">
-                  <Nav variant="pills" className="login-register-tab-list">
-                    <Nav.Item>
-                      <Nav.Link eventKey="login">
-                        <h4>Login</h4>
-                      </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="register">
-                        <h4>Register</h4>
-                      </Nav.Link>
-                    </Nav.Item>
-                  </Nav>
-                  <Tab.Content>
-                    <Tab.Pane eventKey="login">
-                      <div className="login-form-container">
-                        <div className="login-register-form">
-                          <form>
-                            <input
-                              type="text"
-                              name="user-name"
-                              placeholder="Username" 
-                              onChange={e=>{
-                                  setUsrId(`${e.target.value}`)
+  }, [])
 
-                              }}
-                            />
-                            <input
-                              type="password"
-                              name="user-password"
-                              placeholder="Password"
-                              onChange={e=>{setUsrPwd(`${e.target.value}`)}
-                              }
-                            />
-                            <div className="button-box">
-                              <div className="login-toggle-btn">
-                                <input type="checkbox" />
-                                <label className="ml-10">Remember me</label>
-                                <Link to={process.env.PUBLIC_URL + "/"}>
-                                  Forgot Password?
-                                </Link>
-                              </div>
-                              <button type="submit">
-                                <span>Login</span>
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="register">
-                      <div className="login-form-container">
-                        <div className="login-register-form">
-                          <form>
-                            <input
-                              type="text"
-                              name="user-name"
-                              placeholder="Username"
-                              onChange={e=>{setUsrName(`${e.target.value}`)}}
-                            />
-                            <input
-                              type="password"
-                              name="user-password"
-                              placeholder="Password"
-                              onChange={e=>{setUsrPwd(`${e.target.value}`)}}
-                            />
-                            <input
-                              name="user-email"
-                              placeholder="Email"
-                              type="email"
-                              onChange={e=>{setUsrEmail(`${e.target.value}`)}}
-                            />
-                            <div className="button-box">
-                              <button type="submit" onClick={wrt}>
-                                <span>Register</span>
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </Tab.Pane>
-                  </Tab.Content>
-                </Tab.Container>
-              </div>
-            </div>
-          </div>
+  return (<>
+    <div className="same-style header-search d-none d-lg-block">
+        나이
+      <tr>        
+        <td>
+            <input type="text" id="fname" name="fname" />
+        </td>
+        <td>
+            <input type="text" id="fname" name="fname" />
+        </td>
+      </tr>
+        성별
+      <tr>        
+        <td>
+          <input type="text" id="fname" name="fname" />
+        </td>        
+      </tr>
+        지역
+      <tr>
+        <td>
+          <input type="text" id="fname" name="fname" />
+        </td>        
+      </tr>
+
+      <div className="sidebar-widget">
+        <h4 className="pro-sidebar-title"> </h4>
+        <div className="pro-sidebar-search mb-50 mt-25">
+          <form className="pro-sidebar-search-form" action="#">
+            <input type="text" placeholder="Search here..." />
+            <button  >
+              <i className="pe-7s-search" />
+            </button>
+          </form>
         </div>
       </div>
-    </Layout>
+
+      <form action="/action_page.php">
+        <label for="fname">성별:</label>
+        <input type="text" id="fname" name="fname" /><br /><br />
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname" /><br /><br />
+        <input type="submit" value="Submit" />
+      </form>
+
+      <tr>
+        <td>Gender</td>
+        <td>Man(%)</td>
+        <td>Woman(%)</td>
+      </tr>
+      <tr>
+        <td>10대(%)</td>
+        <td>30대(%)</td>
+        <td>40대(%)</td>
+        <td>50대(%)</td>
+        <td>60대(%)</td>
+        <td>70대(%)</td>
+      </tr>
+      <tr>
+        <td>가장많이 이용한 연령대: { }</td>
+        <td>가장 많이 이용한 시간대: { }</td>
+        <td>가장 많이 주문한 지역: { }</td>
+      </tr>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>80</td>
+      </tr>
+    </div>
+
+    <TableContainer className={classes.root}>
+      <Table className={classes.table} size="small" aria-label="a dense table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="center">No</TableCell>
+            <TableCell align="center">Name</TableCell>
+            <TableCell align="center">Id</TableCell>
+            <TableCell align="center">Gender</TableCell>
+            <TableCell align="center">Age</TableCell>
+            <TableCell align="center">Phone</TableCell>
+            <TableCell align="center">Nickname</TableCell>
+            <TableCell align="center">Email</TableCell>
+            <TableCell align="center">City</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {users ? users.map(i => (
+            <TableRow key={i.usrNo}>
+              <TableCell align="center" component="th" scope="row">{i.usrNo}</TableCell>
+              <TableCell align="center" component="th" scope="row" >
+                <button onClick="activateLasers()" Link to="">{i.usrName}</button>
+              </TableCell>
+              <TableCell align="center" component="th" scope="row">{i.username}</TableCell>
+              <TableCell align="center" component="th" scope="row">{i.usrGender}</TableCell>
+              <TableCell align="center" component="th" scope="row">{i.usrAge}</TableCell>
+              <TableCell align="center" component="th" scope="row">{i.usrPhone}</TableCell>
+              <TableCell align="center" component="th" scope="row">{i.usrNickname}</TableCell>
+              <TableCell align="center" component="th" scope="row">{i.usrEmail}</TableCell>
+              <TableCell align="center" component="th" scope="row">{i.usrAddr}</TableCell>
+            </TableRow>
+          )) 
+          :
+          'err'}
+        </TableBody>
+      </Table>
+    </TableContainer>
   </>)
 }
 
-UserLoginRegister.propTypes = {
-    location: PropTypes.object
-}
-
-export default UserLoginRegister
+export default UserListView

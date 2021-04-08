@@ -44,7 +44,7 @@ const UserAdmin = () => {
       <Sidebar />
       <table style={{ display: "flex" }}>
         {user ? 
-          { renderBody } 
+          [ renderBody ]
           : <span>---</span>
         }
       </table>

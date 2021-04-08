@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import MetaTags from "react-meta-tags"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
@@ -33,10 +32,6 @@ const BlogWritePage = ({ location }) => {
       </div>
     </Layout>
   </>)
-}
-
-BlogWritePage.propTypes = {
-  location: PropTypes.object
 }
 
 export default BlogWritePage

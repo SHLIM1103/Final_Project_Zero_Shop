@@ -7,14 +7,14 @@ const ProductEditComp = () => {
   const [product, setProduct] = useState([])
 
   const [productEdit, setProductEdit] = useState({
-    category: product.category,
+    ctgName: product.ctgName,
     prdName: product.prdName,
     prdImg: product.prdImg,
     prdPrice: product.prdPrice,
     prdInv: product.prdInv
   })
 
-  const { category, prdName, prdImg, prdPrice, prdInv } = productEdit
+  const { ctgName, prdName, prdImg, prdPrice, prdInv } = productEdit
   const onChange = useCallback(e => {
     setProductEdit({...productEdit, [e.target.name]: e.target.value})
   })
@@ -30,7 +30,7 @@ const ProductEditComp = () => {
         },
         data: { 
           prdNo: localStorage.getItem('prdNo'),
-          category, prdName, prdPrice, prdInv, prdImg
+          ctgName, prdName, prdPrice, prdInv, prdImg
         }
       })
     .then(res => {
@@ -47,25 +47,27 @@ const ProductEditComp = () => {
     <div className="add-prd">
       <div className="input-new-prd">
         <form>
-              <div className="shop-select">
-                <h5>제품군: 
-                  <select
-                    name="category"
-                    value={category}
-                    onChange={onChange}
-                  >
-                    <option value="living">living</option>
-                    <option value="bathroom">bathroom</option>
-                    <option value="kitchen">kitchen</option>
-                    <option value="stationary">stationary</option>
-                  </select>
-                </h5>
+          <div className="shop-select">
+            <h5>제품군: 
+              <select
+                name="ctgName"
+                placeholder={product.ctgName}
+                value={ctgName}
+                onChange={onChange}
+              >
+                <option value="living">living</option>
+                <option value="bathroom">bathroom</option>
+                <option value="kitchen">kitchen</option>
+                <option value="stationary">stationary</option>
+              </select>
+            </h5>
           </div>
           <div>
             <h5>제품명: 
               <input
                 type="text"
                 name="prdName"
+                placeholder={product.prdName}
                 value={prdName}
                 onChange={onChange}
               />
@@ -76,6 +78,7 @@ const ProductEditComp = () => {
               <input
                 type="text"
                 name="prdPrice"
+                placeholder={product.prdPrice}
                 value={prdPrice}
                 onChange={onChange}
               />
@@ -86,6 +89,7 @@ const ProductEditComp = () => {
               <input
                 type="text"
                 name="prdInv"
+                placeholder={product.prdInv}
                 value={prdInv}
                 onChange={onChange}
               />

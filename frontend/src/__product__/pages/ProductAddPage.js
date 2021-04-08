@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import MetaTags from "react-meta-tags"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
@@ -25,11 +24,6 @@ const ProductAddPage = ({ location }) => {
       <ProductAddComp />
     </Layout>
   </>)
-}
-
-ProductAddPage.propTypes = {
-  location: PropTypes.object,
-  product: PropTypes.object
 }
 
 const mapStateToProps = (state, ownProps) => {

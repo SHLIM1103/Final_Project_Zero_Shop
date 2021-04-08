@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CategoriesRepositoryImpl extends QuerydslRepositorySupport implements ICategoriesRepository {
-	public CategoriesRepositoryImpl() {
+public class CategoryRepositoryImpl extends QuerydslRepositorySupport implements ICategoryRepository {
+	public CategoryRepositoryImpl() {
 		super(Category.class);
 	}
 }

@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React, { useState, useEffect } from "react"
 import MetaTags from "react-meta-tags"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
@@ -8,7 +7,6 @@ import axios from "axios"
 
 const BlogUpdatePage = ({ location, match }) => {
   const { pathname } = location
-  const [brdNo, setBrdNo] = useState('')
   const [boards, setBoards] = useState([])
 
   useEffect(() => {
@@ -16,13 +14,13 @@ const BlogUpdatePage = ({ location, match }) => {
     .then((res) => {
       console.log(match.params.id + `번 게시글 불러오기 성공`)
       setBoards(res.data)
-      setBrdNo(res.data)
     })
     .catch((err) => {
       console.log(match.params.id + `번 게시글 불러오기 실패: ` + err)
       throw err
     })
   }, [])
+
   return (<>
     <MetaTags>
       <title>Flone | Blog Update</title>
@@ -55,10 +53,6 @@ const BlogUpdatePage = ({ location, match }) => {
       </div>
     </Layout>
   </>)
-}
-
-BlogUpdatePage.propTypes = {
-  location: PropTypes.object
 }
 
 export default BlogUpdatePage

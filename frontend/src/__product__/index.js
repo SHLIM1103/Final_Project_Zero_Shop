@@ -17,7 +17,6 @@ export { default as ShopCategories } from "__product__/modules/ShopCategories"
 export { default as ShopProducts } from "__product__/modules/ShopProducts"
 export { default as ShopSearch } from "__product__/modules/ShopSearch"
 export { default as ShopSidebar } from "__product__/modules/ShopSidebar"
-export { default as ShopTag } from "__product__/modules/ShopTag"
 export { default as ShopTopAction } from "__product__/modules/ShopTopAction"
 export { default as ShopTopbar } from "__product__/modules/ShopTopbar"
 

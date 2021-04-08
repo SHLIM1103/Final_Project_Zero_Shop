@@ -11,6 +11,7 @@ import kr.shlim.api.product.domain.Product;
 import kr.shlim.api.product.domain.ProductDto;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
+import static kr.shlim.api.categoy.domain.QCategory.category;
 
 @Repository
 public class ProductRepositoryImpl extends QuerydslRepositorySupport implements IProductRepository {
@@ -35,6 +36,21 @@ public class ProductRepositoryImpl extends QuerydslRepositorySupport implements 
 		return em.createQuery("select prd from product prd where prd.ctg_name like :ctgName")
 				.setParameter("ctgName", ctgName).getResultList();
 	}
+
+//	@Override
+//	public List<Product> findLivingByCategory(String cate) {
+//		qf.selectFrom(product)
+//				.where(product.ctgName.eq("living"))
+//				.fetch().stream().forEach(System.out::println);
+//		return qf.selectFrom(product)
+//				.where(product.ctgName.eq("living"))
+//				.fetch();
+//	}
+
+//	@Override
+//	public List<Product> findByPrdName(String name) {
+//		return qf.selectFrom(product).where(product.prdName.like(name+"%")).fetch();
+//	}
 
 	public long update(Product prd, ProductDto dto) {
 		return qf.update(product).set(product.prdName, dto.getPrdName())

@@ -1,3 +1,3 @@
 package kr.shlim.api.categoy.service;
 
-public interface CategoriesService { }
+public interface CategoryService { }

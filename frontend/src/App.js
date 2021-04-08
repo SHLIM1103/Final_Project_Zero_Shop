@@ -12,9 +12,6 @@ import { ProductAddPage, ProductListPage, CategoryLivingPage, CategoryKitchenPag
          CategoryBathroomPage, CategoryStationaryPage, ProductDetailPage, ProductEditPage, CartPage, WishlistPage } from "__product__/index"
 import { BlogWritePage, BlogListPage, BlogDetailPage, BlogUpdatePage } from "__board__/index"
 
-const About = lazy(() => import("pages/other/About"))
-const Contact = lazy(() => import("pages/other/Contact"))
-
 const App = (props) => {
   useEffect(() => {
     props.dispatch(
@@ -146,10 +143,6 @@ const App = (props) => {
                   component={CheckoutPage}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/contact"}
-                  component={Contact}
-                />
-                <Route
                   path={process.env.PUBLIC_URL + "/admin"}
                   component={AdminPage}
                 />
@@ -164,10 +157,6 @@ const App = (props) => {
                 <Route
                   path={process.env.PUBLIC_URL + "/my-account"}
                   component={MyAccountPage}
-                />
-                <Route
-                  path={process.env.PUBLIC_URL + "/about"}
-                  component={About}
                 />
                 <Route
                   path={process.env.PUBLIC_URL + "/not-found"}
