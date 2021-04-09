@@ -69,6 +69,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/boards/board-number/{brd}").permitAll()//
                 .antMatchers("/boards/search").permitAll()//
                 .antMatchers("/boards/update/{brdNo}").permitAll()//
+                .antMatchers("/reviews/save").permitAll()//
+                .antMatchers("/reviews/delete").permitAll()//
+                .antMatchers("/reviews/count").permitAll()//
+                .antMatchers("/reviews/all").permitAll()//
+                .antMatchers("/reviews/one/{id}").permitAll()//
+                .antMatchers("/reviews/find/{id}").permitAll()//
+                .antMatchers("/reviews/exists/{id}").permitAll()//
                 .antMatchers("/products/save").permitAll()//
                 .antMatchers("/products/delete").permitAll()//
                 .antMatchers("/products/delete/{prdNo}").permitAll()//

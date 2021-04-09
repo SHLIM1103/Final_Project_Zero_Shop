@@ -5,6 +5,7 @@ export { default as BlogPostUpdate } from "__board__/modules/BlogPostUpdate"
 export { default as BlogComment } from "__board__/modules/BlogComment"
 export { default as BlogPagination } from "__board__/modules/BlogPagination"
 export { default as BlogSidebar } from "__board__/modules/BlogSidebar"
+export { default as BlogListButton } from "__board__/modules/BlogListButton"
 
 export { default as BlogDetailPage } from "__board__/pages/BlogDetailPage"
 export { default as BlogListPage } from "__board__/pages/BlogListPage"

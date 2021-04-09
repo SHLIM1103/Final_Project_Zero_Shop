@@ -4,13 +4,6 @@ import axios from "axios"
 
 const BlogPostList= () => {
   const [board, setBoard] = useState([])
-  const [search, setSearch] = useState({
-    brdTitle: "",
-  })
-  const { brdTitle } = search
-  const onChange = useCallback(e => {
-    setSearch({...search, [e.target.name]: e.target.value})
-  })
   
   useEffect(() => {
     axios.get('http://localhost:8080/boards/all', )
@@ -81,22 +74,6 @@ const BlogPostList= () => {
         </div>
       </div>)
     : `조회할 게시글이 없습니다`}
-    
-    <div className="blog-top mb-50 mt-25">
-      {localStorage.getItem("user") != null ?
-        <button>
-          <Link to='/blog-write'>게시글 작성</Link>
-        </button>
-      :
-      ""}
-      
-      <form className="blog-search-form" action="#">
-        <input type="text" placeholder="Search here..." onChange={onChange} />
-        <button onClick={`/blog-search/${search}`} >
-          <i className="pe-7s-search" />
-        </button>
-      </form>
-    </div>
   </>)
 }
 
