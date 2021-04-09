@@ -11,10 +11,8 @@ import kr.shlim.api.user.domain.UserVo;
 import kr.shlim.api.user.service.UserServiceImpl;
 
 import org.modelmapper.ModelMapper;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,7 +42,7 @@ public class UserController {
 		@ApiResponse(code = 403, message = "Access denied"), //
 		@ApiResponse(code = 422, message = "Username is already in use") })
 	public ResponseEntity<String> signup(@ApiParam("Signup User") @RequestBody UserDto user) {
-		logger.info("User Login Join Info: " + user.toString());
+		logger.info("Login Join Info: " + user.toString());
 		return ResponseEntity.ok(userService.signup(modelMapper.map(user, UserVo.class)));
 	}
 

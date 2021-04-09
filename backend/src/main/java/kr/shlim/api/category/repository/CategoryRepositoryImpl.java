@@ -1,6 +1,6 @@
-package kr.shlim.api.categoy.repository;
+package kr.shlim.api.category.repository;
 
-import kr.shlim.api.categoy.domain.Category;
+import kr.shlim.api.category.domain.Category;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 

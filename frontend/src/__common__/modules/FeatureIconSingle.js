@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 
 const FeatureIconSingle = ({ data, spaceBottomClass, textAlignClass }) => {
@@ -21,12 +20,6 @@ const FeatureIconSingle = ({ data, spaceBottomClass, textAlignClass }) => {
       </div>
     </div>
   )
-}
-
-FeatureIconSingle.propTypes = {
-  data: PropTypes.object,
-  spaceBottomClass: PropTypes.string,
-  textAlignClass: PropTypes.string
 }
 
 export default FeatureIconSingle

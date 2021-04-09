@@ -16,7 +16,7 @@ spring:
 
 UserController:
     signin: Authenticates user and returns its JWT token.
-    signup: Creates user and returns its JWT token
+    signup: Creates user and returns its JWT tx`oken
     delete: Deletes specific user by username
     search: Returns specific user by username
     me: Returns current user's data

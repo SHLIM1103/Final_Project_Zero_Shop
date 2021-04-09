@@ -1,10 +1,10 @@
-package kr.shlim.api.categoy.controller;
+package kr.shlim.api.category.controller;
 
 import java.util.List;
 import java.util.Optional;
 
-import kr.shlim.api.categoy.domain.Category;
-import kr.shlim.api.categoy.service.CategoryServiceImpl;
+import kr.shlim.api.category.domain.Category;
+import kr.shlim.api.category.service.CategoryServiceImpl;
 import kr.shlim.api.common.controller.AbstractController;
 
 import org.springframework.http.ResponseEntity;

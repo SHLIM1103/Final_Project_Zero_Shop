@@ -7,22 +7,44 @@ import { Layout, Breadcrumb } from "__common__/index"
 import axios from "axios"
 
 const MyAccountPage = ({ location }) => {
-  const { pathname } = location
-  const year = ["전체기간"]
+  const year = ["전체기간", "1주", "1개월", "3개월", "1년"];
+  const { pathname } = location;
   const [payment, setPayment] = useState([])
   const [receiver, setReceiver] = useState([])
 
-  useEffect(()=>{
-    axios.get("http://localhost:8080/payments/all")
+  useEffect(() => {
+    axios.get("http://localhost:8080/payment/all", { 
+      headers: {
+      'Content-Type'  : 'application/json',
+      'Authorization' : 'JWT fefege..'
+    }
+  },)
     .then((res) => {
-      console.log(`조회 성공`)
       setPayment(res.data)
+      console.log(`결제정보 조회 성공`)
     })
     .catch((err) => {
-      console.log(`조회 실패: ` + err)
-      throw err
+      alert('실패: ' + err)
+      throw err;
     })
-  },[])
+  }, [])
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/receiver/all", { 
+      headers: {
+      'Content-Type'  : 'application/json',
+      'Authorization' : 'JWT fefege..'
+    }
+  },)
+    .then((res) => {
+      setReceiver(res.data)
+      console.log(`수령인 조회 성공`)
+    })
+    .catch((err) => {
+      alert('수령인 조회 실패: ' + err)
+      throw err;
+    })
+  }, [])
 
   return (<>
     <MetaTags>
@@ -64,41 +86,55 @@ const MyAccountPage = ({ location }) => {
                           </div>
                         </article>
                           </div>
-                          {payment.map((card, index) => (
+                            
                           <div className="entries-wrapper">
                             <div className="row">
                               <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
                                 <div className="entries-info text-center">
-                                    <div key={index}>
+                                  {payment.map(card => (
+                                    <div>
+                                      <h4>결제정보</h4>
                                       <div>
-                                      {card.payDate}
+                                      결제시간 {card.payDate}
                                       </div>
                                       <div>
-                                      {card.payPrice}
+                                      결제금액 {card.payPrice}
                                       </div>
                                       <div>
-                                      {card.payState}
-                                      </div>
-                                      <div>
-                                      {card.prdNo}
+                                      주문상태 {card.payState}
                                       </div>
                                     </div>
+                                    ))}
+                                  {receiver.map(card => (
+                                    <div>
+                                      <h4>배송지 정보</h4>
+                                      <div>
+                                      받는 사람 {card.rcvName}
+                                      </div>
+                                      <div>
+                                      연락처 {card.rcvPhone}
+                                      </div>
+                                      <div>
+                                      주소 {card.rcvAddr}
+                                      </div>
+                                    </div>
+                                    ))}  
                                 </div>
                               </div>
                               <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
                                 <div className="entries-edit-delete text-center">
-                                  <button className="edit">교환/환불</button>
                                   <form action="http://info.sweettracker.co.kr/tracking/5" method="post">
-                                      <input type="hidden" class="form-control" id="t_key" name="t_key" value="ymJmuSQTWNb5HVh5nip8cw"/>
-                                      <input type="hidden" class="form-control" name="t_code" id="t_code" value="04"/>
-                                      <input type="hidden" class="form-control" name="t_invoice" id="t_invoice" value="387842034141"/>
-                                    <button type="submit" class="btn btn-default">배송조회</button>
+                                  <button className="edit">교환/환불</button>
+                                  <button type="submit">배송조회</button>
+                                      <input type="hidden" id="t_key" name="t_key" value="ymJmuSQTWNb5HVh5nip8cw"/>
+                                      <input type="hidden" name="t_code" id="t_code" value="04"/>
+                                      <input type="hidden" name="t_invoice" id="t_invoice" value="387842034141"/>
                                 </form>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          ))}
+
                           <div className="billing-back-btn">
                             <div className="billing-btn">
                               <button type="submit">Continue</button>

@@ -123,15 +123,17 @@ public class UserServiceImpl implements UserService {
 	public String signup(UserVo user) {
 		if(!userRepository.existsByUsername(user.getUsername())) {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
-			List<Role> list = Arrays.asList(Role.USER);
+			List<Role> list = new ArrayList<>();
+			list.add(Role.USER);
 			user.setRoles(list);
 			userRepository.save(user);
+			// 만약에 관리자 레벨도 있다면,
+			// list.add(Role.ADMIN);
 			return provider.createToken(user.getUsername(), user.getRoles());
 		}else {
 			throw new SecurityRuntimeException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
-
 	@Override
 	public void delete(String username) {
 		userRepository.deleteByUsername(username);

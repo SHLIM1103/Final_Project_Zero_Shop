@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import { Link } from "react-router-dom"
 
@@ -18,11 +17,6 @@ const CategorySingle = ({ data, sliderClass }) => {
       </div>
     </div>
   )
-}
-
-CategorySingle.propTypes = {
-  data: PropTypes.object,
-  sliderClass: PropTypes.string
 }
 
 export default CategorySingle

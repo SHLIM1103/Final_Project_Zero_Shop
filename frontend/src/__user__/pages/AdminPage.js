@@ -1,55 +1,67 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import MetaTags from "react-meta-tags"
-import { Layout } from "__common__/index"
-import { Sidebar } from "__user__/index"
-import axios from "axios"
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
+import Tab from "react-bootstrap/Tab"
+import Nav from "react-bootstrap/Nav"
+import { Layout, Breadcrumb } from "__common__/index"
+import { LoginComp, RegisterComp } from "__user__/index"
 
-const UserAdmin = () => {
-  const [user, setUser] = useState([])
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/usr/all', )
-    .then((res) => {
-      console.log(`유저 조회 성공`)
-      setUser(res.data)
-    })
-    .catch((err) => {
-      console.log(`유저 조회 실패: ` + err)
-      throw err
-    })
-  }, [])
-
-  const renderBody = () => {
-    return user.map(i => {
-      return (
-        <table>
-          <tr key={i.usrNo}>
-            <td>{i.usrName}</td>
-            <td>{i.usrEmail}</td>
-          </tr>
-        </table>
-      )
-    })
-  }
+const LoginRegisterPage = ({ location }) => {
+  const { pathname } = location
 
   return (<>
     <MetaTags>
-      <title>Flone | Admin</title>
+      <title>Flone | Login Page</title>
     </MetaTags>
-    
-    <Layout
-      headerContainerClass="container-fluid"
-      headerPaddingClass="header-padding-1"
-    >
-      <Sidebar />
-      <table style={{ display: "flex" }}>
-        {user ? 
-          [ renderBody ]
-          : <span>---</span>
-        }
-      </table>
+
+    <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
+    <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>Login | Register</BreadcrumbsItem>
+
+    <Layout headerTop="visible">
+      {/* breadcrumb */}
+      <Breadcrumb />
+      <div className="login-register-area pt-100 pb-100">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-7 col-md-12 ml-auto mr-auto">
+              <div className="login-register-wrapper">
+                <Tab.Container defaultActiveKey="login">
+                  <Nav variant="pills" className="login-register-tab-list">
+                    <Nav.Item>
+                      <Nav.Link eventKey="login">
+                        <h4>Login</h4>
+                      </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="register">
+                        <h4>Register</h4>
+                      </Nav.Link>
+                    </Nav.Item>
+                  </Nav>
+                  <Tab.Content>
+                    <Tab.Pane eventKey="login">
+                      <div className="login-form-container">
+                        <div className="login-register-form">
+                          <LoginComp />
+                        </div>
+                      </div>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="register">
+                      <div className="login-form-container">
+                        <div className="login-register-form">
+                          <RegisterComp />
+                        </div>
+                      </div>
+                    </Tab.Pane>
+                  </Tab.Content>
+                </Tab.Container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </Layout>
   </>)
 }
 
-export default UserAdmin
+export default LoginRegisterPage

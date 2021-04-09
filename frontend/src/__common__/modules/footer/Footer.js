@@ -1,8 +1,6 @@
-import PropTypes from "prop-types"
 import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
 import { animateScroll } from "react-scroll"
-import { FooterCopyright, FooterNewsletter } from "__common__/index"
+import { FooterCopyright } from "__common__/index"
 
 const FooterOne = ({
   backgroundColorClass,
@@ -150,17 +148,6 @@ const FooterOne = ({
       </button>
     </footer>
   )
-}
-
-FooterOne.propTypes = {
-  backgroundColorClass: PropTypes.string,
-  containerClass: PropTypes.string,
-  extraFooterClass: PropTypes.string,
-  sideMenu: PropTypes.bool,
-  spaceBottomClass: PropTypes.string,
-  spaceTopClass: PropTypes.string,
-  spaceLeftClass: PropTypes.string,
-  spaceRightClass: PropTypes.string
 }
 
 export default FooterOne

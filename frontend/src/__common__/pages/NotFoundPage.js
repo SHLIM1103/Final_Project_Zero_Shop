@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import { Link } from "react-router-dom"
 import MetaTags from "react-meta-tags"
@@ -40,10 +39,6 @@ const NotFoundPage = ({ location }) => {
       </div>
     </Layout>
   </>)
-}
-
-NotFoundPage.propTypes = {
-  location: PropTypes.object
 }
 
 export default NotFoundPage

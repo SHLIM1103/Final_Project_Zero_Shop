@@ -1,10 +1,10 @@
-package kr.shlim.api.categoy.service;
+package kr.shlim.api.category.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import kr.shlim.api.categoy.domain.Category;
-import kr.shlim.api.categoy.repository.CategoryRepository;
+import kr.shlim.api.category.domain.Category;
+import kr.shlim.api.category.repository.CategoryRepository;
 import kr.shlim.api.common.service.AbstractService;
 
 import org.springframework.stereotype.Service;

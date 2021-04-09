@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import { Link } from "react-router-dom"
 import { useToasts } from "react-toast-notifications"
@@ -74,12 +73,6 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
       )}
     </div>
   )
-}
-
-MenuCart.propTypes = {
-  cartData: PropTypes.array,
-  currency: PropTypes.object,
-  deleteFromCart: PropTypes.func
 }
 
 export default MenuCart

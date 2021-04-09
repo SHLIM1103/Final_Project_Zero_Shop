@@ -1,4 +1,4 @@
-package kr.shlim.api.categoy.domain;
+package kr.shlim.api.category.domain;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

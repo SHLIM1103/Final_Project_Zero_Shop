@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import { Link } from "react-router-dom"
 import { HeaderSocial, NavMenu } from "__common__/index"
@@ -29,11 +28,6 @@ const OffcanvasMenu = ({ activeState, getActiveState }) => {
       <HeaderSocial />
     </div>
   )
-}
-
-OffcanvasMenu.propTypes = {
-  activeState: PropTypes.bool,
-  getActiveState: PropTypes.func
 }
 
 export default OffcanvasMenu

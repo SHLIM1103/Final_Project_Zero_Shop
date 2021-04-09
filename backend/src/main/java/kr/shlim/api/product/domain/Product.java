@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import kr.shlim.api.categoy.domain.Category;
+import kr.shlim.api.category.domain.Category;
 import kr.shlim.api.payment.domain.Payment;
 
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class Product {
 
 	@OneToMany(mappedBy = "product")
 	private List<Payment> payments = new ArrayList<>();
-	public Product(){}
+
 	public void setPrdName(String prdName) { this.prdName = prdName; }
 	public void setCtgName(String ctgName) { this.ctgName = ctgName; }
 	public void setPrdImg(String prdImg) { this.prdImg = prdImg; }

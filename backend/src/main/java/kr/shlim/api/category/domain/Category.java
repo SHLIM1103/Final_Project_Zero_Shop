@@ -1,4 +1,4 @@
-package kr.shlim.api.categoy.domain;
+package kr.shlim.api.category.domain;
 
 import java.util.ArrayList;
 import java.util.List;

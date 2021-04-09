@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React, { useState,useEffect } from "react"
 import { Logo, NavMenu, IconGroup } from "__common__/index"
 
@@ -55,14 +54,6 @@ const Header = ({
       </div>
     </header>
   </>)
-}
-
-Header.propTypes = {
-  borderStyle: PropTypes.string,
-  headerPaddingClass: PropTypes.string,
-  headerPositionClass: PropTypes.string,
-  layout: PropTypes.string,
-  top: PropTypes.string
 }
 
 export default Header

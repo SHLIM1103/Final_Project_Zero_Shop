@@ -152,24 +152,6 @@ const ProductDescriptionInfo = ({
       ) : (
         "category of product is null"
       )}
-      {product.tag ? (
-        <div className="pro-details-meta">
-          <span>Tags :</span>
-          <ul>
-            {product.tag.map((single, key) => {
-              return (
-                <li key={key}>
-                  <Link to={process.env.PUBLIC_URL + "/product-detail"}>
-                    {single}
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      ) : (
-        ""
-      )}
 
       <div className="pro-details-social">
         <ul>

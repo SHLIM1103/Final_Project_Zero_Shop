@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 
 const SectionTitleTwo = ({
@@ -17,13 +16,6 @@ const SectionTitleTwo = ({
       <p>{subTitleText}</p>
     </div>
   )
-}
-
-SectionTitleTwo.propTypes = {
-  positionClass: PropTypes.string,
-  spaceClass: PropTypes.string,
-  subTitleText: PropTypes.string,
-  titleText: PropTypes.string
 }
 
 export default SectionTitleTwo

@@ -4,16 +4,13 @@ import java.util.List;
 
 import kr.shlim.api.product.domain.Product;
 
-import kr.shlim.api.product.domain.ProductDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 interface IProductRepository {
-	 List<Product> findByPrdNo(long prdNo);
-	 List<Product> findByCtgName(String ctgName);
-//	 List<Product> findLivingByCategory(String cate);
-//	 List<Product> findByPrdName(String name);
+	public List<Product> findByPrdNo(long prdNo);
+	public List<Product> findByCtgName(String ctgName);
 }
 
 public interface ProductReporitory extends JpaRepository<Product, Long>, IProductRepository {

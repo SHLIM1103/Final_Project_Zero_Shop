@@ -90,6 +90,7 @@ public class ProductController extends AbstractController<Product> {
 		logger.info("조회한 카테고리: " + ctgName);
 		return ResponseEntity.ok(service.findByCtgName(ctgName));
 	}
+	
 	@PutMapping("/edit/{prdNo}")
 	public ResponseEntity<Long> update(@PathVariable long prdNo, @RequestBody ProductDto p) {
 		logger.info("수정한 제품명: " + p.getPrdName());

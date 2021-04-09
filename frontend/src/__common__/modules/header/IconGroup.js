@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import { Link, useHistory } from "react-router-dom"
 import { connect } from "react-redux"
@@ -106,14 +105,6 @@ const IconGroup = ({
       </div>
     </div>
   </>)
-}
-
-IconGroup.propTypes = {
-  cartData: PropTypes.array,
-  currency: PropTypes.object,
-  iconWhiteClass: PropTypes.string,
-  deleteFromCart: PropTypes.func,
-  wishlistData: PropTypes.array
 }
 
 const mapStateToProps = state => {

@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import Swiper from "react-id-swiper"
 import categoryData from "__common__/modules/category-data.json"
@@ -53,11 +52,6 @@ const CategorySlider = ({ spaceTopClass, spaceBottomClass }) => {
       </div>
     </div>
   )
-}
-
-CategorySlider.propTypes = {
-  spaceBottomClass: PropTypes.string,
-  spaceTopClass: PropTypes.string
 }
 
 export default CategorySlider

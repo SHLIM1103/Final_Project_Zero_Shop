@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import { Header, Footer } from "__common__/index"
 
@@ -23,14 +22,6 @@ const Layout = ({
       spaceBottomClass="pb-70"
     />
   </>)
-}
-
-Layout.propTypes = {
-  children: PropTypes.any,
-  headerContainerClass: PropTypes.string,
-  headerPaddingClass: PropTypes.string,
-  headerPositionClass: PropTypes.string,
-  headerTop: PropTypes.string
 }
 
 export default Layout
