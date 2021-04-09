@@ -14,21 +14,21 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
   const { pathname } = location
   let cartTotalPrice = 0
   const { IMP } = window
-  
-  const [rcvName, setRcvName] = useState('')
-  const [rcvPhone, setRcvPhone] = useState('')
-  const [rcvAddr, setRcvAddr] = useState('')
-  const [payInfo, setPayInfo] = useState('')
-  const [nowTime, setNowTime] = useState(moment().format('YYYY-MM-DD HH:mm:ss'))
-  const [cartItem, setCartItem] = useState('')
-  const [username, setUsername] = useState('')
+
   const [user, setUser] = useState({})
   const [addr, setAddr] = useState('')
   const [extraAddr, setExtraAddr] = useState('')
   const [postcode, setPostcode] = useState('')
   const [fullAddr, setFullAddr] = useState('')
+  const [cartItem, setCartItem] = useState('')
+  const [username, setUsername] = useState('')
+  const [rcvName, setRcvName] = useState('')
+  const [rcvPhone, setRcvPhone] = useState('')
+  const [rcvAddr, setRcvAddr] = useState('')
+  const [payInfo, setPayInfo] = useState('')
+  const [nowTime, setNowTime] = useState(moment().format('YYYY-MM-DD HH:mm:ss'))
 
-  useEffect(() => {
+  useEffect(()=>{
     setUser(JSON.parse(localStorage.getItem("user")))
   }, [])
 
@@ -36,12 +36,12 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
     new window.daum.Postcode({
       oncomplete: data => {
         setPostcode(data.zonecode)
-        if(data.userSelectedType === "R"){
+        if(data.userSelectedType === "R") {
           setAddr(data.roadAddress)
-          if (data.buildingName !== ""){
+          if (data.buildingName !== "") {
             setExtraAddr(" (" + data.buildingName + ")")
           }
-        }else{
+        }else {
           setExtraAddr(data.jibunAddress)
         }
       }
@@ -68,12 +68,11 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
         url: "http://localhost:8080/receiver/save", //cross-domain error가 발생하지 않도록 주의해주세요
         type: 'POST',
         dataType: 'json',
-        headers: {
+        headers: { 
           'Content-Type'  : 'application/json',
-          'Authorization' : 'JWT fefege..'
-        },
+          'Authorization' : 'JWT fefege..' },
         data: {
-          imp_uid : rsp.imp_uid
+        imp_uid: rsp.imp_uid
         //기타 필요한 데이터가 있으면 추가 전달
         }
       }).done(function(data) {
@@ -85,18 +84,18 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
         msg += '\결제 금액 : ' + rsp.paid_amount
         msg += '카드 승인번호 : ' + rsp.apply_num
         alert(msg)
-      } else {
+      }else {
         //[3] 아직 제대로 결제가 되지 않았습니다.
         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
         }
       })
-    } else {
-        var msg = '결제에 실패하였습니다.'
-        msg += '에러내용 : ' + rsp.error_msg
-        location.href='/checkout'
-        alert(msg)
-        }
-      })
+    }else {
+      var msg = '결제에 실패하였습니다.'
+      msg += '에러내용 : ' + rsp.error_msg
+      location.href='/checkout'
+      alert(msg)
+      }
+    })
     
     axios({
       url: 'http://localhost:8080/payment/save', 
@@ -113,10 +112,10 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
       }
     })
     .then(res => {
-      alert(`결제 성공`)
+      alert(`결제가 완료되었습니다.`)
     })
     .catch(err => {
-      console.log(`결제 실패: ` + err)
+      console.log(`결제에 실패하였습니다. (` + err + `)`)
       throw err
     })
 
@@ -134,10 +133,10 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
       }
     })
     .then(res => {
-      alert(`수령인 저장 성공`)
+      alert(`수령인 등록 성공`)
     })
     .catch(err => {
-      console.log(`수령인 저장 실패: ` + err)
+      console.log(`수령인 등록 실패: ` + err)
       throw err
     })
   }
@@ -145,15 +144,11 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
   return (<>
     <MetaTags>
       <title>Flone | Checkout</title>
-      <meta
-        name="description"
-        content="Checkout page of flone react minimalist eCommerce template."
-      />
     </MetaTags>
+
     <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-    <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
-      Checkout
-    </BreadcrumbsItem>
+    <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>checkout</BreadcrumbsItem>
+
     <Layout headerTop="visible">
       {/* breadcrumb */}
       <Breadcrumb />
@@ -169,19 +164,19 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Name</label>
-                          <input type="text" value={user.usrName || ''} readOnly />
+                          <input type="text" value={user.usrName || ''} readOnly/>
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Phone</label>
-                          <input type="text" value={user.usrPhone || ''} readOnly />
+                          <input type="text" value={user.usrPhone || ''} readOnly/>
                         </div>
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
                           <label>Address</label>
-                          <input type="text" value={user.usrAddr || ''} readOnly />
+                          <input type="text" value={user.usrAddr || ''} readOnly/>
                         </div>
                       </div>
                     </ul>
@@ -212,7 +207,6 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
                         onChange = { e => { setFullAddr(`${e.target.value}`)}} />
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -233,7 +227,8 @@ const CheckoutPage = ({ location, cartItems, currency}) => {
                             const finalProductPrice = (
                               cartItem.prdPrice * currency.currencyRate
                             )
-                            cartTotalPrice += finalProductPrice * cartItem.quantity
+                            cartTotalPrice +=
+                                  finalProductPrice * cartItem.quantity
                             return (
                               <li key={key}>
                                 <span className="order-middle-left">

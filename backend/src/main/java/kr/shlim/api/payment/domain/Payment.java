@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import kr.shlim.api.board.domain.Board;
 import kr.shlim.api.cart.domain.Cart;
 import kr.shlim.api.product.domain.Product;
@@ -19,7 +21,7 @@ public class Payment {
    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name="pay_no") private long payNo;
    @Column(name="pay_price") private String payPrice;
-   @Column(name="pay_amount") private long payAmount;
+   @Column(name="pay_info") private String payInfo;
    @Column(name="dvr_fee") private String dvrFee;
    @Column(name="pay_date") private String payDate;
    @Column(name="pay_state") private String payState;
@@ -32,6 +34,7 @@ public class Payment {
    @JoinColumn(name="prd_no")
    private Product product;
 
+   @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
    @OneToMany(mappedBy="payment")
    private List<Receiver> receivers = new ArrayList<>();
 
