@@ -37,16 +37,10 @@ public class BoardController extends AbstractController<Board> {
 		return ResponseEntity.ok(service.save(brd));
 	}
 
-	@DeleteMapping("/delete")
-	public ResponseEntity<Long> delete(@RequestBody Board brd) {
-		System.out.println("삭제한 게시글 번호: " + brd.getBrdNo());
-		return ResponseEntity.ok(service.delete(brd));
-	}
-
 	@DeleteMapping("/delete/{brdNo}")
-	public ResponseEntity<String> deleteById(@PathVariable long brdNo){
-		logger.info("삭제한 게시글 번호: " + brdNo);
-		return ResponseEntity.ok(service.deleteById(brdNo));
+	public ResponseEntity<Long> delete(@RequestBody Board brd) {
+		logger.info("삭제한 게시글 번호: " + brd.getBrdNo());
+		return ResponseEntity.ok(service.delete(brd));
 	}
 
 	@GetMapping("/count")
@@ -62,8 +56,14 @@ public class BoardController extends AbstractController<Board> {
 
 	@GetMapping("/board-all")
 	public ResponseEntity<List<Board>> boardAll() {
-		System.out.println("게시글 종류별 전체 조회");
+		logger.info("게시글 종류별 전체 조회");
 		return ResponseEntity.ok(service.boardAll());
+	}
+
+	@GetMapping("/review/all")
+	public ResponseEntity<List<Board>> reviewAll() {
+		logger.info("리뷰 전체 조회");
+		return ResponseEntity.ok(service.reviewAll());
 	}
 
 	@GetMapping("/one/{brdNo}")
@@ -79,12 +79,6 @@ public class BoardController extends AbstractController<Board> {
 	@GetMapping("/exists/{brdNo}")
 	public ResponseEntity<Boolean> existsById(@PathVariable long brdNo) {
 		return ResponseEntity.ok(service.existsById(brdNo));
-	}
-
-	@GetMapping("/option/{brdTitle}")
-	public ResponseEntity<Board> findByTitle(@PathVariable String brdTitle) {
-		logger.info("조회한 게시글 제목: " + brdTitle);
-		return ResponseEntity.ok(service.findByTitle(brdTitle));
 	}
 
 	@GetMapping("/board-number/{brd}")

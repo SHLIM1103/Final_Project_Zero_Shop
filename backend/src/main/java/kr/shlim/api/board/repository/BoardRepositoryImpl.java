@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import kr.shlim.api.board.domain.Board;
-import kr.shlim.api.board.domain.BoardDto;
 
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
@@ -31,8 +30,8 @@ public class BoardRepositoryImpl extends QuerydslRepositorySupport implements IB
 	}
 
 	@Override
-	public Board findByTitle(String brdTitle) {
-		return qf.selectFrom(board).where(board.brdTitle.eq(brdTitle)).fetchOne();
+	public List<Board> reviewAll() {
+		return qf.selectFrom(board).where(board.brdKind.eq(2L)).orderBy(board.brdWrtDate.desc()).fetch();
 	}
 
 	@Transactional
@@ -47,9 +46,4 @@ public class BoardRepositoryImpl extends QuerydslRepositorySupport implements IB
 		return qf.selectFrom(board).where(board.brdTitle.contains(brdTitle)).fetch();
 	}
 
-	@Override
-	public long update(Board brd, BoardDto t) {
-		return qf.update(board).set(board.brdTitle, t.getBrdTitle())
-				 .where(board.brdNo.eq(t.getBrdNo())).execute();
-	}
 }

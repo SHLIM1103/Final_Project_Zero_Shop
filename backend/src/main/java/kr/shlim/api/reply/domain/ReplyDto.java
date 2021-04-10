@@ -7,6 +7,6 @@ import lombok.Data;
 
 @Component @Data @Lazy
 public class ReplyDto {
-	private long rplNo;
-	private String rplContent;
+	private long rplNo, brdNo;
+	private String rplContent, boardNo;
 }

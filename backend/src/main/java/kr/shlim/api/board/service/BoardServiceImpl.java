@@ -28,19 +28,17 @@ public class BoardServiceImpl extends AbstractService<Board> implements BoardSer
 		return (repo.save(t) != null) ? 1 : 0;
 	}
 	@Override public long delete(Board t) { repo.delete(t); return (getOne(t.getBrdNo()) == null) ? 1 : 0; }
-	@Override public String deleteById(long brdNo) { repo.deleteById(brdNo); return "SUCCESS"; }
 	@Override public long count() { return (long)repo.count(); }
 	@Override public List<Board> findAll() {
 		return repo.findAll().stream().sorted(Comparator.comparing(Board::getBrdWrtDate).reversed()).collect(Collectors.toList());
 	}
 	public List<Board> boardAll() { return repo.boardAll(); }
+	public List<Board> reviewAll() { return repo.reviewAll();	}
 	@Override public Board getOne(long id) { return repo.getOne(id); }
 	@Override public Optional<Board> findById(long id) { return repo.findById(id); }
 	@Override public boolean existsById(long id) { return repo.existsById(id); }
-	@Override public Board findByTitle(String brdTitle) { return repo.findByTitle(brdTitle); }
 	public Board findByBrd(Board board) { return repo.findByBrd(board); }
 	public List<Board> search(String brdTitle) { return repo.search(brdTitle); }
-	public List<Board> blogListAll() { return repo.boardAll(); }
 	public long update(BoardDto dto) {
 		Board map = findById(dto.getBrdNo()).get();
 		map.setBrdTitle(dto.getBrdTitle());

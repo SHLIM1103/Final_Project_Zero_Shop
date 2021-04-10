@@ -26,7 +26,6 @@ public class Board {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="brd_no") private long brdNo;
 	@Column(name="brd_kind") private long brdKind;
-	@Column(name="usr_nickname") private String usrNickname;
 	@Column(name="brd_title") private String  brdTitle;
 	@Column(name="brd_content") private String brdContent;
 	@Column(name="brd_wrt_date") private String brdWrtDate;
@@ -35,10 +34,8 @@ public class Board {
 	@Column(name="brd_img") private String brdImg;
 	@Column(name="brd_pwd") private String brdPwd;
 	@Column(name="brd_count") private long brdCount;
-
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="usr_no")
-	private UserVo user;
+	@Column(name="usr_name") private String usrName;
+	@Column(name="usr_no") private String usrNo;
 
 	@ManyToOne
 	@JoinColumn(name="prd_no")
@@ -51,6 +48,13 @@ public class Board {
 	@OneToMany(mappedBy="board")
 	private List<Reply> replies = new ArrayList<>();
 
+
+	public void setUsrNo(String usrNo) {
+		this.usrNo = usrNo;
+	}
+	public void setUsrName(String usrName) {
+		this.usrName = usrName;
+	}
 	public void setBrdWrtDate(String brdWrtDate) {
 		this.brdWrtDate = brdWrtDate;
 	}
@@ -68,7 +72,7 @@ public class Board {
 	public String toString() {
 		return "Board [brdNo=" + brdNo + ", brdTitle=" + brdTitle + ", brdContent=" + brdContent + ", brdWrtDate="
 				+ brdWrtDate + ", brdRank=" + brdRank + ", brdImg=" + brdImg + ", brdKind=" + brdKind + ", brdCount="
-				+ brdCount + ", brdLike=" + brdLike + ", brdPwd=" + brdPwd + ", usrNickname=" + usrNickname
-				+ ", replyList=" + replies + ", user=" + user + ", payment=" + payment + ", product=" + product + "]";
+				+ brdCount + ", brdLike=" + brdLike + ", brdPwd=" + brdPwd + ", usrNikcname=" + usrName
+				+ ", replyList="  + ", payment=" + payment + ", product=" + product + "]";
 	}
 }

@@ -69,13 +69,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/boards/board-number/{brd}").permitAll()//
                 .antMatchers("/boards/search").permitAll()//
                 .antMatchers("/boards/update/{brdNo}").permitAll()//
-                .antMatchers("/reviews/save").permitAll()//
-                .antMatchers("/reviews/delete").permitAll()//
-                .antMatchers("/reviews/count").permitAll()//
-                .antMatchers("/reviews/all").permitAll()//
-                .antMatchers("/reviews/one/{id}").permitAll()//
-                .antMatchers("/reviews/find/{id}").permitAll()//
-                .antMatchers("/reviews/exists/{id}").permitAll()//
+                .antMatchers("/reply/save").permitAll()//
+                .antMatchers("/reply/delete/{rplNo}").permitAll()//
+                .antMatchers("/reply/count").permitAll()//
+                .antMatchers("/reply/all").permitAll()//
+                .antMatchers("/reply/one/{id}").permitAll()//
+                .antMatchers("/reply/find/{id}").permitAll()//
+                .antMatchers("/reply/select/{id}").permitAll()//
+                .antMatchers("/reply/exists/{id}").permitAll()//
+                .antMatchers("/reply/update/{rplNo}").permitAll()//
                 .antMatchers("/products/save").permitAll()//
                 .antMatchers("/products/delete").permitAll()//
                 .antMatchers("/products/delete/{prdNo}").permitAll()//

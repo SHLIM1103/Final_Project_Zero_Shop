@@ -17,14 +17,23 @@ import lombok.Getter;
 @Entity @Getter
 @Table(name = "replies")
 public class Reply {
-	@Id @Column(name="rpl_no") @GeneratedValue(strategy = GenerationType.IDENTITY) private long rplNo;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="rpl_no") private long rplNo;
 	@Column(name="rpl_content") private String rplContent;
-	
+	@Column(name="rpl_wrt_date") private String rplWrtDate;
+	@Column(name="usr_name") private String usrName;
+	@Column(name="usr_no") private String usrNo;
+	@Column(name="board_no") private String boardNo;
+
 	@ManyToOne
 	@JoinColumn(name="brd_no")
 	private Board board;
 
-	@ManyToOne
-	@JoinColumn(name = "usr_no")
-	private UserVo user;
+	public void setRplWrtDate(String rplWrtDate) {
+		this.rplWrtDate = rplWrtDate;
+	}
+
+	public void setRplContent(String rplContent) {
+		this.rplContent = rplContent;
+	}
 }
