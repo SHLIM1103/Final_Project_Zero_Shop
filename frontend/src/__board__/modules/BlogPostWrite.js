@@ -11,10 +11,11 @@ const BlogPostWrite = () => {
     brdRank: "",
     brdImg: "",
     brdLike: "",
-    usrNickname: "",
+    usrName: JSON.parse(localStorage.getItem("user")).usrName,
+    usrNo: JSON.parse(localStorage.getItem("user")).usrNo,
     brdKind: 1
   })
-  const { brdTitle, brdContent, brdWrtDate, brdRank, brdImg, brdLike, usrNickname, brdKind } = boardAdd
+  const { brdTitle, brdContent, brdImg } = boardAdd
   const onChange = useCallback(e => {
     setBoardAdd({...boardAdd, [e.target.name]: e.target.value})
   })
@@ -41,7 +42,8 @@ const BlogPostWrite = () => {
   }
   
   return (<>
-    {localStorage.getItem("user") != null ?
+    {localStorage.getItem("token") !=null 
+    && JSON.stringify(JSON.parse(localStorage.getItem("user")).roles) === JSON.stringify(["USER"]) ? 
       <>
         <div className="blog-details-top">
           <form>

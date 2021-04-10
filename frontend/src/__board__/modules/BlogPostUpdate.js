@@ -49,7 +49,7 @@ const BlogPostUpdate = ({ boards }) => {
               type="text"
               name="brdTitle"
               value={brdTitle}
-              placeholder={boards.brdTitle}
+              defaultValue={boards.brdTitle}
               onChange={onChange}
             />
           </label>
@@ -61,7 +61,7 @@ const BlogPostUpdate = ({ boards }) => {
               rows="55" cols="250"
               name="brdContent"
               value={brdContent}
-              placeholder={boards.brdContent}
+              defaultValue={boards.brdContent}
               onChange={onChange}
             />
           </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import MetaTags from "react-meta-tags"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
 import { Layout, Breadcrumb } from "__common__/index"
-import { BlogSidebar, BlogComment, BlogPostUpdate } from "__board__/index"
+import { BlogComment, BlogPostUpdate } from "__board__/index"
 import axios from "axios"
 
 const BlogUpdatePage = ({ location, match }) => {
@@ -43,10 +43,6 @@ const BlogUpdatePage = ({ location, match }) => {
                 {/* blog post comment */}
                 <BlogComment />
               </div>
-            </div>
-            <div className="col-lg-3">
-              {/* blog sidebar */}
-              <BlogSidebar />
             </div>
           </div>
         </div>

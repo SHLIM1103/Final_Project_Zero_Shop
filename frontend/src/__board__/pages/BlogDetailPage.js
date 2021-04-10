@@ -40,7 +40,7 @@ const BlogDetailPage = ({ location, match }) => {
             <BlogPostDetail boards={boards} />
 
             {/* blog post comment */}
-            <BlogComment />
+            <BlogComment boards={boards} />
           </div>
         </div>
       </div>

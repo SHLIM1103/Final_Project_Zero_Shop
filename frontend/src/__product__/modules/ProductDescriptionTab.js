@@ -1,9 +1,90 @@
-import PropTypes from "prop-types"
-import React from "react"
+import React, { useState, useEffect } from "react"
+import { useHistory } from "react-router"
+import { Link } from "react-router-dom"
 import Tab from "react-bootstrap/Tab"
 import Nav from "react-bootstrap/Nav"
+import axios from "axios"
 
 const ProductDescriptionTab = ({ spaceBottomClass }) => {
+  const history = useHistory()
+
+  const [brdTitle, setBrdTitle] = useState('')
+  const [brdContent, setBrdContent] = useState('')
+  const [brdWrtDate, setBrdWrtDate] = useState('')
+  const [brdRank, setBrdRank] = useState('')
+  const [brdImg, setBrdImg] = useState('')
+  const [brdLike, setBrdLike] = useState('')
+  const [brdNikcname, setBrdNikcname] = useState('')
+  const [board, setBoard] = useState([])
+  const [brdNo, setBrdNo] = useState('')
+  
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:8080/boards/review/all',
+      method: 'get',
+      headers: {
+        'Content-Type'  : 'application/json',
+        'Authorization' : 'JWT fefege..'
+      },
+      data: {}
+    })
+   .then((res) => {
+      console.log(`리뷰 전체조회 성공`)
+      setBoard(res.data)
+      setBrdNo(res.data)
+   })
+   .catch((error) => {
+      console.log(`리뷰 전체조회 실패`)
+      throw error;
+    })
+  },[])
+
+  const writeReview = e => {
+    e.preventDefault()
+    axios({
+      url: 'http://localhost:8080/boards/save',
+      method: 'post',
+      headers: {
+        'Content-Type'  : 'application/json',
+        'Authorization' : 'JWT fefege..'
+      },
+      data: {
+        brdTitle, brdContent, brdWrtDate, brdRank, brdImg, brdLike, brdNikcname, brdKind: 2, 
+        usrName: JSON.parse(localStorage.getItem("user")).usrName, 
+        usrNo: JSON.parse(localStorage.getItem("user")).usrNo
+      }
+    })
+    .then(res => {
+      alert('리뷰가 등록되었습니다.')
+      history.go()
+    })
+    .catch(err => {
+      alert('리뷰 작성에 실패하였습니다.')
+      throw err
+    })
+  }
+
+  const deleteReview = () => {
+    const removeBlog = window.confirm("해당 리뷰를 삭제하시겠습니까?")
+    if(removeBlog) {
+      axios({
+        url: `http://localhost:8080/boards/delete/` + localStorage.getItem("brdNo"),
+        method: 'delete',
+        data: { 
+          brdNo: localStorage.getItem("brdNo")
+        }
+      })
+      .then(res => {
+        alert('리뷰가 삭제 되었습니다')
+        history.go()
+      })
+      .catch(err => {
+        alert('리뷰 삭제 실패')
+        throw err
+      })
+    }
+  }
+
   return (
     <div className={`description-review-area ${spaceBottomClass}`}>
       <div className="container">
@@ -19,7 +100,7 @@ const ProductDescriptionTab = ({ spaceBottomClass }) => {
                 <Nav.Link eventKey="productDescription"><strong>제품 상세정보</strong></Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="productReviews">REVIEWS ()</Nav.Link>
+                <Nav.Link eventKey="productReviews">REVIEWS ({board.length})</Nav.Link>
               </Nav.Item>
             </Nav>
             <Tab.Content className="description-review-bottom">
@@ -62,122 +143,104 @@ const ProductDescriptionTab = ({ spaceBottomClass }) => {
                   </ul>
                 </div>
               </Tab.Pane>
+
               <Tab.Pane eventKey="productReviews">
                 <div className="row">
                   <div className="col-lg-7">
                     <div className="review-wrapper">
-                      <div className="single-review">
-                        <div className="review-img">
-                          <img
-                            src={
-                              process.env.PUBLIC_URL +
-                              "/assets/img/testimonial/1.jpg"
-                            }
-                            alt=""
-                          />
-                        </div>
-                        <div className="review-content">
-                          <div className="review-top-wrap">
-                            <div className="review-left">
-                              <div className="review-name">
-                                <h4>Reply Writter</h4>
-                              </div>
-                              <div className="review-rating">
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                              </div>
-                            </div>
-                            <div className="review-left">
-                              <button>Reply</button>
-                            </div>
+                      {board ? board.map (b =>
+                        <div className='single-review'>
+                          <div className='review-img'>
+                            <img src={b.brdImg} alt={b.brdImg} />
                           </div>
-                          <div className="review-bottom">
-                            <p>
-                              Vestibulum ante ipsum primis aucibus orci
-                              luctustrices posuere cubilia Curae Suspendisse
-                              viverra ed viverra. Mauris ullarper euismod
-                              vehicula. Phasellus quam nisi, congue id nulla.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="single-review child-review">
-                        <div className="review-img">
-                          <img
-                            src={
-                              process.env.PUBLIC_URL +
-                              "/assets/img/testimonial/2.jpg"
-                            }
-                            alt=""
-                          />
-                        </div>
-                        <div className="review-content">
-                          <div className="review-top-wrap">
-                            <div className="review-left">
-                              <div className="review-name">
-                                <h4>White Lewis</h4>
+                          <div className='review-content'>
+                            <div className='review-top-wrap'>
+                              <div className='review-left'>
+                                <div className='review-name'>
+                                  <h4>{b.brdTitle} </h4>
+                                </div>
+                                <div className='review-rating'>
+                                  <i className='fa fa-star' />
+                                  <i className='fa fa-star' />
+                                  <i className='fa fa-star' />
+                                  <i className='fa fa-star' />
+                                  <i className='fa fa-star' />
+                                </div>
                               </div>
-                              <div className="review-rating">
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
+                              <div className="review-left">
+                                {localStorage.getItem("token") != null ? 
+                                  <>
+                                    {JSON.parse(localStorage.getItem("user")).usrNo == b.usrNo ?
+                                      <>
+                                        <button><Link to={process.env.PUBLIC_URL + `/blog-update/${b.brdNo}`}>수정하기</Link></button>
+                                        <button onClick={deleteReview}><Link to={localStorage.setItem("brdNo", JSON.stringify(b.brdNo))}>삭제하기</Link></button>
+                                      </>
+                                    :""}
+                                  </>
+                                : ""}
                               </div>
                             </div>
-                            <div className="review-left">
-                              <button>Reply</button>
+                            <div className='review-bottom'>
+                              <p>{b.brdContent}</p>
+                                작성자: {b.usrName}
+                              <div className="review-left">
+                                작성시간: {b.brdWrtDate}
+                              </div>
                             </div>
                           </div>
-                          <div className="review-bottom">
-                            <p>
-                              Vestibulum ante ipsum primis aucibus orci
-                              luctustrices posuere cubilia Curae Suspendisse
-                              viverra ed viverra. Mauris ullarper euismod
-                              vehicula. Phasellus quam nisi, congue id nulla.
-                            </p>
-                          </div>
                         </div>
-                      </div>
+                       ) : `해당 제품에 대한 리뷰가 없습니다!`} 
                     </div>
                   </div>
-                  <div className="col-lg-5">
-                    <div className="ratting-form-wrapper pl-50">
-                      <h3>Add a Review</h3>
-                      <div className="ratting-form">
-                        <form action="#">
-                          <div className="star-box">
-                            <span>Your rating:</span>
-                            <div className="ratting-star">
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
+
+                  {localStorage.getItem("token") != null ? 
+                    <div className='col-lg-5'>
+                      <div className='ratting-form-wrapper pl-50'>
+                        <h3>Add a Review</h3>
+                        <div className='ratting-form'>
+                          <form action='#'>
+                            <div className='star-box'>
+                              {/* <span>Your rating:</span> */}
+                              {/* <div className='ratting-star'>
+                                <i className='fa fa-star' />
+                                <i className='fa fa-star' />
+                                <i className='fa fa-star' />
+                                <i className='fa fa-star' />
+                                <i className='fa fa-star' />
+                              </div> */}
                             </div>
-                          </div>
-                          <div className="row">
-                            <div className="col-md-6">
-                              <div className="rating-form-style mb-10">
-                                <input placeholder="Name" type="text" />
+                            <div className='row'>
+                              <div className='col-md-6'>
+                                <div className='rating-form-style mb-10'>
+                                <td>
+                                  <h3>
+                                    <input 
+                                      type="text"
+                                      placeholder="리뷰 제목 입력"
+                                      onChange = { e => {setBrdTitle(`${e.target.value}`)}}
+                                    />
+                                  </h3>
+                                </td>
                               </div>
                             </div>
-                            <div className="col-md-6">
-                              <div className="rating-form-style mb-10">
-                                <input placeholder="Email" type="email" />
+                            <div className='col-md-6'>
+                              <div className='rating-form-style mb-10'>
+                                작성자: {JSON.parse(localStorage.getItem("user")).usrName}
                               </div>
                             </div>
-                            <div className="col-md-12">
-                              <div className="rating-form-style form-submit">
-                                <textarea
-                                  name="Your Review"
-                                  placeholder="Message"
-                                  defaultValue={""}
+                            <div className='col-md-12'>
+                                <td>
+                                  <textarea 
+                                    rows="10" cols="100"
+                                    placeholder="리뷰 내용 입력"
+                                    onChange = { e => {setBrdContent(`${e.target.value}`)}}
+                                  />
+                                </td>
+                              <div className='rating-form-style form-submit'>
+                                <input 
+                                  type="submit" 
+                                  onClick={writeReview}
                                 />
-                                <input type="submit" defaultValue="Submit" />
                               </div>
                             </div>
                           </div>
@@ -185,7 +248,8 @@ const ProductDescriptionTab = ({ spaceBottomClass }) => {
                       </div>
                     </div>
                   </div>
-                </div>
+                : ""}
+               </div>
               </Tab.Pane>
             </Tab.Content>
           </Tab.Container>
@@ -193,10 +257,6 @@ const ProductDescriptionTab = ({ spaceBottomClass }) => {
       </div>
     </div>
   )
-}
-
-ProductDescriptionTab.propTypes = {
-  spaceBottomClass: PropTypes.string
 }
 
 export default ProductDescriptionTab

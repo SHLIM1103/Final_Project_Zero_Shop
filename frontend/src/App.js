@@ -10,7 +10,7 @@ import { CheckoutPage, MyAccountPage } from "__payment__/index"
 import { LoginRegisterPage, AdminPage, UserListPage } from "__user__/index"
 import { ProductAddPage, ProductListPage, CategoryLivingPage, CategoryKitchenPage, 
          CategoryBathroomPage, CategoryStationaryPage, ProductDetailPage, ProductEditPage, CartPage, WishlistPage } from "__product__/index"
-import { BlogWritePage, BlogListPage, BlogDetailPage, BlogUpdatePage } from "__board__/index"
+import { BlogWritePage, BlogListPage, BlogDetailPage, BlogUpdatePage, BlogCommentUpdatePage } from "__board__/index"
 
 const App = (props) => {
   useEffect(() => {
