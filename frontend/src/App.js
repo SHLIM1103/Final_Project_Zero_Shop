@@ -8,8 +8,7 @@ import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic"
 import { MainPage, NotFoundPage } from "__common__/index"
 import { CheckoutPage, MyAccountPage } from "__payment__/index"
 import { LoginRegisterPage, AdminPage, UserListPage } from "__user__/index"
-import { ProductAddPage, ProductListPage, CategoryLivingPage, CategoryKitchenPage, 
-         CategoryBathroomPage, CategoryStationaryPage, ProductDetailPage, ProductEditPage, CartPage, WishlistPage } from "__product__/index"
+import { ProductAddPage, ProductListPage, CategoryLivingPage, CategoryKitchenPage, CategoryBathroomPage, CategoryStationaryPage, ProductDetailPage, ProductEditPage, CartPage, WishlistPage, ProductSearchResultPage } from "__product__/index"
 import { BlogWritePage, BlogListPage, BlogDetailPage, BlogUpdatePage, BlogCommentUpdatePage } from "__board__/index"
 
 const App = (props) => {
@@ -97,6 +96,16 @@ const App = (props) => {
                 <Route
                   path={process.env.PUBLIC_URL + "/product-edit/:id"}
                   component={ProductEditPage}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/product/search/:id"}
+                  render={(routeProps) => (
+                    <ProductSearchResultPage {...routeProps} key={routeProps.match.params.id} />
+                  )}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/product/search/:id"}
+                  component={ProductSearchResultPage}
                 />
 
                 {/* Blog pages */}

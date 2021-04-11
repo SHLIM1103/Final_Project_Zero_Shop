@@ -19,6 +19,7 @@ export { default as ShopSearch } from "__product__/modules/ShopSearch"
 export { default as ShopSidebar } from "__product__/modules/ShopSidebar"
 export { default as ShopTopAction } from "__product__/modules/ShopTopAction"
 export { default as ShopTopbar } from "__product__/modules/ShopTopbar"
+export { default as ProductSearchResult } from "__product__/modules/ProductSearchResult"
 
 export { default as CartPage } from "__product__/pages/CartPage"
 export { default as CategoryLivingPage } from "__product__/pages/CategoryLivingPage"
@@ -30,3 +31,4 @@ export { default as ProductDetailPage } from "__product__/pages/ProductDetailPag
 export { default as ProductEditPage } from "__product__/pages/ProductEditPage"
 export { default as ProductListPage } from "__product__/pages/ProductListPage"
 export { default as WishlistPage } from "__product__/pages/WishlistPage"
+export { default as ProductSearchResultPage } from "__product__/pages/ProductSearchResultPage"

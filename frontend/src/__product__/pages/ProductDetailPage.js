@@ -7,6 +7,7 @@ import axios from "axios"
 
 const ProductDetailPage = ({ location, match }) => {
   const { pathname } = location
+  
   const [products, setProducts] = useState([])
   
   useEffect(() => {

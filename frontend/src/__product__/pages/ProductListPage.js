@@ -9,6 +9,8 @@ import { ShopSidebar, ShopTopbar, ShopProducts } from "__product__/index"
 import axios from "axios"
 
 const ProductListPage = ({ location }) => {
+  const { pathname } = location
+
   const [layout, setLayout] = useState('grid three-column')
   const [sortType, setSortType] = useState('')
   const [sortValue, setSortValue] = useState('')
@@ -33,8 +35,6 @@ const ProductListPage = ({ location }) => {
   }, [])
 
   const pageLimit = 15
-  const {pathname} = location
-
   const getLayout = (layout) => {
     setLayout(layout)
   }
@@ -73,29 +73,29 @@ const ProductListPage = ({ location }) => {
         <div className="container-fluid">
           <div className="row">
               <div className="col-lg-3 order-2 order-lg-1">
-                  {/* shop sidebar */}
-                  <ShopSidebar products={products} getSortParams={getSortParams} sideSpaceClass="mr-30"/>
+                {/* shop sidebar */}
+                <ShopSidebar products={products} getSortParams={getSortParams} sideSpaceClass="mr-30"/>
               </div>
               <div className="col-lg-9 order-1 order-lg-2">
-                  {/* shop topbar default */}
-                  <ShopTopbar getLayout={getLayout} getFilterSortParams={getFilterSortParams} productCount={products.length} sortedProductCount={currentData.length} />
+                {/* shop topbar default */}
+                <ShopTopbar getLayout={getLayout} getFilterSortParams={getFilterSortParams} productCount={products.length} sortedProductCount={currentData.length} />
 
-                  {/* shop page content default */}
-                  <ShopProducts layout={layout} products={currentData} />
+                {/* shop page content default */}
+                <ShopProducts layout={layout} products={currentData} />
 
-                  {/* shop product pagination */}
-                  <div className="pro-pagination-style text-center mt-30">
-                  <Paginator
-                      totalRecords={sortedProducts.length}
-                      pageLimit={pageLimit}
-                      pageNeighbours={2}
-                      setOffset={setOffset}
-                      currentPage={currentPage}
-                      setCurrentPage={setCurrentPage}
-                      pageContainerClass="mb-0 mt-0"
-                      pagePrevText="«"
-                      pageNextText="»"
-                  />
+                {/* shop product pagination */}
+                <div className="pro-pagination-style text-center mt-30">
+                <Paginator
+                    totalRecords={sortedProducts.length}
+                    pageLimit={pageLimit}
+                    pageNeighbours={2}
+                    setOffset={setOffset}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    pageContainerClass="mb-0 mt-0"
+                    pagePrevText="«"
+                    pageNextText="»"
+                />
               </div>
             </div>
           </div>

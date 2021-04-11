@@ -8,6 +8,8 @@ import { ShopSidebar, ShopTopbar, ShopProducts } from "__product__/index"
 import axios from "axios"
 
 const CategoryLivingPage = ({ location }) => {
+  const { pathname } = location
+
   const [layout, setLayout] = useState('grid three-column')
   const [sortType, setSortType] = useState('')
   const [sortValue, setSortValue] = useState('')
@@ -32,8 +34,7 @@ const CategoryLivingPage = ({ location }) => {
   }, [])
 
   const pageLimit = 15
-  const {pathname} = location
-
+  
   const getLayout = (layout) => {
     setLayout(layout)
   }
