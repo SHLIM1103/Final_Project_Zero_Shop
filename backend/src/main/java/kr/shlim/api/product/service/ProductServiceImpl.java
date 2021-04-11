@@ -27,6 +27,7 @@ public class ProductServiceImpl extends AbstractService<Product> implements Prod
 	@Override public long delete(Product t) { repo.delete(t); return (getOne(t.getPrdNo()) == null) ? 1 : 0; }
 	@Override public String deleteById(long id) { repo.deleteById(id); return "SUCCESS"; }
 	@Override public List<Product> findByPrdNo(long prdNo) { return repo.findByPrdNo(prdNo); }
+	@Override public List<Product> findByPrdNameContaining(String prdName) { return repo.findByPrdNameContaining(prdName); }
 	@Override public List<Product> findByCtgName(String ctgName) { return repo.findByCtgName(ctgName); }
 	@Override public List<Product> findAll() {
 		return repo.findAll().stream().sorted(Comparator.comparing(Product::getPrdNo).reversed()).collect(Collectors.toList());

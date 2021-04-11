@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 interface IProductRepository {
 	public List<Product> findByPrdNo(long prdNo);
+	public List<Product> findByPrdNameContaining(String prdName);
 	public List<Product> findByCtgName(String ctgName);
 }
 

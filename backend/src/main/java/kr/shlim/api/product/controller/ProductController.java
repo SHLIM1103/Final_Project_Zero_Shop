@@ -85,12 +85,18 @@ public class ProductController extends AbstractController<Product> {
 		return ResponseEntity.ok(service.findByPrdNo(prdNo));
 	}
 	
+	@GetMapping("/search/{prdName}")
+	public ResponseEntity<List<Product>> findByPrdNameContaining(@PathVariable String prdName) {
+		logger.info("검색한 키워드: " + prdName);
+		return ResponseEntity.ok(service.findByPrdNameContaining(prdName));
+	}
+
 	@GetMapping("/category/{ctgName}")
 	public ResponseEntity<List<Product>> findByCtgName(@PathVariable String ctgName) {
 		logger.info("조회한 카테고리: " + ctgName);
 		return ResponseEntity.ok(service.findByCtgName(ctgName));
 	}
-	
+
 	@PutMapping("/edit/{prdNo}")
 	public ResponseEntity<Long> update(@PathVariable long prdNo, @RequestBody ProductDto p) {
 		logger.info("수정한 제품명: " + p.getPrdName());

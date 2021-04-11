@@ -28,7 +28,13 @@ public class ProductRepositoryImpl extends QuerydslRepositorySupport implements 
 		return em.createQuery("select prd from product prd where prd.prd_no like :prdNo")
 				.setParameter("prdNo", prdNo).getResultList();
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> findByPrdNameContaining(String prdName) {
+		return qf.selectFrom(product).where(product.prdName.like(prdName+"%")).fetch();
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> findByCtgName(String ctgName) {
