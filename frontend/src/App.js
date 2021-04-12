@@ -6,7 +6,7 @@ import { multilanguage, loadLanguages } from "redux-multilanguage"
 import { connect } from "react-redux"
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic"
 import { MainPage, NotFoundPage } from "__common__/index"
-import { CheckoutPage, MyAccountPage } from "__payment__/index"
+import { MyAccount, Checkout, SuccessPage, MyAccountDetail } from "__payment__/index"
 import { LoginRegisterPage, AdminPage, UserListPage } from "__user__/index"
 import { ProductAddPage, ProductListPage, CategoryLivingPage, CategoryKitchenPage, CategoryBathroomPage, CategoryStationaryPage, ProductDetailPage, ProductEditPage, CartPage, WishlistPage, ProductSearchResultPage } from "__product__/index"
 import { BlogWritePage, BlogListPage, BlogDetailPage, BlogUpdatePage, BlogCommentUpdatePage } from "__board__/index"
@@ -149,7 +149,7 @@ const App = (props) => {
                 />
                 <Route
                   path={process.env.PUBLIC_URL + "/checkout"}
-                  component={CheckoutPage}
+                  component={Checkout}
                 />
                 <Route
                   path={process.env.PUBLIC_URL + "/admin"}
@@ -165,7 +165,15 @@ const App = (props) => {
                 />
                 <Route
                   path={process.env.PUBLIC_URL + "/my-account"}
-                  component={MyAccountPage}
+                  component={MyAccount}
+                />
+                <Route 
+                  path={process.env.PUBLIC_URL + "/my-account-detail/:id"} 
+                  component={MyAccountDetail}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/pay-success"}
+                  component={SuccessPage}
                 />
                 <Route
                   path={process.env.PUBLIC_URL + "/not-found"}

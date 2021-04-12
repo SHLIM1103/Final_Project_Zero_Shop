@@ -17,18 +17,18 @@ const BlogCommentUpdate = ({replies}) => {
 const rplUpdate = e => {
   e.preventDefault()
   axios({
-    url: `http://localhost:8080/reply/update/` + replies.rplNo,
+    url: `http://localhost:8080/replies/update/` + replies.rplNo,
     method: 'put',
     headers: {'Content-Type': 'application/json','Authorization': 'JWT fefege..'},
-  data: update
-  })
-  .then(resp => {
-    alert('댓글 수정 성공')
-    history.goBack()
-  })
-  .catch(err => {
-    alert('댓글 수정 실패')
-  })
+    data: update
+    })
+    .then(resp => {
+      alert('댓글 수정 성공')
+      history.goBack()
+    })
+    .catch(err => {
+      alert('댓글 수정 실패')
+    })
   }
 
   return (<>
@@ -42,7 +42,7 @@ const rplUpdate = e => {
           />
                 </div>
               </div>
-              <a href="#"  onClick={rplUpdate} >수정완료</a> 
+              <a href="#" onClick={rplUpdate} >수정완료</a> 
         </div>
         </div>
 </> : '존재하지 않는 페이지 입니다.'}

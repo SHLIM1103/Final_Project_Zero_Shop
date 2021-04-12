@@ -1,3 +1,9 @@
 package kr.shlim.api.payment.service;
 
-public interface PaymentService { }
+import kr.shlim.api.payment.domain.Payment;
+
+public interface PaymentService {
+    long save(Payment t);
+    String edit(Payment t);
+    String delete(long id);
+}

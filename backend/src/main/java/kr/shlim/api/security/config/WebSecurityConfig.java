@@ -69,15 +69,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/boards/board-number/{brd}").permitAll()//
                 .antMatchers("/boards/search").permitAll()//
                 .antMatchers("/boards/update/{brdNo}").permitAll()//
-                .antMatchers("/reply/save").permitAll()//
-                .antMatchers("/reply/delete/{rplNo}").permitAll()//
-                .antMatchers("/reply/count").permitAll()//
-                .antMatchers("/reply/all").permitAll()//
-                .antMatchers("/reply/one/{id}").permitAll()//
-                .antMatchers("/reply/find/{id}").permitAll()//
-                .antMatchers("/reply/select/{id}").permitAll()//
-                .antMatchers("/reply/exists/{id}").permitAll()//
-                .antMatchers("/reply/update/{rplNo}").permitAll()//
+                .antMatchers("/replies/save").permitAll()//
+                .antMatchers("/replies/delete/{rplNo}").permitAll()//
+                .antMatchers("/replies/count").permitAll()//
+                .antMatchers("/replies/all").permitAll()//
+                .antMatchers("/replies/one/{id}").permitAll()//
+                .antMatchers("/replies/find/{id}").permitAll()//
+                .antMatchers("/replies/select/{id}").permitAll()//
+                .antMatchers("/replies/exists/{id}").permitAll()//
+                .antMatchers("/replies/update/{rplNo}").permitAll()//
                 .antMatchers("/products/save").permitAll()//
                 .antMatchers("/products/delete").permitAll()//
                 .antMatchers("/products/delete/{prdNo}").permitAll()//
@@ -97,13 +97,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/payments/one/{id}").permitAll()//
                 .antMatchers("/payments/find/{id}").permitAll()//
                 .antMatchers("/payments/exists/{id}").permitAll()//
-                .antMatchers("/receivers/save").permitAll()//
-                .antMatchers("/receivers/delete").permitAll()//
-                .antMatchers("/receivers/count").permitAll()//
-                .antMatchers("/receivers/all").permitAll()//
-                .antMatchers("/receivers/one/{id}").permitAll()//
-                .antMatchers("/receivers/find/{id}").permitAll()//
-                .antMatchers("/receivers/exists/{id}").permitAll()//
                 .antMatchers("/h2-console/**/**").permitAll()
                 // Disallow everything else..
                 .anyRequest().authenticated();

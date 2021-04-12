@@ -19,7 +19,7 @@ const ShopTopAction = ({
             <option value="priceLowToHigh">낮은 가격순</option>
           </select>
         </div>
-        {localStorage.getItem('token') !== null && JSON.stringify(localStorage.getItem('user').username) === "Admin" ?
+        {localStorage.getItem('token') !== null ?
           <button>
             <Link to={"/product-add"}>제품추가</Link>
           </button>

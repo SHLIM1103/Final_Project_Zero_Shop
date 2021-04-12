@@ -26,7 +26,7 @@ public class UserVo {
 	@Column(name = "usr_addr") private String usrAddr;
 	@ElementCollection(fetch = FetchType.EAGER) List<Role> roles;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "userVo")
 	private List<Payment> payments = new ArrayList<>();
 
 	@Builder

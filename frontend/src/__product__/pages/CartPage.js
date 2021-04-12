@@ -193,28 +193,6 @@ const CartPage = ({
                 </div>
 
                 <div className="col-lg-4 col-md-12">
-                  <div className="grand-totall">
-                    <div className="title-wrap">
-                      <h4 className="cart-bottom-title section-bg-gary-cart">
-                        tmp
-                      </h4>
-                    </div>
-                    <h5>
-                        tmp {" "}
-                        <span>
-                          tmp {" "}
-                        </span>
-                    </h5> 
-                    <h4 className="grand-totall-title">
-                      tmp
-                      <span>
-                        tmp
-                      </span>
-                    </h4>
-                    <Link to={process.env.PUBLIC_URL + "/checkout"}>
-                      button
-                    </Link>
-                  </div>
                 </div>
 
                 <div className="col-lg-4 col-md-12">

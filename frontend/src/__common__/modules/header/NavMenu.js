@@ -78,7 +78,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
           </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/not-found"}>
-              {"NOT FOUND"}
+              {"Contact"}
             </Link>
           </li>
         </ul>

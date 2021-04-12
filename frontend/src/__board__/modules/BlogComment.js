@@ -21,7 +21,6 @@ const BlogComment = ({ boards }) => {
       data: {boardNo: boards.brdNo ,rplContent,usrName: JSON.parse(localStorage.getItem("user")).usrName, usrNo: JSON.parse(localStorage.getItem("user")).usrNo}
     })
   .then(res => {
-    alert('댓글 작성 성공')
     history.go()
   })
   .catch(err => {
@@ -31,7 +30,7 @@ const BlogComment = ({ boards }) => {
   }
   useEffect(()=>{
     axios({
-    url: 'http://localhost:8080/reply/all',
+    url: 'http://localhost:8080/replies/all',
     method: 'get',
     headers: {
       'Content-Type'  : 'application/json',
@@ -41,10 +40,10 @@ const BlogComment = ({ boards }) => {
   })
    .then((res) => {
     setReplies(res.data)
-    alert(`댓글 조회 성공`)
+    console.log(`댓글 조회 성공`)
    })
    .catch((error) => {
-     alert('댓글 조회 실패')
+     console.log('댓글 조회 실패')
      throw error
    })
    
@@ -53,7 +52,6 @@ const BlogComment = ({ boards }) => {
  const remove1 = () => {
   const removeBlog = window.confirm("해당 댓글을 삭제하시겠습니까?")
   if(removeBlog){
-    alert(localStorage.getItem("rpl"))
     axios({
       url: `http://localhost:8080/replies/delete/`+localStorage.getItem("rpl"),
       method: 'delete',
@@ -73,7 +71,7 @@ const BlogComment = ({ boards }) => {
   return (
     <>
       <div className="blog-comment-wrapper mt-55">
-        <h4 className="blog-dec-title">comments : 02</h4>
+        <h4 className="blog-dec-title">🌱 총 {replies.length}개의 댓글 💬</h4>
         {replies ? replies.map (r=>
         <div className="single-comment-wrapper mt-35">
           
@@ -81,10 +79,13 @@ const BlogComment = ({ boards }) => {
             <h4>{r.usrName}</h4> 
             <div>
             {localStorage.getItem("token")!=null ? <>
-                            {JSON.parse(localStorage.getItem("user")).usrNo==r.usrNo ?<>
-                            <button><Link to={process.env.PUBLIC_URL + `/comment-update/${r.rplNo}`}>수정하기</Link></button>
-                            <button  onClick={remove1} ><Link to={localStorage.setItem("rpl",r.rplNo)}>삭제하기</Link></button></>:''}</> : ''}
-                            </div>
+              {JSON.parse(localStorage.getItem("user")).usrNo==r.usrNo ?
+              <>
+                <button><Link to={process.env.PUBLIC_URL + `/comment-update/${r.rplNo}`}>수정</Link></button>
+                <button  onClick={remove1} ><Link to={localStorage.setItem("rpl",r.rplNo)}>삭제</Link></button></>:''}
+              </>
+            : ''}
+            </div>
             <span>October 14, 2018 </span>
             <p>
             {r.rplContent}

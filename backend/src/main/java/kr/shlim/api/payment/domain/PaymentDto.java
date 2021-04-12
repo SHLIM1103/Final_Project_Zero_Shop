@@ -7,6 +7,12 @@ import lombok.Data;
 
 @Component @Data @Lazy
 public class PaymentDto {
-	private long payNo, payAmount;
-	private String payPrice, dvrFee, payDate, payState;
+	 private long payNo;
+	 private String payPrice;
+	 private String payInfo;
+	 private String payDate;
+	 private String payState;
+	 private String rcvName;
+	 private String rcvPhone;
+	 private String rcvAddr;
 }
