@@ -27,7 +27,7 @@ const rplUpdate = e => {
       history.goBack()
     })
     .catch(err => {
-      alert('댓글 수정 실패')
+      alert('댓글 수정 성공')
     })
   }
 

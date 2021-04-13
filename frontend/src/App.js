@@ -133,6 +133,16 @@ const App = (props) => {
                   path={process.env.PUBLIC_URL + "/blog-update/:id"}
                   component={BlogUpdatePage}
                 />
+                    <Route
+                  path={process.env.PUBLIC_URL +"/comment-update/:id"}
+                  render={(routeProps) => (
+                    <BlogCommentUpdatePage {...routeProps} key={routeProps.match.params.id} />
+                  )}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/comment-update/:id"}
+                  component={BlogCommentUpdatePage}
+                />
                 <Route
                   path={process.env.PUBLIC_URL + "/blog-write"}
                   component={BlogWritePage}

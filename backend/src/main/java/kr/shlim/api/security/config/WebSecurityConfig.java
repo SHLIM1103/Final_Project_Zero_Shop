@@ -69,6 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/boards/board-number/{brd}").permitAll()//
                 .antMatchers("/boards/search").permitAll()//
                 .antMatchers("/boards/update/{brdNo}").permitAll()//
+                .antMatchers("/boards/review/all").permitAll()//
                 .antMatchers("/replies/save").permitAll()//
                 .antMatchers("/replies/delete/{rplNo}").permitAll()//
                 .antMatchers("/replies/count").permitAll()//
@@ -97,6 +98,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/payments/one/{id}").permitAll()//
                 .antMatchers("/payments/find/{id}").permitAll()//
                 .antMatchers("/payments/exists/{id}").permitAll()//
+                .antMatchers("/payments/edit/{id}").permitAll()//
+                .antMatchers("/payments/{id}").permitAll()//
                 .antMatchers("/h2-console/**/**").permitAll()
                 // Disallow everything else..
                 .anyRequest().authenticated();

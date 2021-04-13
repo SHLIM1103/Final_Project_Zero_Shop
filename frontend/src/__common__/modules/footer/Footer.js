@@ -49,10 +49,7 @@ const FooterOne = ({
             }`}
           >
             {/* footer copyright */}
-            <FooterCopyright
-              footerLogo="/assets/img/logo/logo.png"
-              spaceBottomClass="mb-30"
-            />
+            <FooterCopyright />
           </div>
           <div
             className={`${
@@ -93,16 +90,16 @@ const FooterOne = ({
               <div className="footer-list-01">
                 <ul>
                   <li>
-                    aaa@gmail.com
+                    junwoojung@gmail.com
                   </li>
                   <li>
-                    aaa@gmail.com
+                    hannachae@naver.com
                   </li>
                   <li>
-                    aaa@gmail.com
+                    gusl5525@gmail.com
                   </li>
                   <li>
-                    aaa@gamil.com
+                    doyun@gamil.com
                   </li>
                 </ul>
               </div>
@@ -123,16 +120,16 @@ const FooterOne = ({
               <div className="footer-list-02">
                 <ul>
                   <li>
-                    http://github.com/Junwoo ...
+                  <a href="//github.com/jjwjun2">https://github.com/jjwjun2</a>
                   </li>
                   <li>
-                    http://github.com/Hanna ...
+                  <a href="//github.com/HannaChae">https://github.com/HannaChae</a>
                   </li>
                   <li>
-                    <a href="//github.com/SHLIM1103">https://github.com/sohyun ...</a>
+                    <a href="//github.com/SHLIM1103">https://github.com/SHLIM1103</a>
                   </li>
                   <li>
-                    http://github.com/Doyun ...
+                  <a href="//github.com/leedoyun98">https://github.com/leedoyun98</a>
                   </li>
                 </ul>
               </div>

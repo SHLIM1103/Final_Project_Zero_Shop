@@ -110,10 +110,10 @@ const ProductDescriptionInfo = ({
               disabled={productCartQty >= product.prdInv}
             >
               {" "}
-              장바구니 추가{" "}
+              Add To Cart{" "}
             </button>
           ) : (
-            <button disabled>품절</button>
+            <button disabled>Out of Stock</button>
           )}
         </div>
         {localStorage.getItem('token') !== null ? 

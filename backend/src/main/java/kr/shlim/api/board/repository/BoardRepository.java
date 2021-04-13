@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 interface IBoardRepository {
 	List<Board> boardAll();
-	public List<Board> reviewAll();
+	List<Board> reviewAll();
 	Board findByBrd(Board brdNo);
 	List<Board> search(String brdTitle);
 }
