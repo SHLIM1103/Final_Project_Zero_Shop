@@ -11,13 +11,11 @@ const BlogDetailPage = ({ location, match }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/boards/board-number/" + match.params.id)
+      .get(`http://localhost:8080/boards/board-number/${match.params.id}`)
       .then(res => {
-        console.log(`게시글 상세조회 성공: ` + match.params.id)
         setBoards(res.data)
       })
       .catch(err => {
-        console.log(`게시글 상세조회 실패: ` + err)
         throw err
       })
   }, [])

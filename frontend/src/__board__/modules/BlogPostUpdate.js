@@ -18,7 +18,7 @@ const BlogPostUpdate = ({ boards }) => {
   const blogUpdate = e => {
     e.preventDefault()
     axios({
-      url: "http://localhost:8080/boards/update/" + boards.brdNo,
+      url: `http://localhost:8080/boards/update/${boards.brdNo}`,
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -36,11 +36,9 @@ const BlogPostUpdate = ({ boards }) => {
       }
     })
       .then(res => {
-        console.log(boards.brdNo + `번 게시글 수정 성공`)
         history.goBack()
       })
       .catch(err => {
-        console.log(boards.brdNo + `번 게시글 수정 실패: ` + err)
         throw err
       })
   }
@@ -80,7 +78,7 @@ const BlogPostUpdate = ({ boards }) => {
           </div>
         </>
       ) : (
-        `잘못된 접근입니다.`
+        "잘못된 접근입니다."
       )}
     </>
   )

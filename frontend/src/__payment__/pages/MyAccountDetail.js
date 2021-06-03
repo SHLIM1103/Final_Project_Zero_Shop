@@ -55,7 +55,7 @@ const MyAccountDetail = ({ location, match }) => {
         if (data.userSelectedType === "R") {
           setAddr(data.roadAddress)
           if (data.buildingName !== "") {
-            setExtraAddr(" (" + data.buildingName + ")")
+            setExtraAddr(`( ${data.buildingName} )`)
           }
         } else {
           setExtraAddr(data.jibunAddress)
@@ -68,7 +68,10 @@ const MyAccountDetail = ({ location, match }) => {
     axios({
       url: `http://localhost:8080/payments/edit/${match.params.id}`,
       method: "put",
-      headers: { "Content-Type": "application/json", Authorization: "JWT fefege..." },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "JWT fefege..."
+      },
       data: {
         payNo: `${match.params.id}`,
         payState: payment.payState,

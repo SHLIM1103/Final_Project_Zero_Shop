@@ -7,13 +7,11 @@ const ProductImageGallerySticky = ({ product }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/products/product-number/" + product.prdNo)
+      .get(`http://localhost:8080/products/product-number/${product.prdNo}`)
       .then(res => {
         setProducts(res.data)
-        console.log(product.prdNo + `번 제품 정보 불러오기 성공`)
       })
       .catch(err => {
-        console.log(`제품 정보 불러오기 실패: ` + err)
         throw err
       })
   }, [])

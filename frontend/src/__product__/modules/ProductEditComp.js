@@ -22,7 +22,7 @@ const ProductEditComp = () => {
   const edit = e => {
     e.preventDefault()
     axios({
-      url: `http://localhost:8080/products/edit/` + localStorage.getItem("prdNo"),
+      url: `http://localhost:8080/products/edit/${localStorage.getItem("prdNo")}`,
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -38,11 +38,10 @@ const ProductEditComp = () => {
       }
     })
       .then(res => {
-        console.log(localStorage.getItem("prdNo") + `번 제품 정보 수정 성공`)
-        history.push(`/product-detail/` + localStorage.getItem("prdNo"))
+        history.push(`/product-detail/${localStorage.getItem("prdNo")}`)
       })
       .catch(err => {
-        console.log(`제품 정보 수정 실패: ` + err)
+        alert(`제품 정보 수정에 실패하였습니다. 다시 시도해주세요. (${err})`)
         throw err
       })
   }

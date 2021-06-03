@@ -21,7 +21,7 @@ const ProductGridListSingle = ({
       <div className={`col-xl-4 col-sm-6 ${sliderClassName ? sliderClassName : ""}`}>
         <div className={`product-wrap ${spaceBottomClass ? spaceBottomClass : ""}`}>
           <div className="product-img">
-            <Link to={process.env.PUBLIC_URL + "/product-detail/" + product.prdNo}>
+            <Link to={process.env.PUBLIC_URL + `/product-detail/${product.prdNo}`}>
               <img
                 className="default-img"
                 src={process.env.PUBLIC_URL + product.prdImg}
@@ -67,7 +67,7 @@ const ProductGridListSingle = ({
           <div className="product-content text-center">
             <h3>
               <Link
-                to={process.env.PUBLIC_URL + "/product-detail/" + product.prdNo}
+                to={process.env.PUBLIC_URL + `/product-detail/${product.prdNo}`}
                 onClick={localStorage.setItem("prdNo", product.prdNo)}
               >
                 {product.prdName}
@@ -86,7 +86,7 @@ const ProductGridListSingle = ({
             <div className="col-xl-4 col-md-5 col-sm-6">
               <div className="product-list-image-wrap">
                 <div className="product-img">
-                  <Link to={process.env.PUBLIC_URL + "/product-detail/" + product.prdNo}>
+                  <Link to={process.env.PUBLIC_URL + `/product-detail/${product.prdNo}`}>
                     <img
                       className="default-img img-fluid"
                       src={process.env.PUBLIC_URL + product.prdImg}
@@ -101,7 +101,7 @@ const ProductGridListSingle = ({
               <div className="shop-list-content">
                 <h3>
                   <Link
-                    to={process.env.PUBLIC_URL + "/product-detail/" + product.prdNo}
+                    to={process.env.PUBLIC_URL + `/product-detail/${product.prdNo}`}
                     onClick={localStorage.setItem("prdNo", product.prdNo)}
                   >
                     {product.prdName}

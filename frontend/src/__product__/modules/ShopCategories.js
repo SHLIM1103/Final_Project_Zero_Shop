@@ -11,7 +11,7 @@ const ShopCategories = () => {
         <ul>
           <a
             onClick={() => {
-              history.push(`/product/all`)
+              history.push("/product/all")
             }}
           >
             상품 전체보기
@@ -20,7 +20,7 @@ const ShopCategories = () => {
         <ul>
           <a
             onClick={() => {
-              history.push(`/product/category-living`)
+              history.push("/product/category-living")
             }}
           >
             생활용품
@@ -29,7 +29,7 @@ const ShopCategories = () => {
         <ul>
           <a
             onClick={() => {
-              history.push(`/product/category-kitchen`)
+              history.push("/product/category-kitchen")
             }}
           >
             주방용품
@@ -38,7 +38,7 @@ const ShopCategories = () => {
         <ul>
           <a
             onClick={() => {
-              history.push(`/product/category-bathroom`)
+              history.push("/product/category-bathroom")
             }}
           >
             욕실용품
@@ -47,7 +47,7 @@ const ShopCategories = () => {
         <ul>
           <a
             onClick={() => {
-              history.push(`/product/category-stationary`)
+              history.push("/product/category-stationary")
             }}
           >
             문구용품

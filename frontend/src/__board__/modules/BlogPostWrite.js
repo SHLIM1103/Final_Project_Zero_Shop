@@ -32,11 +32,9 @@ const BlogPostWrite = () => {
       data: boardAdd
     })
       .then(res => {
-        console.log(`게시글 작성 성공`)
         history.push("/blog-all")
       })
       .catch(err => {
-        console.log(`게시글 작성 실패: ` + err)
         throw err
       })
   }
@@ -97,7 +95,7 @@ const BlogPostWrite = () => {
           </button>
         </>
       ) : (
-        `잘못된 접근입니다.`
+        "잘못된 접근입니다."
       )}
     </>
   )

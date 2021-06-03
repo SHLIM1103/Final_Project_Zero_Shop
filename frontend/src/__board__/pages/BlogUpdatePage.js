@@ -11,13 +11,11 @@ const BlogUpdatePage = ({ location, match }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/boards/board-number/" + match.params.id)
+      .get(`http://localhost:8080/boards/board-number/${match.params.id}`)
       .then(res => {
-        console.log(match.params.id + `번 게시글 불러오기 성공`)
         setBoards(res.data)
       })
       .catch(err => {
-        console.log(match.params.id + `번 게시글 불러오기 실패: ` + err)
         throw err
       })
   }, [])

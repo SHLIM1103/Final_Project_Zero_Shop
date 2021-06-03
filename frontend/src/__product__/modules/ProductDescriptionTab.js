@@ -104,7 +104,7 @@ const ProductDescriptionTab = ({ spaceBottomClass, product }) => {
     const removeBlog = window.confirm("해당 리뷰를 삭제하시겠습니까?")
     if (removeBlog) {
       axios({
-        url: `http://localhost:8080/boards/delete/` + localStorage.getItem("brdNo"),
+        url: `http://localhost:8080/boards/delete/${localStorage.getItem("brdNo")}`,
         method: "delete",
         data: { brdNo: localStorage.getItem("brdNo") }
       })

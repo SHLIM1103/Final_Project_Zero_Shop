@@ -10,7 +10,7 @@ const BlogCommentUpdatePage = ({ location, match }) => {
   const [replies, setReplies] = useState([])
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/replies/select/` + match.params.id)
+      .get(`http://localhost:8080/replies/select/${match.params.id}`)
       .then(({ data }) => {
         setReplies(data)
       })

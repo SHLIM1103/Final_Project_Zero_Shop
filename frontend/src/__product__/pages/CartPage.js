@@ -68,7 +68,7 @@ const CartPage = ({
                                 <td className="product-thumbnail">
                                   <Link
                                     to={
-                                      process.env.PUBLIC_URL + "/product-detail/" + cartItem.prdNo
+                                      process.env.PUBLIC_URL + `/product-detail/${cartItem.prdNo}`
                                     }
                                   >
                                     <img
@@ -82,7 +82,7 @@ const CartPage = ({
                                 <td className="product-name">
                                   <Link
                                     to={
-                                      process.env.PUBLIC_URL + "/product-detail/" + cartItem.prdNo
+                                      process.env.PUBLIC_URL + `/product-detail/${cartItem.prdNo}`
                                     }
                                   >
                                     {cartItem.prdName}

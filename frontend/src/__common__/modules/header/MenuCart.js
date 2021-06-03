@@ -18,7 +18,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
               return (
                 <li className="single-shopping-cart" key={key}>
                   <div className="shopping-cart-img">
-                    <Link to={process.env.PUBLIC_URL + "/product-detail/" + single.prdNo}>
+                    <Link to={process.env.PUBLIC_URL + `/product-detail/${single.prdNo}`}>
                       <img
                         alt=""
                         src={process.env.PUBLIC_URL + single.prdImg}
@@ -28,7 +28,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                   </div>
                   <div className="shopping-cart-title">
                     <h4>
-                      <Link to={process.env.PUBLIC_URL + "/product-detail/" + single.prdNo}>
+                      <Link to={process.env.PUBLIC_URL + `/product-detail/${single.prdNo}`}>
                         {" "}
                         {single.prdName}{" "}
                       </Link>

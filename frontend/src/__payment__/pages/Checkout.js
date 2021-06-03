@@ -36,7 +36,7 @@ const Checkout = ({ location, cartItems, currency }) => {
         if (data.userSelectedType === "R") {
           setAddr(data.roadAddress)
           if (data.buildingName !== "") {
-            setExtraAddr(" (" + data.buildingName + ")")
+            setExtraAddr(` ( + ${data.buildingName} + )`)
           }
         } else {
           setExtraAddr(data.jibunAddress)
@@ -91,7 +91,6 @@ const Checkout = ({ location, cartItems, currency }) => {
     })
       .then(res => {})
       .catch(err => {
-        console.log(`실패: ` + err)
         throw err
       })
   }
@@ -102,7 +101,7 @@ const Checkout = ({ location, cartItems, currency }) => {
     if (success) {
       history.push("/pay-success")
     } else {
-      alert(`결제 실패: ${error_msg}`)
+      alert(`결제에 실패하였습니다. 다시 시도해주세요. (${error_msg})`)
     }
   }
 
@@ -243,11 +242,11 @@ const Checkout = ({ location, cartItems, currency }) => {
                                   return (
                                     <li key={key}>
                                       <span className="order-middle-left">
-                                        {cartItem.prdName + ` X ` + cartItem.quantity}
+                                        {`${cartItem.prdName} X ${cartItem.quantity}`}
                                         <input
                                           type="hidden"
                                           name="payInfo"
-                                          value={cartItem.prdName + ` X ` + cartItem.quantity}
+                                          value={`${cartItem.prdName} X ${cartItem.quantity}`}
                                           readOnly
                                           onChange={e => {
                                             setPayInfo(`${e.target.value}`)

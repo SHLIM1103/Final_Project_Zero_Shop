@@ -10,7 +10,7 @@ const IconGroup = ({ currency, cartData, wishlistData, deleteFromCart, iconWhite
     e.currentTarget.nextSibling.classList.toggle("active")
   }
   const logout = () => {
-    alert(`정상적으로 로그아웃 되었습니다.`)
+    alert("정상적으로 로그아웃 되었습니다.")
     localStorage.removeItem("user")
     localStorage.removeItem("token")
     history.go()
@@ -36,7 +36,7 @@ const IconGroup = ({ currency, cartData, wishlistData, deleteFromCart, iconWhite
           <button className="account-setting-active" onClick={e => handleClick(e)}>
             <i className="pe-7s-user-female" />
           </button>
-          {localStorage.getItem(`token`) === null ? (
+          {localStorage.getItem("token") === null ? (
             <div className="account-dropdown">
               <ul>
                 <li>

@@ -9,11 +9,9 @@ const BlogPostList = () => {
     axios
       .get("http://localhost:8080/boards/all")
       .then(res => {
-        console.log(`게시글 전체 조회 성공`)
         setBoard(res.data)
       })
       .catch(err => {
-        console.log(`게시글 전체 조회 실패` + err)
         throw err
       })
   }, [])
@@ -25,7 +23,7 @@ const BlogPostList = () => {
             <div className="col-lg-4 col-md-6 col-sm-12">
               <div className="blog-wrap-2 mb-30">
                 <div className="blog-img-2">
-                  <Link to={process.env.PUBLIC_URL + "/blog-detail/" + b.brdNo}>
+                  <Link to={process.env.PUBLIC_URL + `/blog-detail/${b.brdNo}`}>
                     <img src={b.brdImg} alt={b.brdTitle} />
                   </Link>
                 </div>
@@ -41,7 +39,7 @@ const BlogPostList = () => {
                     </ul>
                   </div>
                   <h4>
-                    <Link to={process.env.PUBLIC_URL + `/blog-detail/${b.brdNo}`} key={b.brdNo}>
+                    <Link to={process.env.PUBLIC_URL + `/blog-detail/${b.brdNo}`}>
                       {b.brdTitle}
                     </Link>
                   </h4>
@@ -75,7 +73,7 @@ const BlogPostList = () => {
               </div>
             </div>
           ))
-        : `조회할 게시글이 없습니다`}
+        : "조회할 게시글이 없습니다"}
     </>
   )
 }

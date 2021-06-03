@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
 
-const BlogSearch = ({ history }) => {
+const BlogSearch = () => {
   const [boards, setBoards] = useState([])
   const [search, setSearch] = useState({
     brdTitle: localStorage.getItem("brdTitle")
@@ -14,7 +14,7 @@ const BlogSearch = ({ history }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/boards/search/` + localStorage.getItem("brdTitle"))
+      .get(`http://localhost:8080/boards/search/${localStorage.getItem("brdTitle")}`)
       .then(({ data }) => {
         setBoards(data)
       })

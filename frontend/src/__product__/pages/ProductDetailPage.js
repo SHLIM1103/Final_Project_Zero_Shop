@@ -14,11 +14,9 @@ const ProductDetailPage = ({ location, match }) => {
     axios
       .get(`http://localhost:8080/products/product-number/${match.params.id}`)
       .then(res => {
-        console.log(match.params.id + `번 제품 상세보기 성공`)
         setProducts(res.data)
       })
       .catch(err => {
-        console.log(`제품 상세보기 실패: ` + err)
         throw err
       })
   }, [])

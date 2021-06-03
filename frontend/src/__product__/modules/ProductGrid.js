@@ -22,11 +22,9 @@ const ProductGrid = ({
     axios
       .get(`http://localhost:8080/products/category/${product.ctgName}`)
       .then(res => {
-        console.log(product.ctgName + ` 카테고리 조회 성공`)
         setProducts(res.data)
       })
       .catch(err => {
-        console.log(`제품 카테고리 조회 실패` + err)
         throw err
       })
   }, [])

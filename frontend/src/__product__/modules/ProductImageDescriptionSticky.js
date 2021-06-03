@@ -10,10 +10,8 @@ const ProductImageDescriptionSticky = ({ product }) => {
       .get(`http://localhost:8080/products/product-number/${product.prdNo}`)
       .then(res => {
         setProducts(res.data)
-        console.log(product.prdNo + `번 제품 이미지 조회 성공`)
       })
       .catch(err => {
-        console.log(`제품 이미지 조회 실패` + err)
         throw err
       })
   }, [])

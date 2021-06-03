@@ -8,10 +8,10 @@ const BlogPostDetail = ({ boards }) => {
 
   const remove = e => {
     e.preventDefault()
-    const removeConfirm = window.confirm(`해당 게시글을 삭제하시겠습니까?`)
+    const removeConfirm = window.confirm("해당 게시글을 삭제하시겠습니까?")
     if (removeConfirm) {
       axios({
-        url: "http://localhost:8080/boards/delete/" + boards.brdNo,
+        url: `http://localhost:8080/boards/delete/${boards.brdNo}`,
         method: "delete",
         headers: {
           "Content-Type": "application/json",
@@ -20,11 +20,11 @@ const BlogPostDetail = ({ boards }) => {
         data: {}
       })
         .then(res => {
-          console.log(boards.brdNo + `번 게시글 삭제 성공`)
-          history.push(`/blog-all`)
+          alert("게시글을 삭제하였습니다.")
+          history.push("/blog-all")
         })
         .catch(err => {
-          console.log(`게시글 삭제 실패: ` + err)
+          alert(`게시글 삭제에 실패하였습니다. 다시 시도해주세요 (${err})`)
           throw err
         })
     }
@@ -59,7 +59,7 @@ const BlogPostDetail = ({ boards }) => {
           JSON.stringify(JSON.parse(localStorage.getItem("user")).usrNo) == boards.usrNo ? (
             <>
               <a href="#">
-                <Link to={process.env.PUBLIC_URL + "/blog-update/" + boards.brdNo}>
+                <Link to={process.env.PUBLIC_URL + `/blog-update/${boards.brdNo}`}>
                   글 수정하기
                 </Link>
               </a>

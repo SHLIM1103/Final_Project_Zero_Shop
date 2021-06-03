@@ -28,12 +28,11 @@ const RegisterComp = () => {
       data: userRegister
     })
       .then(res => {
-        alert(usrName + `님 가입을 환영합니다! 로그인해주세요.`)
-        console.log(`유저 가입 성공: ` + username)
+        alert(`${usrName} 님 회원가입을 환영합니다! 로그인해주세요.`)
         history.go()
       })
       .catch(err => {
-        console.log(`유저 가입 실패: ` + err)
+        alert(`회원가입에 실패하였습니다. 다시 시도해주세요. (${err})`)
         throw err
       })
   }

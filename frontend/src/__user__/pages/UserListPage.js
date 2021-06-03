@@ -23,7 +23,6 @@ const UserListView = () => {
         setUsers(res.data)
       })
       .catch(err => {
-        alert(`Error`)
         throw err
       })
   }, [])

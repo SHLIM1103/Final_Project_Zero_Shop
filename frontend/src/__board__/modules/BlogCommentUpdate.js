@@ -16,7 +16,7 @@ const BlogCommentUpdate = ({ replies }) => {
   const rplUpdate = e => {
     e.preventDefault()
     axios({
-      url: `http://localhost:8080/replies/update/` + replies.rplNo,
+      url: `http://localhost:8080/replies/update/${replies.rplNo}`,
       method: "put",
       headers: { "Content-Type": "application/json", Authorization: "JWT fefege.." },
       data: update

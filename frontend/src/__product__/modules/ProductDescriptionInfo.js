@@ -27,10 +27,10 @@ const ProductDescriptionInfo = ({
 
   const remove = e => {
     e.preventDefault()
-    const removeConfirm = window.confirm(`해당 제품을 삭제하시겠습니까?`)
+    const removeConfirm = window.confirm("해당 제품을 삭제하시겠습니까?")
     if (removeConfirm) {
       axios({
-        url: "http://localhost:8080/products/delete/" + product.prdNo,
+        url: `http://localhost:8080/products/delete/${product.prdNo}`,
         method: "delete",
         headers: {
           "Content-Type": "application/json",
@@ -39,11 +39,11 @@ const ProductDescriptionInfo = ({
         data: {}
       })
         .then(res => {
-          console.log(product.prdNo + `번 제품 삭제 성공`)
-          history.push(`/product/all`)
+          alert(`${product.prdName} 제품 삭제 성공`)
+          history.push("/product/all")
         })
         .catch(err => {
-          console.log(product.prdNo + `번 제품 삭제 실패: ` + err)
+          alert(`${product.prdName} 제품 삭제 실패(${err})`)
           throw err
         })
     }
@@ -144,7 +144,7 @@ const ProductDescriptionInfo = ({
           <span>Category :</span>
           <ul>
             <li>
-              <Link to={process.env.PUBLIC_URL + "/product/category-" + product.ctgName}>
+              <Link to={process.env.PUBLIC_URL + `/product/category-${product.ctgName}`}>
                 {product.ctgName}
               </Link>
             </li>

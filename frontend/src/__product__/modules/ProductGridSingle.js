@@ -25,7 +25,7 @@ const ProductGridSingle = ({
       >
         <div className={`product-wrap ${spaceBottomClass ? spaceBottomClass : ""}`}>
           <div className="product-img">
-            <Link to={process.env.PUBLIC_URL + "/product-detail/" + product.prdNo}>
+            <Link to={process.env.PUBLIC_URL`/product-detail/${product.prdNo}`}>
               <img className="default-img" src={process.env.PUBLIC_URL + product.prdImg} alt="" />
             </Link>
 
@@ -67,7 +67,7 @@ const ProductGridSingle = ({
           </div>
           <div className="product-content text-center">
             <h3>
-              <Link to={process.env.PUBLIC_URL + "/product-detail/" + product.prdNo}>
+              <Link to={process.env.PUBLIC_URL + `/product-detail/${product.prdNo}`}>
                 {product.prdName}
               </Link>
             </h3>

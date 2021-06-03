@@ -30,14 +30,14 @@ const Login = () => {
         if (res.data.token) {
           localStorage.setItem("user", JSON.stringify(res.data.user))
           localStorage.setItem("token", res.data.token.accessToken)
-          alert(`로그인 성공! 환영합니다!`)
-          history.push(`/`)
+          alert("로그인 성공! 환영합니다!")
+          history.push("/")
         } else {
-          alert(`토큰값 없음! 관리자에게 문의하세요.`)
+          alert("로그인 정보가 없습니다! 같은 현상이 반복될 경우 관리자에게 문의하세요.")
         }
       })
       .catch(err => {
-        alert(`유저 로그인 실패: ` + err)
+        alert(`로그인에 실패하였습니다. 다시 시도해주세요. (${err})`)
         throw err
       })
   }
