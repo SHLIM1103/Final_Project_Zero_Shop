@@ -25,7 +25,7 @@ const ProductGridSingle = ({
       >
         <div className={`product-wrap ${spaceBottomClass ? spaceBottomClass : ""}`}>
           <div className="product-img">
-            <Link to={process.env.PUBLIC_URL`/product-detail/${product.prdNo}`}>
+            <Link to={process.env.PUBLIC_URL + `/product-detail/${product.prdNo}`}>
               <img className="default-img" src={process.env.PUBLIC_URL + product.prdImg} alt="" />
             </Link>
 
