@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import MailchimpSubscribe from "react-mailchimp-subscribe"
 
@@ -34,9 +33,7 @@ const CustomForm = ({ status, message, onValidated }) => {
         </div>
       </div>
 
-      {status === "sending" && (
-        <div style={{ color: "#3498db", fontSize: "12px" }}>sending...</div>
-      )}
+      {status === "sending" && <div style={{ color: "#3498db", fontSize: "12px" }}>sending...</div>}
       {status === "error" && (
         <div
           style={{ color: "#e74c3c", fontSize: "12px" }}
@@ -68,10 +65,6 @@ const SubscribeEmail = ({ mailchimpUrl }) => {
       />
     </div>
   )
-}
-
-SubscribeEmail.propTypes = {
-  mailchimpUrl: PropTypes.string
 }
 
 export default SubscribeEmail

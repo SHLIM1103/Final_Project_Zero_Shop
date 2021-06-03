@@ -1,22 +1,50 @@
+#spring:
+#    datasource:
+#        url: jdbc:mariadb://myinstance.c8n0dfiduht4.ap-northeast-2.rds.amazonaws.com/myinstance
+#        driverClassName: org.mariadb.jdbc.Driver
+#        username: myinstance
+#        password: myinstance
 spring:
     datasource:
         url: jdbc:mariadb://localhost:3306/mariadb
         driverClassName: org.mariadb.jdbc.Driver
         username: root
         password: root
-
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         hibernate:
             ddl-auto: update
-        # show-sql: true
-        # properties:
-        #    hibernate:
-        #        format_sql: true
-
+        show-sql: true
+server:
+    port: 8080
+    # Hibernate ddl auto (create, create-drop, validate, update)
+    logging:
+        level:
+            org:
+                hibernate:
+                    SQL: DEBUG
+                    type:
+                        descriptor:
+                            sql:
+                                BasicBinder: TRACE
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: gusl5525@gmail.com
+        password:
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
+    servlet:
+        multipart:
+        max-request-size: 20MB
+        max-file-size: 20MB
 UserController:
     signin: Authenticates user and returns its JWT token.
-    signup: Creates user and returns its JWT tx`oken
+    signup: Creates user and returns its JWT token
     delete: Deletes specific user by username
     search: Returns specific user by username
     me: Returns current user's data

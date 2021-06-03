@@ -1,8 +1,7 @@
-import PropTypes from "prop-types";
-import React from "react";
-import SectionTitleTwo from "./SectionTitleTwo";
-import teamMemberData from "./team-member-one.json";
-import TeamMemberOneSingle from "./TeamMemberOneSingle";
+import React from "react"
+import SectionTitleTwo from "./SectionTitleTwo"
+import teamMemberData from "./team-member-one.json"
+import TeamMemberOneSingle from "./TeamMemberOneSingle"
 
 const TeamMemberOne = ({ spaceTopClass, spaceBottomClass }) => {
   return (
@@ -23,23 +22,12 @@ const TeamMemberOne = ({ spaceTopClass, spaceBottomClass }) => {
         <div className="row">
           {teamMemberData &&
             teamMemberData.map((single, key) => {
-              return (
-                <TeamMemberOneSingle
-                  data={single}
-                  spaceBottomClass="mb-30"
-                  key={key}
-                />
-              );
+              return <TeamMemberOneSingle data={single} spaceBottomClass="mb-30" key={key} />
             })}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-TeamMemberOne.propTypes = {
-  spaceBottomClass: PropTypes.string,
-  spaceTopClass: PropTypes.string
-};
-
-export default TeamMemberOne;
+export default TeamMemberOne

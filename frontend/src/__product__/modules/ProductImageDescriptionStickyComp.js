@@ -10,11 +10,9 @@ const ProductImageDescriptionStickyComp = ({
   product,
   currency,
   cartItems,
-  wishlistItems,
+  wishlistItems
 }) => {
-  const wishlistItem = wishlistItems.filter(
-    wishlistItem => wishlistItem.id === product.id
-  )[0]
+  const wishlistItem = wishlistItems.filter(wishlistItem => wishlistItem.id === product.id)[0]
   const { addToast } = useToasts()
 
   return (
@@ -30,10 +28,7 @@ const ProductImageDescriptionStickyComp = ({
             <ProductImageGallerySticky product={product} />
           </div>
           <div className="col-lg-6 col-md-6">
-            <Sticky
-              boundaryElement=".shop-area"
-              style={{ position: "relative" }}
-            >
+            <Sticky boundaryElement=".shop-area" style={{ position: "relative" }}>
               {/* product description info */}
               <ProductDescriptionInfo
                 product={product}
@@ -54,7 +49,7 @@ const mapStateToProps = state => {
   return {
     currency: state.currencyData,
     cartItems: state.cartData,
-    wishlistItems: state.wishlistData,
+    wishlistItems: state.wishlistData
   }
 }
 

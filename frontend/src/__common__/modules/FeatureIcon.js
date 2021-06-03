@@ -20,8 +20,8 @@ const FeatureIcon = ({ spaceTopClass, spaceBottomClass }) => {
                   textAlignClass="text-center"
                   key={key}
                 />
-              )}
-            )}
+              )
+            })}
         </div>
       </div>
     </div>

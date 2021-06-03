@@ -1,11 +1,6 @@
 import React from "react"
 
-const SectionTitleTwo = ({
-  titleText,
-  subTitleText,
-  positionClass,
-  spaceClass
-}) => {
+const SectionTitleTwo = ({ titleText, subTitleText, positionClass, spaceClass }) => {
   return (
     <div
       className={`section-title-2 ${positionClass ? positionClass : ""} ${

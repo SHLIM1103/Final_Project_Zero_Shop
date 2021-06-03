@@ -10,45 +10,48 @@ const BlogUpdatePage = ({ location, match }) => {
   const [boards, setBoards] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:8080/boards/board-number/' + match.params.id, )
-    .then((res) => {
-      console.log(match.params.id + `번 게시글 불러오기 성공`)
-      setBoards(res.data)
-    })
-    .catch((err) => {
-      console.log(match.params.id + `번 게시글 불러오기 실패: ` + err)
-      throw err
-    })
+    axios
+      .get("http://localhost:8080/boards/board-number/" + match.params.id)
+      .then(res => {
+        console.log(match.params.id + `번 게시글 불러오기 성공`)
+        setBoards(res.data)
+      })
+      .catch(err => {
+        console.log(match.params.id + `번 게시글 불러오기 실패: ` + err)
+        throw err
+      })
   }, [])
 
-  return (<>
-    <MetaTags>
-      <title>Flone | Blog Update</title>
-    </MetaTags>
+  return (
+    <>
+      <MetaTags>
+        <title>Flone | Blog Update</title>
+      </MetaTags>
 
-    <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-    <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>Blog Edit</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>Blog Edit</BreadcrumbsItem>
 
-    <Layout headerTop="visible">
-      {/* breadcrumb */}
-      <Breadcrumb />
-      <div className="blog-area pt-100 pb-100">
-        <div className="container">
-          <div className="row flex-row-reverse">
-            <div className="col-lg-9">
-              <div className="blog-details-wrapper ml-20">
-                {/* blog post */}
-                <BlogPostUpdate boards={boards} />
+      <Layout headerTop="visible">
+        {/* breadcrumb */}
+        <Breadcrumb />
+        <div className="blog-area pt-100 pb-100">
+          <div className="container">
+            <div className="row flex-row-reverse">
+              <div className="col-lg-9">
+                <div className="blog-details-wrapper ml-20">
+                  {/* blog post */}
+                  <BlogPostUpdate boards={boards} />
 
-                {/* blog post comment */}
-                <BlogComment />
+                  {/* blog post comment */}
+                  <BlogComment />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </Layout>
-  </>)
+      </Layout>
+    </>
+  )
 }
 
 export default BlogUpdatePage

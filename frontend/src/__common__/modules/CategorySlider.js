@@ -24,7 +24,7 @@ const CategorySlider = ({ spaceTopClass, spaceBottomClass }) => {
       }
     }
   }
-  
+
   return (
     <div
       className={`collections-area ${spaceTopClass ? spaceTopClass : ""}  ${
@@ -37,14 +37,9 @@ const CategorySlider = ({ spaceTopClass, spaceBottomClass }) => {
         <div className="collection-wrap">
           <div className="collection-active">
             <Swiper {...settings}>
-              {categoryData && categoryData.map((single, key) => {
-                  return (
-                    <CategorySingle
-                      data={single}
-                      key={key}
-                      sliderClass="swiper-slide"
-                    />
-                  )
+              {categoryData &&
+                categoryData.map((single, key) => {
+                  return <CategorySingle data={single} key={key} sliderClass="swiper-slide" />
                 })}
             </Swiper>
           </div>

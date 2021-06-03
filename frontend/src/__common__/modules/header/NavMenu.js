@@ -6,17 +6,13 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
   return (
     <div
       className={` ${
-        sidebarMenu
-          ? "sidebar-menu"
-          : `main-menu ${menuWhiteClass ? menuWhiteClass : ""}`
+        sidebarMenu ? "sidebar-menu" : `main-menu ${menuWhiteClass ? menuWhiteClass : ""}`
       } `}
     >
       <nav>
         <ul>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/"}>
-              {strings["home"]}
-            </Link>
+            <Link to={process.env.PUBLIC_URL + "/"}>{strings["home"]}</Link>
           </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/product/all"}>
@@ -31,30 +27,22 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
             </Link>
             <ul className="submenu">
               <li>
-                  <Link to={process.env.PUBLIC_URL + "/product/all"}>
-                    {"ALL PRODUCTS"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/product/category-living"}>
-                    {"LIVING"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/product/category-kitchen"}>
-                    {"KITCHEN"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/product/category-bathroom"}>
-                    {"BATHROOM"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/product/category-stationary"}>
-                    {"STATIONARY"}
-                  </Link>
-                </li>
+                <Link to={process.env.PUBLIC_URL + "/product/all"}>{"ALL PRODUCTS"}</Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/product/category-living"}>{"LIVING"}</Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/product/category-kitchen"}>{"KITCHEN"}</Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/product/category-bathroom"}>{"BATHROOM"}</Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/product/category-stationary"}>
+                  {"STATIONARY"}
+                </Link>
+              </li>
             </ul>
           </li>
           <li>
@@ -70,16 +58,12 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
             </Link>
             <ul className="submenu">
               <li>
-                <Link to={process.env.PUBLIC_URL + "/blog-all"}>
-                  {"Blog All"}
-                </Link>
+                <Link to={process.env.PUBLIC_URL + "/blog-all"}>{"Blog All"}</Link>
               </li>
             </ul>
           </li>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/not-found"}>
-              {"Contact"}
-            </Link>
+            <Link to={process.env.PUBLIC_URL + "/not-found"}>{"Contact"}</Link>
           </li>
         </ul>
       </nav>

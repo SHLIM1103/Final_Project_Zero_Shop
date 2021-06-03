@@ -8,20 +8,18 @@ const Layout = ({
   headerPaddingClass,
   headerPositionClass
 }) => {
-  return (<>
-    <Header
-      layout={headerContainerClass}
-      top={headerTop}
-      headerPaddingClass={headerPaddingClass}
-      headerPositionClass={headerPositionClass}
-    />
-    {children}
-    <Footer
-      backgroundColorClass="bg-gray"
-      spaceTopClass="pt-100"
-      spaceBottomClass="pb-70"
-    />
-  </>)
+  return (
+    <>
+      <Header
+        layout={headerContainerClass}
+        top={headerTop}
+        headerPaddingClass={headerPaddingClass}
+        headerPositionClass={headerPositionClass}
+      />
+      {children}
+      <Footer backgroundColorClass="bg-gray" spaceTopClass="pt-100" spaceBottomClass="pb-70" />
+    </>
+  )
 }
 
 export default Layout

@@ -1,91 +1,95 @@
-import PropTypes from "prop-types"
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'
+import React, { useState, useEffect } from "react"
+import axios from "axios"
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic"
 import { Layout, Breadcrumb } from "__common__/index"
 import { useHistory } from "react-router"
-import MetaTags from "react-meta-tags";
-import Card, { CardBody } from "react-bootstrap/Card";
-import Accordion from "react-bootstrap/Accordion";
+import MetaTags from "react-meta-tags"
+import Card, { CardBody } from "react-bootstrap/Card"
+import Accordion from "react-bootstrap/Accordion"
 
 const MyAccountDetail = ({ location, match }) => {
+  useEffect(() => {
+    setPayment(JSON.parse(localStorage.getItem("payment")))
+  }, [])
 
-    useEffect(()=>{
-        setPayment(JSON.parse(localStorage.getItem("payment")))
-      }, [])
+  const [payment, setPayment] = useState({})
+  const [payState, setPayState] = useState("")
+  const [rcvName, setRcvName] = useState("")
+  const [rcvPhone, setRcvPhone] = useState("")
+  const [rcvAddr, setRcvAddr] = useState("")
 
-    const [ payment, setPayment ] = useState({})
-    const [ payState, setPayState ] = useState('')
-    const [ rcvName, setRcvName ] = useState('')
-    const [ rcvPhone, setRcvPhone ] = useState('')
-    const [ rcvAddr, setRcvAddr ] = useState('')
+  const history = useHistory()
+  const { pathname } = location
+  const year = ["전체기간", "1주", "1개월", "3개월", "1년"]
+  const list = () => {
+    history.push("/my-account")
+  }
+  // const ChangeAddr = () => {
+  //     setPayment(JSON.parse(localStorage.getItem("payment")))
+  // }
+  const refund = e => {
+    e.preventDefault()
+    axios({
+      url: `http://localhost:8080/payments/${match.params.id}`,
+      method: "delete",
+      headers: { "Content-Type": "application/json", Authorization: "JWT fefege..." },
+      data: {}
+    })
+      .then(res => {
+        history.push("/my-account")
+      })
+      .catch(err => {
+        alert(err.response)
+      })
+  }
+  const [addr, setAddr] = useState("")
+  const [extraAddr, setExtraAddr] = useState("")
+  const [postcode, setPostcode] = useState("")
+  const [fullAddr, setFullAddr] = useState("")
 
-    const history = useHistory()
-    const { pathname } = location;
-    const year = ["전체기간", "1주", "1개월", "3개월", "1년"];
-   const list = () => {
-    history.push('/my-account')
-   }
-    // const ChangeAddr = () => {
-    //     setPayment(JSON.parse(localStorage.getItem("payment")))
-    // } 
-    const refund = e => {
-        e.preventDefault()
-        axios({
-            url: `http://localhost:8080/payments/${match.params.id}`,
-            method: 'delete',
-            headers: {'Content-Type':'application/json','Authorization': 'JWT fefege...'},
-            data: {}
-        }).then(res => {
-            history.push('/my-account')
-        }).catch(err => {
-            alert(err.response)
-        })
-    }
-    const [ addr, setAddr ] = useState('')
-    const [ extraAddr, setExtraAddr ] = useState('')
-    const [ postcode, setPostcode ] = useState('')
-    const [ fullAddr, setFullAddr ] = useState('')
-  
-    const execPostCode = () => {
-      new window.daum.Postcode({
-        oncomplete: data => {
-  
-          setPostcode(data.zonecode)
-  
-          if(data.userSelectedType === "R"){
-            setAddr(data.roadAddress)
-            if (data.buildingName !== ""){
-              setExtraAddr(" (" + data.buildingName + ")")
-            }
-          }else{
-            setExtraAddr(data.jibunAddress)
+  const execPostCode = () => {
+    new window.daum.Postcode({
+      oncomplete: data => {
+        setPostcode(data.zonecode)
+
+        if (data.userSelectedType === "R") {
+          setAddr(data.roadAddress)
+          if (data.buildingName !== "") {
+            setExtraAddr(" (" + data.buildingName + ")")
           }
+        } else {
+          setExtraAddr(data.jibunAddress)
+        }
       }
-      }).open();
-    };
-    const addrChange = e => {
-        e.preventDefault()
-        axios({
-            url: `http://localhost:8080/payments/edit/${match.params.id}`,
-            method: 'put',
-            headers: {'Content-Type':'application/json','Authorization': 'JWT fefege...'},
-            data: {
-                payNo : `${match.params.id}`,
-                payState : payment.payState,
-                payDate : payment.payDate,
-                payPrice : payment.payPrice,
-                rcvAddr : `${postcode} ${addr} ${extraAddr}`+` `+fullAddr,
-                rcvName, rcvPhone}
-        }).then(res => {
-            history.push('/my-account')
-        }).catch(err => {
-            alert(err.response)
-        })
-    }
-    // useEffect(()=>ChangeAddr(), [])
-    return (<>
-    <MetaTags>
+    }).open()
+  }
+  const addrChange = e => {
+    e.preventDefault()
+    axios({
+      url: `http://localhost:8080/payments/edit/${match.params.id}`,
+      method: "put",
+      headers: { "Content-Type": "application/json", Authorization: "JWT fefege..." },
+      data: {
+        payNo: `${match.params.id}`,
+        payState: payment.payState,
+        payDate: payment.payDate,
+        payPrice: payment.payPrice,
+        rcvAddr: `${postcode} ${addr} ${extraAddr}` + ` ` + fullAddr,
+        rcvName,
+        rcvPhone
+      }
+    })
+      .then(res => {
+        history.push("/my-account")
+      })
+      .catch(err => {
+        alert(err.response)
+      })
+  }
+  // useEffect(()=>ChangeAddr(), [])
+  return (
+    <>
+      <MetaTags>
         <title>Flone | My Account</title>
         <meta
           name="description"
@@ -93,9 +97,7 @@ const MyAccountDetail = ({ location, match }) => {
         />
       </MetaTags>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
-        My Account
-      </BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>My Account</BreadcrumbsItem>
       <Layout headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
@@ -105,7 +107,7 @@ const MyAccountDetail = ({ location, match }) => {
               <div className="ml-auto mr-auto col-lg-9">
                 <div className="myaccount-wrapper">
                   <Accordion defaultActiveKey="3">
-                  <Card className="single-my-account mb-20">
+                    <Card className="single-my-account mb-20">
                       <Card.Header className="panel-heading">
                         <Accordion.Toggle variant="link" eventKey="0">
                           <h3 className="panel-title">
@@ -253,42 +255,79 @@ const MyAccountDetail = ({ location, match }) => {
                         <Card.Body>
                           <div className="myaccount-info-wrapper">
                             <div className="account-info-wrapper">
-                              <h4>Order detail</h4>                            
-                          <article>
-                            <div>
-                            </div>
-                          </article>
+                              <h4>Order detail</h4>
+                              <article>
+                                <div></div>
+                              </article>
                             </div>
                             <div className="entries-wrapper">
                               <div className="row">
                                 <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
                                   <div className="entries-info text-center">
+                                    <div>
+                                      <h4>결제 정보</h4>
                                       <div>
-                                        <h4>결제 정보</h4>
-                                        <div>
-                                        결제번호 <input type="text" value={payment.payNo || ''} readOnly/>
-                                        결제시간 <input type="text" value={payment.payDate || ''} readOnly/>
+                                        결제번호{" "}
+                                        <input type="text" value={payment.payNo || ""} readOnly />
+                                        결제시간{" "}
+                                        <input type="text" value={payment.payDate || ""} readOnly />
                                         {/* 결제상품 <input type="text" value={payment.payInfo || ''} readOnly/> */}
-                                        결제금액 <input type="text" value={payment.payPrice || ''} readOnly/>
-                                        주문상태 <input type="text" value={payment.payState || ''} readOnly/>
-                                        </div>
-                                        <h4>배송 정보</h4>
-                                        <div>
-                                        주소 <button onClick={ execPostCode }>주소 검색</button>
-                                        <input type="text" value={`${postcode} ${addr} ${extraAddr}`} readOnly />
-                                        <input type="text" placeholder="받으시는 분의 상세 주소를 입력하세요" name="fullAddr" value={fullAddr} required
-                                        onChange = { e => { setFullAddr(`${e.target.value}`)}} />
-                                        이름 <input className="box" type="text" value={rcvName} onChange={e => setRcvName(e.target.value)}/>
-                                        연락처 <input className="box" type="text" value={rcvPhone} onChange={e => setRcvPhone(e.target.value)}/>
-                                        </div>
+                                        결제금액{" "}
+                                        <input
+                                          type="text"
+                                          value={payment.payPrice || ""}
+                                          readOnly
+                                        />
+                                        주문상태{" "}
+                                        <input
+                                          type="text"
+                                          value={payment.payState || ""}
+                                          readOnly
+                                        />
                                       </div>
+                                      <h4>배송 정보</h4>
+                                      <div>
+                                        주소 <button onClick={execPostCode}>주소 검색</button>
+                                        <input
+                                          type="text"
+                                          value={`${postcode} ${addr} ${extraAddr}`}
+                                          readOnly
+                                        />
+                                        <input
+                                          type="text"
+                                          placeholder="받으시는 분의 상세 주소를 입력하세요"
+                                          name="fullAddr"
+                                          value={fullAddr}
+                                          required
+                                          onChange={e => {
+                                            setFullAddr(`${e.target.value}`)
+                                          }}
+                                        />
+                                        이름{" "}
+                                        <input
+                                          className="box"
+                                          type="text"
+                                          value={rcvName}
+                                          onChange={e => setRcvName(e.target.value)}
+                                        />
+                                        연락처{" "}
+                                        <input
+                                          className="box"
+                                          type="text"
+                                          value={rcvPhone}
+                                          onChange={e => setRcvPhone(e.target.value)}
+                                        />
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                                 <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
                                   <div className="entries-edit-delete text-center">
-                                  <button onClick={refund}>삭 제</button>
+                                    <button onClick={refund}>삭 제</button>
                                     {/* <button className="edit" onClick={refund}>교환/환불</button> */}
-                                    <button className="edit" onClick={addrChange}>배송지 변경</button>
+                                    <button className="edit" onClick={addrChange}>
+                                      배송지 변경
+                                    </button>
                                     <button onClick={list}>목 록</button>
                                   </div>
                                 </div>
@@ -313,7 +352,5 @@ const MyAccountDetail = ({ location, match }) => {
     </>
   )
 }
-MyAccountDetail.propTypes = {
-    location: PropTypes.object
-  }
+
 export default MyAccountDetail

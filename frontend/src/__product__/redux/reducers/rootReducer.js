@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   currencyData: currencyReducer,
   productData: productReducer,
   cartData: cartReducer,
-  wishlistData: wishlistReducer,
+  wishlistData: wishlistReducer
 })
 
 export default rootReducer

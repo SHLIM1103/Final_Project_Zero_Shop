@@ -35,14 +35,8 @@ const HeroSlider = () => {
         <Swiper {...params}>
           {sliderData &&
             sliderData.map((single, key) => {
-              return (
-                <HeroSliderSingle
-                  data={single}
-                  key={key}
-                  sliderClass="swiper-slide"
-                />
-              )}
-            )}
+              return <HeroSliderSingle data={single} key={key} sliderClass="swiper-slide" />
+            })}
         </Swiper>
       </div>
     </div>

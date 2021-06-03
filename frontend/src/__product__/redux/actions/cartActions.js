@@ -4,11 +4,7 @@ export const DELETE_FROM_CART = "DELETE_FROM_CART"
 export const DELETE_ALL_FROM_CART = "DELETE_ALL_FROM_CART"
 
 //add to cart
-export const addToCart = (
-  item,
-  addToast,
-  quantityCount,
-) => {
+export const addToCart = (item, addToast, quantityCount) => {
   return dispatch => {
     if (addToast) {
       addToast("Added To Cart", { appearance: "success", autoDismiss: true })
@@ -57,7 +53,7 @@ export const deleteAllFromCart = addToast => {
 }
 
 // get stock of cart item
-export const cartItemStock = (item) => {
+export const cartItemStock = item => {
   if (item.stock) {
     return item.stock
   } else {

@@ -8,18 +8,12 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass }) => {
 
   return (
     <div className={`sidebar-style ${sideSpaceClass ? sideSpaceClass : ""}`}>
-      <Sticky
-        boundaryElement="sidebar-style"
-        style={{ position: "relative" }}
-      >
+      <Sticky boundaryElement="sidebar-style" style={{ position: "relative" }}>
         {/* shop search */}
         <ShopSearch />
 
         {/* filter by categories */}
-        <ShopCategories
-          categories={uniqueCategories}
-          getSortParams={getSortParams}
-        />
+        <ShopCategories categories={uniqueCategories} getSortParams={getSortParams} />
       </Sticky>
     </div>
   )

@@ -9,11 +9,11 @@ import axios from "axios"
 
 const CategoryKitchenPage = ({ location }) => {
   const { pathname } = location
-  const [layout, setLayout] = useState('grid three-column')
-  const [sortType, setSortType] = useState('')
-  const [sortValue, setSortValue] = useState('')
-  const [filterSortType, setFilterSortType] = useState('')
-  const [filterSortValue, setFilterSortValue] = useState('')
+  const [layout, setLayout] = useState("grid three-column")
+  const [sortType, setSortType] = useState("")
+  const [sortValue, setSortValue] = useState("")
+  const [filterSortType, setFilterSortType] = useState("")
+  const [filterSortValue, setFilterSortValue] = useState("")
   const [offset, setOffset] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const [currentData, setCurrentData] = useState([])
@@ -21,20 +21,19 @@ const CategoryKitchenPage = ({ location }) => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:8080/products/category/kitchen', )
-    .then((res) => {
-      console.log(products.category + `카테고리 전체보기 성공`)
-      setProducts(res.data)
-    })
-    .catch((err) => {
-      console.log(products.category + `카테고리  전체보기 실패: ` + err)
-      throw err
-    })
+    axios
+      .get("http://localhost:8080/products/category/kitchen")
+      .then(res => {
+        setProducts(res.data)
+      })
+      .catch(err => {
+        throw err
+      })
   }, [])
 
   const pageLimit = 15
-  
-  const getLayout = (layout) => {
+
+  const getLayout = layout => {
     setLayout(layout)
   }
 
@@ -54,36 +53,46 @@ const CategoryKitchenPage = ({ location }) => {
     sortedProducts = filterSortedProducts
     setSortedProducts(sortedProducts)
     setCurrentData(sortedProducts.slice(offset, offset + pageLimit))
-  }, [offset, products, sortType, sortValue, filterSortType, filterSortValue ])
+  }, [offset, products, sortType, sortValue, filterSortType, filterSortValue])
 
-  return (<>
-    <MetaTags>
-      <title>ZER0 SHOP | Shop Page</title>
-    </MetaTags>
+  return (
+    <>
+      <MetaTags>
+        <title>ZER0 SHOP | Shop Page</title>
+      </MetaTags>
 
-    <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-    <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>Shop</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>Shop</BreadcrumbsItem>
 
-    <Layout headerTop="visible">
-      {/* breadcrumb */}
-      <Breadcrumb />
+      <Layout headerTop="visible">
+        {/* breadcrumb */}
+        <Breadcrumb />
 
-      <div className="shop-area pt-95 pb-100">
-        <div className="container-fluid">
-          <div className="row">
+        <div className="shop-area pt-95 pb-100">
+          <div className="container-fluid">
+            <div className="row">
               <div className="col-lg-3 order-2 order-lg-1">
-                  {/* shop sidebar */}
-                  <ShopSidebar products={products} getSortParams={getSortParams} sideSpaceClass="mr-30"/>
+                {/* shop sidebar */}
+                <ShopSidebar
+                  products={products}
+                  getSortParams={getSortParams}
+                  sideSpaceClass="mr-30"
+                />
               </div>
               <div className="col-lg-9 order-1 order-lg-2">
-                  {/* shop topbar default */}
-                  <ShopTopbar getLayout={getLayout} getFilterSortParams={getFilterSortParams} productCount={products.length} sortedProductCount={currentData.length} />
+                {/* shop topbar default */}
+                <ShopTopbar
+                  getLayout={getLayout}
+                  getFilterSortParams={getFilterSortParams}
+                  productCount={products.length}
+                  sortedProductCount={currentData.length}
+                />
 
-                  {/* shop page content default */}
-                  <ShopProducts layout={layout} products={currentData} />
+                {/* shop page content default */}
+                <ShopProducts layout={layout} products={currentData} />
 
-                  {/* shop product pagination */}
-                  <div className="pro-pagination-style text-center mt-30">
+                {/* shop product pagination */}
+                <div className="pro-pagination-style text-center mt-30">
                   <Paginator
                     totalRecords={sortedProducts.length}
                     pageLimit={pageLimit}
@@ -95,13 +104,14 @@ const CategoryKitchenPage = ({ location }) => {
                     pagePrevText="«"
                     pageNextText="»"
                   />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </Layout>
-  </>)
+      </Layout>
+    </>
+  )
 }
 
 export default CategoryKitchenPage

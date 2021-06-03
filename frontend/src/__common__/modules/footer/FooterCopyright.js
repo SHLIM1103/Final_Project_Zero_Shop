@@ -13,9 +13,7 @@ const FooterCopyright = ({ footerLogo, spaceBottomClass, colorClass }) => {
           <img alt="" src={process.env.PUBLIC_URL + footerLogo} />
         </Link>
       </div>
-      <p>
-        TEAM ZEROSHOP
-      </p>
+      <p>TEAM ZEROSHOP</p>
     </div>
   )
 }

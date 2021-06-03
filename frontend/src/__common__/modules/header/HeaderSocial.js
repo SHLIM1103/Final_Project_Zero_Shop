@@ -35,12 +35,7 @@ const HeaderSocial = () => {
           </a>
         </li>
         <li>
-          <a
-            className="twitter"
-            href="//www.twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a className="twitter" href="//www.twitter.com" target="_blank" rel="noopener noreferrer">
             <i className="fa fa-twitter" />
           </a>
         </li>

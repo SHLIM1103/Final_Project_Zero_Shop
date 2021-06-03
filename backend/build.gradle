@@ -50,6 +50,10 @@ dependencies {
 	implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 }
 
+bootWar {
+	archiveName("ROOT.war")
+}
+
 test {
 	useJUnitPlatform()
 }

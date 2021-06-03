@@ -1,14 +1,8 @@
-import PropTypes from "prop-types"
 import React from "react"
 import { setActiveLayout } from "helpers/product"
 import { Link } from "react-router-dom"
 
-const ShopTopAction = ({
-  getLayout,
-  getFilterSortParams,
-  productCount,
-  sortedProductCount
-}) => {
+const ShopTopAction = ({ getLayout, getFilterSortParams, productCount, sortedProductCount }) => {
   return (
     <div className="shop-top-bar mb-35">
       <div className="select-shoing-wrap">
@@ -19,11 +13,13 @@ const ShopTopAction = ({
             <option value="priceLowToHigh">낮은 가격순</option>
           </select>
         </div>
-        {localStorage.getItem('token') !== null ?
+        {localStorage.getItem("token") !== null ? (
           <button>
             <Link to={"/product-add"}>제품추가</Link>
           </button>
-        : ""}
+        ) : (
+          ""
+        )}
         <p>
           Showing {sortedProductCount} of {productCount} result
         </p>
@@ -57,13 +53,6 @@ const ShopTopAction = ({
       </div>
     </div>
   )
-}
-
-ShopTopAction.propTypes = {
-  getFilterSortParams: PropTypes.func,
-  getLayout: PropTypes.func,
-  productCount: PropTypes.number,
-  sortedProductCount: PropTypes.number
 }
 
 export default ShopTopAction

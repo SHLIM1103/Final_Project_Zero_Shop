@@ -10,9 +10,10 @@ const CategorySingle = ({ data, sliderClass }) => {
         </Link>
       </div>
       <div className="collection-content text-center">
-        <span><Link to={process.env.PUBLIC_URL + data.link}>{data.title}</Link></span>
-        <h4>
-        </h4>
+        <span>
+          <Link to={process.env.PUBLIC_URL + data.link}>{data.title}</Link>
+        </span>
+        <h4></h4>
       </div>
     </div>
   )

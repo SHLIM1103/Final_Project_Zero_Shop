@@ -25,11 +25,7 @@ const RelatedProductSlider = ({ spaceBottomClass, category, product }) => {
   }
 
   return (
-    <div
-      className={`related-product-area ${
-        spaceBottomClass ? spaceBottomClass : ""
-      }`}
-    >
+    <div className={`related-product-area ${spaceBottomClass ? spaceBottomClass : ""}`}>
       <div className="container">
         <SectionTitleTwo
           titleText="Related Products"

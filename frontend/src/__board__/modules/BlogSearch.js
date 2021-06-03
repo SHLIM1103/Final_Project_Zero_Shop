@@ -1,39 +1,36 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from "react"
 import { Link } from "react-router-dom"
-import axios from 'axios'
+import axios from "axios"
 
-const BlogSearch= ({ history })=>{
+const BlogSearch = ({ history }) => {
   const [boards, setBoards] = useState([])
   const [search, setSearch] = useState({
-    brdTitle: localStorage.getItem("brdTitle"),
+    brdTitle: localStorage.getItem("brdTitle")
   })
-  const {brdTitle} = search
-  const onChange = useCallback(e=> {
-    setSearch({...search,[e.target.name]: e.target.value})
+  const { brdTitle } = search
+  const onChange = useCallback(e => {
+    setSearch({ ...search, [e.target.name]: e.target.value })
   })
 
-
-  useEffect(()=>{
-     axios.get(`http://localhost:8080/boards/search/` + localStorage.getItem("brdTitle"), )
-     .then(({data}) => {
-      setBoards(data)
-     })
-     .catch((error) => {
-       alert('실패')
-       throw error
-     })
-     
-    },[])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/boards/search/` + localStorage.getItem("brdTitle"))
+      .then(({ data }) => {
+        setBoards(data)
+      })
+      .catch(error => {
+        alert("실패")
+        throw error
+      })
+  }, [])
 
   return (
- <>
-      <div className="col-lg-4 col-md-6 col-sm-12"  >
+    <>
+      <div className="col-lg-4 col-md-6 col-sm-12">
         <div className="blog-wrap-2 mb-30">
           <div className="blog-img-2">
-            
             <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
-              <img
-                src={boards.brdImg} alt={boards.brdImg} /> 
+              <img src={boards.brdImg} alt={boards.brdImg} />
             </Link>
           </div>
           <div className="blog-content-2">
@@ -42,22 +39,22 @@ const BlogSearch= ({ history })=>{
                 <li>{boards.brdWrtDate}</li>
                 <li>
                   <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
-                     <i className="fa fa-comments-o"/>
+                    <i className="fa fa-comments-o" />
                   </Link>
                 </li>
               </ul>
             </div>
             <h4>
-       
-              <Link to={process.env.PUBLIC_URL + `/blog-details-standard/${boards.brdNo}`} key={boards.brdNo} >
-              {boards.brdTitle}
+              <Link
+                to={process.env.PUBLIC_URL + `/blog-details-standard/${boards.brdNo}`}
+                key={boards.brdNo}
+              >
+                {boards.brdTitle}
               </Link>
             </h4>
-                  작성자: {boards.usrName} 
+            작성자: {boards.usrName}
             <div className="blog-share-comment">
-              <div className="blog-btn-2">
-                  조회수: {boards.brdCount} 
-              </div>
+              <div className="blog-btn-2">조회수: {boards.brdCount}</div>
               <div className="blog-share">
                 <span>share :</span>
                 <div className="share-social">
@@ -82,31 +79,33 @@ const BlogSearch= ({ history })=>{
               </div>
             </div>
           </div>
-         
-          </div>
-          
-          </div>
-       
-      ) 
-          <div className="same-style header-search d-none d-lg-block">
-          <div className="sidebar-widget">
-      <h4 className="pro-sidebar-title"> </h4>
-      <div className="pro-sidebar-search mb-50 mt-25">
-      <form className="pro-sidebar-search-form" action="#">
-          <input type="text" placeholder="검색어를 입력하세요"onChange={onChange}  />
-          <button onClick={`/blog-search/${search}`} >
-            <i className="pe-7s-search" />
-          </button>
-        </form>
+        </div>
       </div>
-    </div>
-    </div>
-
-<div className="">
-  {localStorage.getItem("user")!=null ?  <a class="float-right" href="#"><Link to= '/blog-detail'>글 작성하기</Link></a>:''}
-   </div>
-
- </> )
-      }
+      )
+      <div className="same-style header-search d-none d-lg-block">
+        <div className="sidebar-widget">
+          <h4 className="pro-sidebar-title"> </h4>
+          <div className="pro-sidebar-search mb-50 mt-25">
+            <form className="pro-sidebar-search-form" action="#">
+              <input type="text" placeholder="검색어를 입력하세요" onChange={onChange} />
+              <button onClick={`/blog-search/${search}`}>
+                <i className="pe-7s-search" />
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div className="">
+        {localStorage.getItem("user") != null ? (
+          <a class="float-right" href="#">
+            <Link to="/blog-detail">글 작성하기</Link>
+          </a>
+        ) : (
+          ""
+        )}
+      </div>
+    </>
+  )
+}
 
 export default BlogSearch

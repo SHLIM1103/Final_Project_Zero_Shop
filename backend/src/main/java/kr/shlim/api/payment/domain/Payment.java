@@ -3,15 +3,7 @@ package kr.shlim.api.payment.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import kr.shlim.api.board.domain.Board;
 import kr.shlim.api.cart.domain.Cart;
@@ -21,7 +13,7 @@ import kr.shlim.api.user.domain.UserVo;
 import lombok.Getter;
 
 @Entity @Getter
-
+@Table(name = "payments")
 public class Payment {
    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name="pay_no") private long payNo;

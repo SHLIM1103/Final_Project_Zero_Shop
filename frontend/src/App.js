@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from "react"
+import React, { Suspense, useEffect } from "react"
 import ScrollToTop from "helpers/scroll-top"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { ToastProvider } from "react-toast-notifications"
@@ -11,12 +11,12 @@ import { LoginRegisterPage, AdminPage, UserListPage } from "__user__/index"
 import { ProductAddPage, ProductListPage, CategoryLivingPage, CategoryKitchenPage, CategoryBathroomPage, CategoryStationaryPage, ProductDetailPage, ProductEditPage, CartPage, WishlistPage, ProductSearchResultPage } from "__product__/index"
 import { BlogWritePage, BlogListPage, BlogDetailPage, BlogUpdatePage, BlogCommentUpdatePage } from "__board__/index"
 
-const App = (props) => {
+const App = props => {
   useEffect(() => {
     props.dispatch(
       loadLanguages({
         languages: {
-          en: require("__common__/modules/english.json"),
+          en: require("__common__/modules/english.json")
         }
       })
     )
@@ -38,23 +38,13 @@ const App = (props) => {
               }
             >
               <Switch>
-                <Route
-                  exact
-                  path={process.env.PUBLIC_URL + "/"}
-                  component={MainPage}
-                />
+                <Route exact path={process.env.PUBLIC_URL + "/"} component={MainPage} />
 
                 {/* Homepages */}
-                <Route
-                  path={process.env.PUBLIC_URL + "/main"}
-                  component={MainPage}
-                />
+                <Route path={process.env.PUBLIC_URL + "/main"} component={MainPage} />
 
                 {/* Shop pages */}
-                <Route
-                  path={process.env.PUBLIC_URL + "/product/all"}
-                  component={ProductListPage}
-                />
+                <Route path={process.env.PUBLIC_URL + "/product/all"} component={ProductListPage} />
                 <Route
                   path={process.env.PUBLIC_URL + "/product/category-living"}
                   component={CategoryLivingPage}
@@ -75,7 +65,7 @@ const App = (props) => {
                 {/* Shop product pages */}
                 <Route
                   path={process.env.PUBLIC_URL + "/product-detail/:id"}
-                  render={(routeProps) => (
+                  render={routeProps => (
                     <ProductDetailPage {...routeProps} key={routeProps.match.params.id} />
                   )}
                 />
@@ -83,13 +73,10 @@ const App = (props) => {
                   path={process.env.PUBLIC_URL + "/product-detail/:id"}
                   component={ProductDetailPage}
                 />
-                <Route
-                  path={process.env.PUBLIC_URL + "/product-add"}
-                  component={ProductAddPage}
-                />
+                <Route path={process.env.PUBLIC_URL + "/product-add"} component={ProductAddPage} />
                 <Route
                   path={process.env.PUBLIC_URL + "/product-edit/:id"}
-                  render={(routeProps) => (
+                  render={routeProps => (
                     <ProductEditPage {...routeProps} key={routeProps.match.params.id} />
                   )}
                 />
@@ -99,7 +86,7 @@ const App = (props) => {
                 />
                 <Route
                   path={process.env.PUBLIC_URL + "/product/search/:id"}
-                  render={(routeProps) => (
+                  render={routeProps => (
                     <ProductSearchResultPage {...routeProps} key={routeProps.match.params.id} />
                   )}
                 />
@@ -111,7 +98,7 @@ const App = (props) => {
                 {/* Blog pages */}
                 <Route
                   path={process.env.PUBLIC_URL + "/blog-detail/:id"}
-                  render={(routeProps) => (
+                  render={routeProps => (
                     <BlogDetailPage {...routeProps} key={routeProps.match.params.id} />
                   )}
                 />
@@ -119,13 +106,10 @@ const App = (props) => {
                   path={process.env.PUBLIC_URL + "/blog-detail/:id"}
                   component={BlogDetailPage}
                 />
-                <Route
-                  path={process.env.PUBLIC_URL + "/blog-all"}
-                  component={BlogListPage}
-                />
+                <Route path={process.env.PUBLIC_URL + "/blog-all"} component={BlogListPage} />
                 <Route
                   path={process.env.PUBLIC_URL + "/blog-update/:id"}
-                  render={(routeProps) => (
+                  render={routeProps => (
                     <BlogUpdatePage {...routeProps} key={routeProps.match.params.id} />
                   )}
                 />
@@ -133,9 +117,9 @@ const App = (props) => {
                   path={process.env.PUBLIC_URL + "/blog-update/:id"}
                   component={BlogUpdatePage}
                 />
-                    <Route
-                  path={process.env.PUBLIC_URL +"/comment-update/:id"}
-                  render={(routeProps) => (
+                <Route
+                  path={process.env.PUBLIC_URL + "/comment-update/:id"}
+                  render={routeProps => (
                     <BlogCommentUpdatePage {...routeProps} key={routeProps.match.params.id} />
                   )}
                 />
@@ -143,52 +127,25 @@ const App = (props) => {
                   path={process.env.PUBLIC_URL + "/comment-update/:id"}
                   component={BlogCommentUpdatePage}
                 />
-                <Route
-                  path={process.env.PUBLIC_URL + "/blog-write"}
-                  component={BlogWritePage}
-                />
+                <Route path={process.env.PUBLIC_URL + "/blog-write"} component={BlogWritePage} />
 
                 {/* Other pages */}
-                <Route
-                  path={process.env.PUBLIC_URL + "/cart"}
-                  component={CartPage}
-                />
-                <Route
-                  path={process.env.PUBLIC_URL + "/wishlist"}
-                  component={WishlistPage}
-                />
-                <Route
-                  path={process.env.PUBLIC_URL + "/checkout"}
-                  component={Checkout}
-                />
-                <Route
-                  path={process.env.PUBLIC_URL + "/admin"}
-                  component={AdminPage}
-                />
-                <Route
-                  path={process.env.PUBLIC_URL + "/user-list"}
-                  component={UserListPage}
-                />
+                <Route path={process.env.PUBLIC_URL + "/cart"} component={CartPage} />
+                <Route path={process.env.PUBLIC_URL + "/wishlist"} component={WishlistPage} />
+                <Route path={process.env.PUBLIC_URL + "/checkout"} component={Checkout} />
+                <Route path={process.env.PUBLIC_URL + "/admin"} component={AdminPage} />
+                <Route path={process.env.PUBLIC_URL + "/user-list"} component={UserListPage} />
                 <Route
                   path={process.env.PUBLIC_URL + "/login-register"}
                   component={LoginRegisterPage}
                 />
+                <Route path={process.env.PUBLIC_URL + "/my-account"} component={MyAccount} />
                 <Route
-                  path={process.env.PUBLIC_URL + "/my-account"}
-                  component={MyAccount}
-                />
-                <Route 
-                  path={process.env.PUBLIC_URL + "/my-account-detail/:id"} 
+                  path={process.env.PUBLIC_URL + "/my-account-detail/:id"}
                   component={MyAccountDetail}
                 />
-                <Route
-                  path={process.env.PUBLIC_URL + "/pay-success"}
-                  component={SuccessPage}
-                />
-                <Route
-                  path={process.env.PUBLIC_URL + "/not-found"}
-                  component={NotFoundPage}
-                />
+                <Route path={process.env.PUBLIC_URL + "/pay-success"} component={SuccessPage} />
+                <Route path={process.env.PUBLIC_URL + "/not-found"} component={NotFoundPage} />
 
                 <Route exact component={NotFoundPage} />
               </Switch>
@@ -200,4 +157,4 @@ const App = (props) => {
   )
 }
 
-export default connect()(multilanguage(App));
+export default connect()(multilanguage(App))
